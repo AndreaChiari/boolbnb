@@ -20,13 +20,14 @@ export default {
 <template>
     <footer>
         <div class="sub-footer">
-            <div class="sub-left">
+            <div class="sub-left d-none d-md-inline">
                 <ul>
                     <li>© 2023 Airbnb, Inc.</li>
                     <li>Privacy</li>
                     <li>Termini</li>
                     <li>Mappa del sito</li>
                     <li>Dettagli dell'azienda</li>
+                    <!-- TODO rotta con i nostri nomi -->
                     <li>Destinazioni</li>
                 </ul>
             </div>
@@ -108,6 +109,8 @@ li {
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease-in-out;
+    margin: 5px auto;
+
 }
 
 .icon i:hover {
@@ -125,5 +128,32 @@ li {
 
 .fa-linkedin {
     color: #0077B5;
+}
+
+// MQ mobile
+@media (max-width: 767px) {
+    .sub-footer {
+        flex-direction: column;
+    }
+
+    .sub-left {
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .sub-right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    ul {
+        display: none;
+    }
+
+    .icon {
+        column-gap: 15px;
+    }
 }
 </style>
