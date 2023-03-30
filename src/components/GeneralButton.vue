@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 export default {
     name: "GeneralButton",
     components: { RouterLink },
-    // to do props 
+    props: {}
 }
 
 </script>
@@ -18,7 +18,6 @@ export default {
     text-decoration: none;
     padding: 10px;
     border-radius: 10px;
-    margin-left: 340px;
     background-color: #FF5D58;
     border: 1px solid #FFDEDF;
     color: white;

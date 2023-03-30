@@ -12,18 +12,18 @@ export default {
 </script>
 
 <template>
-    <div class="container d-flex flex-column">
-        <div class="container-detail mx-auto d-flex">
+    <div class="container d-flex">
+        <div class="container-detail mx-auto d-flex flex-column flex-lg-row">
             <div class="container-thumb-detail">
                 <img class="img-fluid"
                     src="https://a0.muscache.com/im/pictures/miso/Hosting-610511843622686196/original/ebee05c1-0c41-4850-a985-49748f8f6d55.jpeg?im_w=1440"
                     alt="">
                 <p class="apartment-name ms-2">Casa sull'albero di frassino, 10mq</p>
-                <p class="rating">
+                <p class="rating mt-3">
                     <i class="fa-solid fa-star me-1"></i>4.86
                 </p>
             </div>
-            <div class="container-info-detail p-5">
+            <div class="container-info-detail">
                 <div class="info-apartment">
                 </div>
                 <h6 class="mb-2">Indirizzo: Via Alcide de gasperi , 36</h6>
@@ -35,37 +35,37 @@ export default {
                     quos! Veniam laudantium natus repudiandae dolores unde sed quibusdam dolorem nobis aliquid sit, ratione
                     obcaecati ut aliquam.</h6>
                 <h6 class="mb-5">Prezzo: 25€ / notte </h6>
-                <GeneralButton />
+                <div class="d-flex justify-content-end button-conteiner">
+                    <GeneralButton />
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
-.contact-button {
-    position: relative;
-    z-index: 2;
+.button-container {
+    width: 100%;
+    height: 100%;
 }
 
 .container {
+    width: 90%;
+
+
     .container-detail {
-        margin-top: 200px;
+
         height: 400px;
         width: 900px;
-        border: 1px solid #FFD6D7;
-        border-radius: 10px;
-
 
         .container-thumb-detail {
-            flex-basis: 40%;
-            border-radius: 10px 0 0 10px;
+
             position: relative;
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                border-radius: 10px 0 0 10px;
                 object-position: center;
 
             }
@@ -93,6 +93,8 @@ export default {
             flex-basis: 60%;
             border-radius: 0 10px 10px 0;
             position: relative;
+            padding-top: 10px;
+
 
 
             .info-apartment {
@@ -105,11 +107,161 @@ export default {
                 background-color: #FFD6D7;
                 background-position: 50% 25%;
                 opacity: 20%;
+                background-repeat: no-repeat;
 
                 p {
                     font-weight: 900;
                 }
 
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+
+    .contact-button {
+
+        bottom: 15px;
+        position: relative;
+        z-index: 2;
+        right: 5px;
+
+    }
+
+    .container-detail {
+        margin-top: 50px;
+        height: 400px;
+        width: 900px;
+        border-radius: 10px;
+
+
+        .container-thumb-detail {
+            flex-basis: 40%;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            padding: 5px;
+
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+                object-position: center;
+
+            }
+
+        }
+
+        .container-info-detail {
+
+
+            .info-apartment {
+                border-radius: 10px;
+            }
+
+            h6 {
+                padding-left: 5px;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 576px) {
+
+    .contact-button {
+
+        bottom: 15px;
+        position: absolute;
+        z-index: 2;
+        right: 5px;
+
+    }
+
+    .container-detail {
+        margin-top: 50px;
+        height: 400px;
+        width: 900px;
+        border-radius: 10px;
+
+
+        .container-thumb-detail {
+            flex-basis: 40%;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            padding: 5px;
+
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+                object-position: center;
+
+            }
+
+        }
+
+        .container-info-detail {
+
+
+            .info-apartment {
+                border-radius: 10px;
+            }
+
+            h6 {
+                padding-left: 5px;
+            }
+        }
+    }
+
+}
+
+
+@media screen and (min-width: 992x) {
+    .contact-button {
+        margin-top: 110px;
+    }
+
+    .container-detail {
+        margin-top: 50px;
+        height: 400px;
+        width: 900px;
+
+
+
+        .container-thumb-detail {
+            flex-basis: 40%;
+            border-radius: 10px 0 10px 0;
+            position: relative;
+            padding: 5px;
+            padding-top: 0px;
+            border-radius: 10px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+                object-position: center;
+
+            }
+
+        }
+
+        .container-info-detail {
+            padding-top: 20px;
+
+            .info-apartment {
+                border-radius: 10px;
+            }
+
+            h6 {
+                padding-left: 5px;
             }
         }
     }
