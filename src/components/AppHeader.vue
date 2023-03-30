@@ -3,8 +3,28 @@ import { RouterLink } from 'vue-router';
 
 export default {
     name: "AppHeader",
-    components: { RouterLink }
-}
+    components: { RouterLink },
+    data: () => ({}),
+    methods: {
+        toggleMenu() {
+            const dropdown = document.querySelector('.dropdown-menu');
+            dropdown.classList.toggle('show');
+        },
+        closeMenu() {
+            const dropdown = document.querySelector('.dropdown-menu');
+            dropdown.classList.remove('show');
+        },
+    },
+    mounted() {
+        window.addEventListener('click', (event) => {
+            if (!event.target.closest('.dropdown')) this.closeMenu();
+        });
+    }
+};
+
+
+
+
 </script>
 
 <template>
@@ -25,8 +45,22 @@ export default {
                 </div>
             </div>
             <div class="nav-right">
-                <router-link :to="{ name: 'index' }" class="btn btn-primary me-2">Login</router-link>
-                <router-link to="/apartments/1" class="btn btn-secondary">Sign In</router-link>
+                <div class="d-none d-md-inline">
+                    <router-link :to="{ name: 'index' }" class="btn btn-primary me-2">Login</router-link>
+                    <router-link to="/apartments/1" class="btn btn-secondary">Sign In</router-link>
+                </div>
+                <div class="group-btn  d-sm-block d-md-none">
+                    <div class="dropdown">
+                        <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            @click="toggleMenu()">
+                            <i class="fa-solid fa-bars fa-lg" style="color: #ffffff;"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <router-link :to="{ name: 'index' }" class="btn btn-primary me-2">Login</router-link>
+                            <router-link to="/apartments/1" class="btn btn-secondary">Sign In</router-link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
