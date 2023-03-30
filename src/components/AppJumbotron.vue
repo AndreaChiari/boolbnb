@@ -81,6 +81,7 @@ export default {
 .jumbotron {
     height: 100px;
     position: relative;
+    overflow-x: hidden;
 
     .thumb-container {
         position: absolute;
