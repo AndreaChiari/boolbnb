@@ -18,7 +18,7 @@ export default {
                 <img class="img-fluid"
                     src="https://a0.muscache.com/im/pictures/miso/Hosting-610511843622686196/original/ebee05c1-0c41-4850-a985-49748f8f6d55.jpeg?im_w=1440"
                     alt="">
-                <p class="apartment-name">Casa sull'albero di frassino, 10mq</p>
+                <p class="apartment-name ms-2">Casa sull'albero di frassino, 10mq</p>
                 <p class="rating">
                     <i class="fa-solid fa-star me-1"></i>4.86
                 </p>
@@ -26,11 +26,12 @@ export default {
             <div class="container-info-detail p-5">
                 <div class="info-apartment">
                 </div>
-                <h6>Indirizzo: Via Madonna Infiammata , 36</h6>
-                <h6>Camere: 3</h6>
-                <h6>Letti: 3</h6>
-                <h6>Servizi: Wi-Fi, Animali, Aria Condizionata</h6>
-                <h6>Descrizione: Lorem ihsum dolor sit amet consectetur, adipisicing elit. Tempora vitae magnam a ducimus
+                <h6 class="mb-2">Indirizzo: Via Alcide de gasperi , 36</h6>
+                <h6 class="mb-2">Camere: 3</h6>
+                <h6 class="mb-2">Letti: 3</h6>
+                <h6 class="mb-2">Servizi: Wi-Fi, Animali, Aria Condizionata</h6>
+                <h6 class="mb-2">Descrizione: Lorem ihsum dolor sit amet consectetur, adipisicing elit. Tempora vitae magnam
+                    a ducimus
                     quos! Veniam laudantium natus repudiandae dolores unde sed quibusdam dolorem nobis aliquid sit, ratione
                     obcaecati ut aliquam.</h6>
                 <h6 class="mb-5">Prezzo: 25€ / notte </h6>
