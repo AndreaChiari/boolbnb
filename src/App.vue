@@ -11,10 +11,16 @@ export default {
 
 <template>
     <AppHeader />
-    <RouterView />
+    <main>
+        <RouterView />
+    </main>
     <AppFooter />
 </template>
 
 <style lang="scss">
 @use './assets/styles/style.scss';
+
+main {
+    height: calc(100vh - 150px);
+}
 </style>
