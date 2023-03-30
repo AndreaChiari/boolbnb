@@ -8,12 +8,13 @@ export default {
             currentIndex: 0,
             intervalId: null,
             timeoutId: null,
+            direction: 'next'
         }
     },
     computed: {
         currentCity() {
             return citiesData[this.currentIndex].name;
-        }
+        },
     },
     methods: {
         getImageUrl(image) {
@@ -22,9 +23,11 @@ export default {
         goTo(direction) {
             if (direction === 'next') {
                 this.currentIndex < this.citiesData.length - 1 ? this.currentIndex++ : this.currentIndex = 0;
+                this.direction = 'next';
             }
             if (direction === 'prev') {
                 this.currentIndex > 0 ? this.currentIndex-- : this.currentIndex = (this.citiesData.length - 1);
+                this.direction = 'prev';
             }
         },
         autoplay() {
@@ -58,26 +61,33 @@ export default {
 
 <template>
     <section class="jumbotron">
-        <div class="thumb-container h-100" v-for="(city, i) in citiesData" :key="city.id" v-show="currentIndex === i"
-            @mouseenter="jumbotronMouseover()" @mouseleave="restartAutoplay()">
-            <i class="fa-solid fa-chevron-left" @click="goTo('prev')"></i>
-            <img :src="getImageUrl(city.thumb)" :alt="city.name">
-            <div class="info text-center d-flex flex-column justify-content-center"
-                @click="$emit('searchCity', currentCity)">
-                <h2>{{ city.name }}</h2>
-                <h4>{{ city.region }}</h4>
+        <transition-group :name="direction">
+            <div class="thumb-container h-100" v-for="(city, i) in citiesData" :key="city.id"
+                @mouseenter="jumbotronMouseover()" @mouseleave="restartAutoplay()" v-show="currentIndex === i">
+                <i class="fa-solid fa-chevron-left" @click="goTo('prev')"></i>
+                <img :src="getImageUrl(city.thumb)" :alt="city.name">
+                <div class="info text-center d-flex flex-column justify-content-center"
+                    @click="$emit('searchCity', currentCity)">
+                    <h2>{{ city.name }}</h2>
+                    <h4>{{ city.region }}</h4>
+                </div>
+                <i class="fa-solid fa-chevron-right" @click="goTo('next')"></i>
             </div>
-            <i class="fa-solid fa-chevron-right" @click="goTo('next')"></i>
-        </div>
+        </transition-group>
     </section>
 </template>
 
 <style scoped lang="scss">
 .jumbotron {
     height: 100px;
+    position: relative;
 
     .thumb-container {
-        position: relative;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         color: white;
         cursor: pointer;
 
@@ -142,6 +152,54 @@ export default {
     }
 
 }
+
+.next-enter-active,
+.next-leave-active {
+    transition: all 1.5s;
+}
+
+.next-enter-from {
+
+    transform: translateX(-100%);
+}
+
+.next-leave-from {
+    transform: translateX(0%);
+}
+
+.next-enter-to {
+    transform: translateX(0%);
+}
+
+.next-leave-to {
+    transform: translateX(100%);
+}
+
+.prev-enter-active,
+.prev-leave-active {
+    transition: all 2s;
+}
+
+.prev-enter-from {
+
+    transform: translateX(100%);
+}
+
+
+.prev-enter-to {
+    transform: translateX(0%);
+}
+
+.prev-leave-from {
+    transform: translateX(0%);
+}
+
+.prev-leave-to {
+    transform: translateX(-100%);
+}
+
+
+//Media Queries
 
 @media screen and (min-width: 577px) {
     .jumbotron {
