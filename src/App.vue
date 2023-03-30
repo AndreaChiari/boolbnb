@@ -1,9 +1,10 @@
 <script>
+import AppFooter from './components/AppFooter.vue';
 import AppHeader from './components/AppHeader.vue';
 
 export default {
     name: "BoolBnB",
-    components: { AppHeader }
+    components: { AppHeader, AppFooter }
 }
 
 </script>
@@ -11,6 +12,7 @@ export default {
 <template>
     <AppHeader />
     <RouterView />
+    <AppFooter />
 </template>
 
 <style lang="scss">
