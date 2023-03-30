@@ -60,21 +60,21 @@ export default {
     <section class="jumbotron">
         <div class="thumb-container h-100" v-for="(city, i) in citiesData" :key="city.id" v-show="currentIndex === i"
             @mouseenter="jumbotronMouseover()" @mouseleave="restartAutoplay()">
-            <i class="fa-solid fa-chevron-left fa-4x" @click="goTo('prev')"></i>
+            <i class="fa-solid fa-chevron-left" @click="goTo('prev')"></i>
             <img :src="getImageUrl(city.thumb)" :alt="city.name">
             <div class="info text-center d-flex flex-column justify-content-center"
                 @click="$emit('searchCity', currentCity)">
                 <h2>{{ city.name }}</h2>
                 <h4>{{ city.region }}</h4>
             </div>
-            <i class="fa-solid fa-chevron-right fa-4x" @click="goTo('next')"></i>
+            <i class="fa-solid fa-chevron-right" @click="goTo('next')"></i>
         </div>
     </section>
 </template>
 
 <style scoped lang="scss">
 .jumbotron {
-    height: 500px;
+    height: 100px;
 
     .thumb-container {
         position: relative;
@@ -96,11 +96,11 @@ export default {
             z-index: 1;
 
             h2 {
-                font-size: 65px;
+                font-size: 30px;
             }
 
             h4 {
-                font-size: 32px;
+                font-size: 18px;
             }
         }
 
@@ -141,5 +141,33 @@ export default {
 
     }
 
+}
+
+@media screen and (min-width: 577px) {
+    .jumbotron {
+        height: 200px;
+
+        .fa-solid {
+            font-size: 2em;
+        }
+    }
+}
+
+@media screen and (min-width: 1201px) {
+    .jumbotron {
+        height: 420px;
+
+        .fa-solid {
+            font-size: 4em;
+        }
+
+        .thumb-container .info h2 {
+            font-size: 65px;
+        }
+
+        .thumb-container .info h4 {
+            font-size: 32px;
+        }
+    }
 }
 </style>
