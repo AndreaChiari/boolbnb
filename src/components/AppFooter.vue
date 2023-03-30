@@ -1,17 +1,4 @@
 <script>
-import { RouterLink } from 'vue-router';
-
-export default {
-    name: "AppFooter",
-    components: { RouterLink },
-    data: () => ({}),
-    methods: {
-
-    },
-    mounted() {
-
-    }
-};
 
 
 
@@ -24,6 +11,4 @@ export default {
     </footer>
 </template>
 
-<style lang="scss" scoped>
-@use '../assets/styles/partials/variables' as *;
-</style>
+<style lang="scss" scoped></style>
