@@ -10,16 +10,18 @@ export default {
 <template>
     <header>
         <nav class="container d-flex justify-content-between align-items-center py-3 h-100">
-            <div class="nav-left h-100">
-                <router-link :to="{ name: 'home' }"><img
-                        src="https://loghi-famosi.com/wp-content/uploads/2020/07/Airbnb-Logo.png" alt="logo"></router-link>
+            <div class="nav-left h-100 ">
+                <router-link :to="{ name: 'home' }" class="text-decoration-none">
+                    <img src="https://companieslogo.com/img/orig/ABNB-4aaade0f.png?t=1633511992" alt="logo">
+                    <span class="title d-none d-md-inline">BOOLBNB</span>
+                </router-link>
             </div>
             <div class="nav-center flex-grow-1 px-5">
                 <div class="input-group ">
-                    <input type="text" class="form-control" placeholder="Recipient's username"
+                    <input type="text" class="form-control rounded-5" placeholder="Ex. Milan"
                         aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-secondary" type="button" id="button-addon2"><i
-                            class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="btn rounded-5 px-3" type="button" id="button-addon2"><i
+                            class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2;"></i></button>
                 </div>
             </div>
             <div class="nav-right">
@@ -40,6 +42,16 @@ header {
 
     .nav-left img {
         max-height: 100%;
+    }
+
+    .title {
+        color: #FF385C;
+        font-size: 20px;
+        padding: 2px 4px;
+
+        &:hover {
+            text-shadow: 0 0 5px red;
+        }
     }
 }
 </style>
