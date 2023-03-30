@@ -154,48 +154,48 @@ export default {
 
 }
 
-.next-enter-active,
-.next-leave-active {
-    transition: all 1.5s;
-}
-
-.next-enter-from {
-
-    transform: translateX(-100%);
-}
-
-.next-leave-from {
-    transform: translateX(0%);
-}
-
-.next-enter-to {
-    transform: translateX(0%);
-}
-
-.next-leave-to {
-    transform: translateX(100%);
-}
-
 .prev-enter-active,
 .prev-leave-active {
-    transition: all 2s;
+    transition: all 1.5s;
 }
 
 .prev-enter-from {
 
-    transform: translateX(100%);
-}
-
-
-.prev-enter-to {
-    transform: translateX(0%);
+    transform: translateX(-100%);
 }
 
 .prev-leave-from {
     transform: translateX(0%);
 }
 
+.prev-enter-to {
+    transform: translateX(0%);
+}
+
 .prev-leave-to {
+    transform: translateX(100%);
+}
+
+.next-enter-active,
+.next-leave-active {
+    transition: all 2s;
+}
+
+.next-enter-from {
+
+    transform: translateX(100%);
+}
+
+
+.next-enter-to {
+    transform: translateX(0%);
+}
+
+.next-leave-from {
+    transform: translateX(0%);
+}
+
+.next-leave-to {
     transform: translateX(-100%);
 }
 
