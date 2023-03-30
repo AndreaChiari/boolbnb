@@ -1,4 +1,5 @@
 <script>
+<<<<<<< HEAD
 export default {
     name: 'ApartmentCard',
     props: {
@@ -44,3 +45,11 @@ export default {
     }
 }
 </style>
+=======
+
+</script>
+
+<template></template>
+
+<style scoped></style>
+>>>>>>> ApartmentDetail
