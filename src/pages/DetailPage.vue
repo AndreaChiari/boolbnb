@@ -53,6 +53,7 @@ export default {
 
 .container {
     width: 90%;
+    height: calc(100vh - 150px);
 
 
     .container-detail {
