@@ -4,7 +4,7 @@ import GeneralButton from './GeneralButton.vue';
 
 export default {
     name: "AppHeader",
-    components: { RouterLink },
+    components: { RouterLink, GeneralButton },
     data: () => ({}),
     methods: {
         toggleMenu() {
@@ -47,8 +47,8 @@ export default {
             </div>
             <div class="nav-right">
                 <div class="d-none d-md-inline">
-                    <router-link :to="{ name: 'index' }" class="btn btn-primary me-2">Login</router-link>
-                    <router-link to="/apartments/1" class="btn btn-secondary">Sign In</router-link>
+                    <GeneralButton buttonText="Login" routeName="index" />
+                    <GeneralButton buttonText="Sign In" routeName="index" />
                 </div>
                 <div class="group-btn  d-sm-block d-md-none">
                     <div class="dropdown">
@@ -57,8 +57,8 @@ export default {
                             <i class="fa-solid fa-bars fa-lg" style="color: #ffffff;"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <router-link :to="{ name: 'index' }" class="btn btn-primary me-2">Login</router-link>
-                            <router-link to="/apartments/1" class="btn btn-secondary">Sign In</router-link>
+                            <GeneralButton buttonText="Login" routeName="index" />
+                            <GeneralButton buttonText="Sign In" routeName="index" />
                         </div>
                     </div>
                 </div>
@@ -69,6 +69,10 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/styles/partials/variables' as *;
+
+.contact-button {
+    margin-right: 10px;
+}
 
 header {
     height: 80px;
