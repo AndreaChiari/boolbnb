@@ -1,6 +1,8 @@
 <script>
+import GeneralButton from './GeneralButton.vue';
 export default {
     name: 'IndexFilter',
+    components: { GeneralButton },
 
     data() {
         return {
@@ -53,15 +55,15 @@ export default {
                     name: 'Tavolo da Ping Pong',
                     icon: 'fa-solid fa-table-tennis-paddle-ball'
                 },
-                
+
             ]
         }
     },
 
     methods: {
-        toggleStatus () {
-        this.serviceStatus = !this.serviceStatus;
-      }
+        toggleStatus() {
+            this.serviceStatus = !this.serviceStatus;
+        }
     }
 }
 </script>
@@ -95,8 +97,8 @@ export default {
                     <div v-for="service in services" class="icon-service">
                         <span class="me-2">
                             <input class="form-check-input" :id="service.name" type="checkbox" :name="service.name">
-                            <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{ service.name }} </span> <i
-                                    :class="service.icon" class="ms-1"></i></label>
+                            <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{
+                                service.name }} </span> <i :class="service.icon" class="ms-1"></i></label>
                         </span>
                     </div>
                 </div>
@@ -111,22 +113,21 @@ export default {
                 <!-- Bottoni filtro e servizi Aggiuntivi  -->
                 <div class="col-12 col-lg-2 justify-content-center mb-3 d-flex align-items-center">
                     <form action="" class="me-2">
-                        <button class="btn btn-success">Filter</button>
+                        <GeneralButton buttonText="Filter" />
                     </form>
-                    <button @click="toggleStatus" class="btn btn-secondary">
-                        More Services
-                    </button>
+                    <GeneralButton buttonText="More Services" @Click="toggleStatus" />
 
                 </div>
 
                 <!-- Servizi Aggiuntivi  -->
                 <div class="more-services col-12 d-flex justify-content-between my-1">
-                        <div v-if="serviceStatus" v-for="service in others" class="icon-service">
-                            <span class="me-2">
-                                <input class="form-check-input" :id="service.name" type="checkbox" :name="service.name">
-                                <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{ service.name }}</span> <i :class="service.icon" class="ms-1"></i></label>
-                            </span>
-                        </div>
+                    <div v-if="serviceStatus" v-for="service in others" class="icon-service">
+                        <span class="me-2">
+                            <input class="form-check-input" :id="service.name" type="checkbox" :name="service.name">
+                            <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{
+                                service.name }}</span> <i :class="service.icon" class="ms-1"></i></label>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
