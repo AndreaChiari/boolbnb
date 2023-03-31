@@ -1,9 +1,10 @@
 <script>
 import { RouterLink } from 'vue-router';
+import GeneralButton from './GeneralButton.vue';
 
 export default {
     name: "AppHeader",
-    components: { RouterLink }
+    components: { RouterLink, GeneralButton }
 }
 </script>
 
@@ -23,8 +24,8 @@ export default {
                 </div>
             </div>
             <div class="nav-right">
-                <router-link :to="{ name: 'index' }" class="btn btn-primary me-2">Login</router-link>
-                <router-link to="/apartments/1" class="btn btn-secondary">Sign In</router-link>
+                <GeneralButton buttonText="Login" routeName="index" />
+                <GeneralButton buttonText="Sign in" routeName="not-found-page" />
             </div>
         </nav>
     </header>
@@ -41,5 +42,4 @@ header {
     .nav-left img {
         max-height: 100%;
     }
-}
-</style>
+}</style>

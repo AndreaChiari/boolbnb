@@ -4,9 +4,11 @@ import GeneralButton from '../components/GeneralButton.vue';
 
 
 
+
 export default {
     name: "DetailPage",
     components: { GeneralButton },
+
 }
 
 </script>
@@ -36,7 +38,7 @@ export default {
                     obcaecati ut aliquam.</h6>
                 <h6 class="mb-5">Prezzo: 25€ / notte </h6>
                 <div class="d-flex justify-content-end button-conteiner">
-                    <GeneralButton />
+                    <GeneralButton buttonText="Contattaci" routeName="index" />
                 </div>
             </div>
         </div>
