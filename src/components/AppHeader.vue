@@ -1,5 +1,6 @@
 <script>
 import { RouterLink } from 'vue-router';
+import GeneralButton from './GeneralButton.vue';
 
 export default {
     name: "AppHeader",

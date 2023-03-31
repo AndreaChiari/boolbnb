@@ -4,13 +4,13 @@ import { RouterLink } from 'vue-router';
 export default {
     name: "GeneralButton",
     components: { RouterLink },
-    props: {}
+    props: { routeName: String, buttonText: String }
 }
 
 </script>
 
 <template>
-    <router-link :to="{ name: 'home' }" class="contact-button">Contattaci</router-link>
+    <router-link :to="{ name: routeName }" class="contact-button">{{ buttonText }}</router-link>
 </template>
 
 <style scoped lang="scss">
