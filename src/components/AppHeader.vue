@@ -5,21 +5,13 @@ import GeneralButton from './GeneralButton.vue';
 export default {
     name: "AppHeader",
     components: { RouterLink, GeneralButton },
-    data: () => ({}),
+    data: () => ({
+        isShown: false,
+    }),
     methods: {
         toggleMenu() {
-            const dropdown = document.querySelector('.dropdown-menu');
-            dropdown.classList.toggle('show');
+            this.isShown = !this.isShown;
         },
-        closeMenu() {
-            const dropdown = document.querySelector('.dropdown-menu');
-            dropdown.classList.remove('show');
-        },
-    },
-    mounted() {
-        window.addEventListener('click', (event) => {
-            if (!event.target.closest('.dropdown')) this.closeMenu();
-        });
     }
 };
 
@@ -56,7 +48,7 @@ export default {
                             @click="toggleMenu()">
                             <i class="fa-solid fa-bars fa-lg" style="color: #ffffff;"></i>
                         </button>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu flex-column" :class="{ 'show d-flex': isShown }">
                             <GeneralButton buttonText="Login" routeName="index" />
                             <GeneralButton buttonText="Sign In" routeName="index" />
                         </div>
