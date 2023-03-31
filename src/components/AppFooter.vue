@@ -29,6 +29,12 @@ export default {
                     <li>Dettagli dell'azienda</li>
                     <!-- TODO rotta con i nostri nomi -->
                     <li>Destinazioni</li>
+                    <li>
+                        <router-link :to="{ name: 'team-page' }" class="text-decoration-none"><i
+                                class="fa-solid fa-people-group" style="color: #000714;"></i></router-link>
+
+                    </li>
+
                 </ul>
             </div>
             <div class="sub-right">
@@ -129,6 +135,7 @@ li {
 .fa-linkedin {
     color: #0077B5;
 }
+
 
 // MQ mobile
 @media (max-width: 767px) {
