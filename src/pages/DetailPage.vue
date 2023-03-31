@@ -8,7 +8,15 @@ import GeneralButton from '../components/GeneralButton.vue';
 export default {
     name: "DetailPage",
     components: { GeneralButton },
+    computed: {
 
+        starFull() {
+            return this.starFull = Math.floor(3.6)
+        },
+        starEmpty() {
+            return this.starEmpty = 5 - this.starFull
+        }
+    }
 }
 
 </script>
@@ -22,7 +30,9 @@ export default {
                     alt="">
                 <p class="apartment-name ms-2">Casa sull'albero di frassino, 10mq</p>
                 <p class="rating mt-3">
-                    <i class="fa-solid fa-star me-1"></i>4.86
+                <h5><i v-for="i in starFull" :key="i" class="ms-2 fa-solid fa-star"></i>
+                    <i v-for="i in starEmpty" :key="i" class="ms-2 fa-regular fa-star"></i>
+                </h5>
                 </p>
             </div>
             <div class="container-info-detail">
@@ -46,6 +56,12 @@ export default {
 </template>
 
 <style scoped lang="scss">
+//generals
+
+i {
+    color: yellow;
+}
+
 .button-container {
     width: 100%;
     height: 100%;
