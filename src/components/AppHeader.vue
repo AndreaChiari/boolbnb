@@ -1,4 +1,5 @@
 <script>
+import { ApiUri, key } from '../data';
 import { RouterLink } from 'vue-router';
 import GeneralButton from './GeneralButton.vue';
 
@@ -12,9 +13,15 @@ export default {
         toggleMenu() {
             this.isShown = !this.isShown;
         },
-    }
-};
-
+    },
+    //     addressFilter() {
+    //         axios.get(`${apiUri}/geocode/key=${myKey}&query=`)
+    //             .then((res) => {
+    //                 this.movies = res.data.results;
+    //                 console.log(this.)
+    //             }
+    // };
+}
 
 
 
