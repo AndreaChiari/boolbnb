@@ -17,7 +17,7 @@ export default {
     //     addressFilter() {
     //         axios.get(`${apiUri}/geocode/key=${myKey}&query=`)
     //             .then((res) => {
-    //                 this.movies = res.data.results;
+    //                 this.adresses = res.data.results;
     //                 console.log(this.)
     //             }
     // };
