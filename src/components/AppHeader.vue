@@ -1,6 +1,7 @@
 <script>
 import { apiUri } from '../data/index.js';
 import { key } from '../data/index.js';
+import { backEndUri } from '../data/index.js';
 import { RouterLink } from 'vue-router';
 import GeneralButton from './GeneralButton.vue';
 
@@ -13,24 +14,38 @@ export default {
     components: { RouterLink, GeneralButton },
     data: () => ({
         isShown: false,
-        addresses: [],
+        address: [],
         termSearch: " ",
+        apartments: [],
+
     }),
     methods: {
         toggleMenu() {
             this.isShown = !this.isShown;
         },
-        getAddress(termSearch) {
-            axios.get(`${apiUri}/geocode/${termSearch}.json?key=${key}`)
+        getAddress(termSearch, range = 25) {
+            axios.get(`${apiUri}geocode/${termSearch}.json?key=${key}`)
                 .then((res) => {
-                    this.adresses = res.data.results;
-                    console.log(termSearch)
+                    this.address = res.data.results[0];
+
+                    //prendo latitudine e longitudine
+                    const lat = this.address.position.lat
+                    const lon = this.address.position.lon
+                    console.log(lat, lon)
+
+                    axios.get(`${backEndUri}lat=${lat}&lon=${lon}&range=${range}`)
+                        .then((res) => {
+                            this.apartments = res.data;
+                            console.log(this.apartments)
+                        })
                 })
-        },
+
+        }
     },
-
-
 }
+
+
+
 
 
 </script>
@@ -48,7 +63,7 @@ export default {
                 <div class="input-group ">
                     <input type="text" @keyup.enter="termSearch" v-model.trim="termSearch" class="form-control rounded-5"
                         placeholder="Ex. Milan" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button @click="getAddress()" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
+                    <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
                             class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2;"></i></button>
                 </div>
             </div>
