@@ -1,28 +1,38 @@
 <script>
-import { ApiUri, key } from '../data';
+import { ApiUri } from '../data';
+import { key } from '../data';
 import { RouterLink } from 'vue-router';
 import GeneralButton from './GeneralButton.vue';
+
+
+//c'e' un errore nell'importazione delle apiuri ROBIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII fatto quello credo vada
+
+// axios import
+import axios from 'axios'
 
 export default {
     name: "AppHeader",
     components: { RouterLink, GeneralButton },
     data: () => ({
         isShown: false,
+        addresses: [],
+        termSearch: " ",
     }),
     methods: {
         toggleMenu() {
             this.isShown = !this.isShown;
         },
+        getAddress(termSearch) {
+            axios.get(`${apiUri}/geocode/key=${termSearch}.json?key=${Key}`)
+                .then((res) => {
+                    this.adresses = res.data.results;
+                    console.log(this.addresses)
+                })
+        },
     },
-    //     addressFilter() {
-    //         axios.get(`${apiUri}/geocode/key=${myKey}&query=`)
-    //             .then((res) => {
-    //                 this.adresses = res.data.results;
-    //                 console.log(this.)
-    //             }
-    // };
-}
 
+
+}
 
 
 </script>
@@ -38,9 +48,9 @@ export default {
             </div>
             <div class="nav-center flex-grow-1 px-5">
                 <div class="input-group ">
-                    <input type="text" class="form-control rounded-5" placeholder="Ex. Milan"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn rounded-5 px-3" type="button" id="button-addon2"><i
+                    <input type="text" @keyup.enter="termSearch" v-model.trim="termSearch" class="form-control rounded-5"
+                        placeholder="Ex. Milan" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button @click="getAddress()" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
                             class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2;"></i></button>
                 </div>
             </div>
