@@ -1,11 +1,9 @@
 <script>
-import { ApiUri } from '../data';
-import { key } from '../data';
+import { apiUri } from '../data/index.js';
+import { key } from '../data/index.js';
 import { RouterLink } from 'vue-router';
 import GeneralButton from './GeneralButton.vue';
 
-
-//c'e' un errore nell'importazione delle apiuri ROBIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII fatto quello credo vada
 
 // axios import
 import axios from 'axios'
@@ -23,10 +21,10 @@ export default {
             this.isShown = !this.isShown;
         },
         getAddress(termSearch) {
-            axios.get(`${apiUri}/geocode/key=${termSearch}.json?key=${Key}`)
+            axios.get(`${apiUri}/geocode/${termSearch}.json?key=${key}`)
                 .then((res) => {
                     this.adresses = res.data.results;
-                    console.log(this.addresses)
+                    console.log(termSearch)
                 })
         },
     },
