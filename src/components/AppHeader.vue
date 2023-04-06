@@ -16,7 +16,7 @@ export default {
         termSearch: "",
         apartments: [],
         suggestions: [],
-        suggestionStatus : false,
+        suggestionStatus: false,
 
     }),
     methods: {
@@ -42,16 +42,16 @@ export default {
 
         },
 
-        fetchApiCall(){
-            if(this.termSearch){
+        fetchApiCall() {
+            if (this.termSearch) {
                 axios.get(`https://api.tomtom.com/search/2/search/${this.termSearch}.json?key=lCdijgMp1lmgVifAWwN8K9Jrfa9XcFzm`)
-                .then((res => {
-                    this.suggestions = [];
-                    this.suggestionStatus = true;
-                    res.data.results.forEach(result => {
-                        this.suggestions.push(result.address.freeformAddress);
-                    });
-                }))
+                    .then((res => {
+                        this.suggestions = [];
+                        this.suggestionStatus = true;
+                        res.data.results.forEach(result => {
+                            this.suggestions.push(result.address.freeformAddress);
+                        });
+                    }))
             }
         },
 
@@ -77,19 +77,24 @@ export default {
             </div>
             <div class="nav-center flex-grow-1 px-5 address-container">
                 <div class="input-group ">
-                    <input type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)" v-model.trim="termSearch"
-                        class="form-control rounded-5" placeholder="Ex. Milan" aria-label="Recipient's username"
-                        aria-describedby="button-addon2">
+                    <input type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)"
+                        v-model.trim="termSearch" class="form-control rounded-5" placeholder="Ex. Milan"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
                     <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
                             class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2;"></i></button>
-                        </div>
+                </div>
 
-                        <!-- lista dei suggerimenti autocompletamento  -->
-                        <ul v-if="suggestionStatus" id="suggestions">
-                            <li v-for="suggestion in suggestions" @click="changeAddress(suggestion)">
-                                {{ suggestion }}
-                            </li>
-                        </ul>
+                <!-- lista dei suggerimenti autocompletamento  -->
+                <ul v-if="suggestionStatus" id="suggestions" class="list-group" style="opacity: 0.9;">
+                    <li v-for="suggestion in suggestions" @click="changeAddress(suggestion)"
+                        class="list-group-item list-group-item-action"
+                        :class="{ active: selectedSuggestion === suggestion }">
+                        {{ suggestion }}
+                    </li>
+                </ul>
+
+
+
             </div>
             <div class="nav-right">
                 <div class="d-none d-md-inline">
@@ -151,17 +156,23 @@ header {
         right: 12px;
         z-index: 2;
         max-height: 130px;
-        overflow-y: auto;
+        overflow-y: scroll;
 
         li {
             cursor: pointer;
             color: black;
 
             &:hover {
-                background-color: rgb(13, 110, 253);
+                background-color: rgb(253, 13, 89);
                 color: white;
             }
         }
     }
+}
+
+ul#suggestions li {
+    padding: 5px 10px;
+    font-size: 14px;
+    height: auto;
 }
 </style>
