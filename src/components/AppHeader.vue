@@ -29,7 +29,6 @@ export default {
                     //prendo latitudine e longitudine
                     const lat = this.address.position.lat
                     const lon = this.address.position.lon
-                    console.log(lat, lon)
 
                     axios.get(`${backEndUri}lat=${lat}&lon=${lon}&range=${range}`)
                         .then((res) => {
@@ -40,6 +39,7 @@ export default {
 
         }
     },
+
 }
 
 

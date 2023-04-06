@@ -12,7 +12,7 @@ const router = createRouter({
     routes: [
         { path: "/", name: "home", component: HomePage },
         { path: '/index', name: 'index', component: IndexPage },
-        { path: "/apartments/:id", name: "apartment-detail", component: DetailPage },
+        { path: "/apartments", name: "apartment-detail", component: DetailPage },
         { path: "/team", name: "team-page", component: Team6Page },
         { path: '/:pathMatch(.*)*', name: "not-found-page", component: NotFoundPage },
 

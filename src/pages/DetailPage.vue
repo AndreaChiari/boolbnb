@@ -1,13 +1,17 @@
 
 <script>
 import GeneralButton from '../components/GeneralButton.vue';
-
+import axios from 'axios'
 
 
 
 export default {
     name: "DetailPage",
     components: { GeneralButton },
+    data: () => ({
+        apartments: [],
+
+    }),
     computed: {
 
         starFull() {
@@ -15,6 +19,26 @@ export default {
         },
         starEmpty() {
             return this.starEmpty = 5 - this.starFull
+        }
+    },
+    methods: {
+        getAddress(termSearch, range = 25) {
+            axios.get(`${apiUri}geocode/${termSearch}.json?key=${key}`)
+                .then((res) => {
+                    this.address = res.data.results[0];
+
+                    //prendo latitudine e longitudine
+                    const lat = this.address.position.lat
+                    const lon = this.address.position.lon
+                    console.log(lat, lon)
+
+                    axios.get(`${backEndUri}lat=${lat}&lon=${lon}&range=${range}`)
+                        .then((res) => {
+                            this.apartments = res.data;
+                            console.log(this.apartments.name)
+                        })
+                })
+
         }
     }
 }
@@ -38,7 +62,7 @@ export default {
             <div class="container-info-detail">
                 <div class="info-apartment">
                 </div>
-                <h6 class="mb-2">Indirizzo: Via Alcide de gasperi , 36</h6>
+                <h6 class="mb-2">{{ apartments.name }}</h6>
                 <h6 class="mb-2">Camere: 3</h6>
                 <h6 class="mb-2">Letti: 3</h6>
                 <h6 class="mb-2">Servizi: Wi-Fi, Animali, Aria Condizionata</h6>
