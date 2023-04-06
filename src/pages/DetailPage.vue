@@ -1,12 +1,17 @@
 
 <script>
+import axios from 'axios';
 import GeneralButton from '../components/GeneralButton.vue';
-
-
-
 
 export default {
     name: "DetailPage",
+    data() {
+        return {
+            apartment: null
+        }
+    },
+
+
     components: { GeneralButton },
     computed: {
 
@@ -16,8 +21,20 @@ export default {
         starEmpty() {
             return this.starEmpty = 5 - this.starFull
         }
+    },
+    methods: {
+        fetchApartment() {
+            axios.get(`http://127.0.0.1:8000/api/apartments/${this.$route.params.id}`).then((res) => {
+                this.apartment = res.data[0]
+
+            })
+        }
+    },
+    created() {
+        this.fetchApartment()
     }
 }
+
 
 </script>
 
@@ -39,7 +56,7 @@ export default {
                 <div class="info-apartment">
                 </div>
                 <h6 class="mb-2">Indirizzo: Via Alcide de gasperi , 36</h6>
-                <h6 class="mb-2">Camere: 3</h6>
+                <h6 class="mb-2">{{ apartment.name }}</h6>
                 <h6 class="mb-2">Letti: 3</h6>
                 <h6 class="mb-2">Servizi: Wi-Fi, Animali, Aria Condizionata</h6>
                 <h6 class="mb-2">Descrizione: Lorem ihsum dolor sit amet consectetur, adipisicing elit. Tempora vitae magnam
