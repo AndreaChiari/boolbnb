@@ -58,9 +58,12 @@ export default {
         changeAddress(suggestion) {
             this.termSearch = suggestion;
             this.suggestionStatus = false;
-        }
+        },
     },
 
+    mounted(){
+        document.addEventListener('click', () => this.suggestionStatus = false);
+    }
 }
 
 
