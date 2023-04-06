@@ -2,7 +2,8 @@
 export default {
     name: "ApartmentCard",
     props: {
-        image: String,
+        apartment: Object,
+        isSponsored: Boolean,
     },
     data: () => ({
         isZoomed: false,
@@ -20,13 +21,14 @@ export default {
 <template>
     <div class="apartment-card rounded d-flex flex-column justify-content-between mb-4" @mouseover="showDetails = true"
         @mouseleave="showDetails = false">
-        <div class="card-img-wrapper" @mouseover="isZoomed = true" @mouseleave="isZoomed = false">
-            <img class="rounded" :src="getImageUrl(image)" alt="">
-            <div class="card-price">650 € notte</div>
-            <div class="card-hover-details" v-show="showDetails">
-                <h5 class="card-title">Delft, Paesi Bassi</h5>
-                <p class="card-rating"><i class="fa-solid fa-star me-1"></i>4.86</p>
+        <div class="card-img-wrapper h-100" @mouseover="isZoomed = true" @mouseleave="isZoomed = false">
+            <img class="rounded" :src="apartment.thumb" :alt="apartment.name">
+            <div class="card-price">{{ apartment.price }} € notte</div>
+            <div class="card-hover-details">
+                <h6 class="card-title mb-2">{{ apartment.name }}</h6>
+                <p class="card-rating mb-0"><i class="fa-solid fa-eye me-1"></i>{{ apartment.views.length }}</p>
             </div>
+            <div class="label py-1 px-2 rounded" v-if="isSponsored"><b>SPONSORED</b></div>
         </div>
     </div>
 </template>
@@ -34,16 +36,20 @@ export default {
 <style scoped lang="scss">
 .apartment-card {
     width: 300px;
+    height: 200px;
     background-color: white;
     cursor: pointer;
     position: relative;
+    overflow: hidden;
 
     .card-img-wrapper {
         position: relative;
         overflow: hidden;
 
         img {
-            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.2s ease-in-out;
         }
 
@@ -58,6 +64,10 @@ export default {
             font-size: 16px;
             opacity: 0;
             transition: opacity 0.2s ease-in-out;
+
+            .card-rating {
+                font-size: 12px;
+            }
         }
     }
 
@@ -80,6 +90,14 @@ export default {
         .card-hover-details {
             opacity: 1;
         }
+    }
+
+    .label {
+        color: white;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: rgb(255, 93, 88);
     }
 }
 </style>

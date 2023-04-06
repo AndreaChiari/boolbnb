@@ -4,17 +4,30 @@ export default {
     name: 'AppJumbotron',
     data() {
         return {
-            citiesData,
             currentIndex: 0,
             intervalId: null,
             timeoutId: null,
             direction: 'next'
         }
     },
+    props: {
+        sponsoredApartments: Array,
+    },
     computed: {
-        currentCity() {
-            return citiesData[this.currentIndex].name;
-        },
+        masterApartments() {
+            const now = new Date();
+            const masterApartments = this.sponsoredApartments.filter(apartment => {
+                let isMaster = false;
+                for (let i = 0; i < apartment.sponsorships.length && !isMaster; i++) {
+                    const endDate = new Date(apartment.sponsorships[i].pivot.end_date);
+                    if (endDate.getTime() - now.getTime() > 0 && apartment.sponsorships[i].name === 'Master') {
+                        isMaster = true;
+                    }
+                }
+                return isMaster;
+            });
+            return masterApartments;
+        }
     },
     methods: {
         getImageUrl(image) {
@@ -22,11 +35,11 @@ export default {
         },
         goTo(direction) {
             if (direction === 'next') {
-                this.currentIndex < this.citiesData.length - 1 ? this.currentIndex++ : this.currentIndex = 0;
+                this.currentIndex < this.masterApartments.length - 1 ? this.currentIndex++ : this.currentIndex = 0;
                 this.direction = 'next';
             }
             if (direction === 'prev') {
-                this.currentIndex > 0 ? this.currentIndex-- : this.currentIndex = (this.citiesData.length - 1);
+                this.currentIndex > 0 ? this.currentIndex-- : this.currentIndex = (this.masterApartments.length - 1);
                 this.direction = 'prev';
             }
         },
@@ -62,14 +75,20 @@ export default {
 <template>
     <section class="jumbotron">
         <transition-group :name="direction">
-            <div class="thumb-container h-100" v-for="(city, i) in citiesData" :key="city.id"
+            <div class="thumb-container h-100" v-for="(apartment, i) in masterApartments" :key="apartment.id"
                 @mouseenter="jumbotronMouseover()" @mouseleave="restartAutoplay()" v-show="currentIndex === i">
                 <i class="fa-solid fa-chevron-left" @click="goTo('prev')"></i>
-                <img :src="getImageUrl(city.thumb)" :alt="city.name">
-                <div class="info text-center d-flex flex-column justify-content-center"
-                    @click="$emit('searchCity', currentCity)">
-                    <h2>{{ city.name }}</h2>
-                    <h4>{{ city.region }}</h4>
+                <img :src="apartment.thumb" :alt="apartment.name">
+                <div class="info h-100 d-flex flex-column justify-content-between py-3">
+                    <div class="info-top d-flex flex-column">
+                        <h2>{{ apartment.name }}</h2>
+                        <h6>{{ apartment.address }}</h6>
+                        <p>{{ apartment.sponsorships[0].name }}</p>
+                    </div>
+                    <div class="info-bottom">
+                        <h4>€{{ apartment.price }}/notte</h4>
+                    </div>
+                    <div class="label py-1 px-2 rounded"><b>SPONSORED</b></div>
                 </div>
                 <i class="fa-solid fa-chevron-right" @click="goTo('next')"></i>
             </div>
@@ -112,6 +131,13 @@ export default {
 
             h4 {
                 font-size: 18px;
+            }
+
+            .label {
+                position: absolute;
+                top: 20px;
+                right: 0;
+                background-color: rgb(255, 93, 88);
             }
         }
 
