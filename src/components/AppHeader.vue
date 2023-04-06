@@ -15,8 +15,10 @@ export default {
     data: () => ({
         isShown: false,
         address: [],
-        termSearch: " ",
+        termSearch: "",
         apartments: [],
+        suggestions: [],
+        suggestionStatus : false,
 
     }),
     methods: {
@@ -40,8 +42,25 @@ export default {
                         })
                 })
 
+        },
+
+        fetchApiCall(){
+            axios.get(`https://api.tomtom.com/search/2/search/${this.termSearch}.json?key=lCdijgMp1lmgVifAWwN8K9Jrfa9XcFzm`)
+            .then((res => {
+                this.suggestions = [];
+                this.suggestionStatus = true;
+                res.data.results.forEach(result => {
+                    this.suggestions.push(result.address.freeformAddress);
+                });
+            }))
+        },
+
+        changeAddress(suggestion) {
+            this.termSearch = suggestion;
+            this.suggestionStatus = false;
         }
     },
+
 }
 
 
@@ -59,13 +78,24 @@ export default {
                     <span class="title d-none d-md-inline">BOOLBNB</span>
                 </router-link>
             </div>
-            <div class="nav-center flex-grow-1 px-5">
+            <div class="nav-center flex-grow-1 px-5 address-container">
                 <div class="input-group ">
-                    <input type="text" @keyup.enter="termSearch" v-model.trim="termSearch" class="form-control rounded-5"
+                    
+                    <!-- Input di ricerca  -->
+                        <input type="text" @keyup="fetchApiCall()" @keyup.enter="termSearch" v-model.trim="termSearch" class="form-control rounded-5"
                         placeholder="Ex. Milan" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
+                    
+                        <ul id="suggestions" v-if="termSearch && suggestionStatus">
+                            <li  v-for="suggestion in suggestions" @click="changeAddress(suggestion)">
+                                {{ suggestion }}
+                            </li>
+                        </ul>
+
+                        <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
                             class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2;"></i></button>
-                </div>
+                        </div>
+
+                        <!-- lista dei suggerimenti autocompletamento  -->
             </div>
             <div class="nav-right">
                 <div class="d-none d-md-inline">
@@ -112,6 +142,31 @@ header {
 
         &:hover {
             text-shadow: 0 0 5px red;
+        }
+    }
+}
+
+.address-container {
+    position: relative;
+
+    #suggestions {
+        background-color: white;
+        position: absolute;
+        top: 50px;
+        left: 12px;
+        right: 12px;
+        z-index: 2;
+        max-height: 130px;
+        overflow-y: auto;
+
+        li {
+            cursor: pointer;
+            color: black;
+
+            &:hover {
+                background-color: rgb(13, 110, 253);
+                color: white;
+            }
         }
     }
 }
