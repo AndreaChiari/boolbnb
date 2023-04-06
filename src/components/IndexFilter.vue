@@ -97,9 +97,10 @@ export default {
                 <div class="col-12 col-lg-6 my-3 services d-flex justify-content-between align-items-center">
                     <div v-for="service in services" class="icon-service">
                         <span class="me-2">
-                            <input v-model="checkedServices" class="form-check-input" :id="service.name" :value="service.name" type="checkbox" :name="service.name">
-                            <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{ service.name }} </span> <i
-                                    :class="service.icon" class="ms-1"></i></label>
+                            <input v-model="checkedServices" class="form-check-input" :id="service.name"
+                                :value="service.name" type="checkbox" :name="service.name">
+                            <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{
+                                service.name }} </span> <i :class="service.icon" class="ms-1"></i></label>
                         </span>
                     </div>
                 </div>
@@ -117,17 +118,17 @@ export default {
                         <GeneralButton buttonText="Filter" />
                     </form>
                     <GeneralButton buttonText="More Services" @Click="toggleStatus" />
-
                 </div>
-
                 <!-- Servizi Aggiuntivi  -->
                 <div class="more-services col-12 d-flex justify-content-between my-1">
-                        <div v-if="serviceStatus" v-for="service in others" class="icon-service">
-                            <span class="me-2">
-                                <input v-model="checkedServices" class="form-check-input" :id="service.name" :value="service.name" type="checkbox" :name="service.name">
-                                <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{ service.name }}</span> <i :class="service.icon" class="ms-1"></i></label>
-                            </span>
-                        </div>
+                    <div v-if="serviceStatus" v-for="service in others" class="icon-service">
+                        <span class="me-2">
+                            <input v-model="checkedServices" class="form-check-input" :id="service.name"
+                                :value="service.name" type="checkbox" :name="service.name">
+                            <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{
+                                service.name }}</span> <i :class="service.icon" class="ms-1"></i></label>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,5 +139,4 @@ export default {
 <style scoped>
 #filter {
     min-height: 80px;
-}
-</style>
+}</style>
