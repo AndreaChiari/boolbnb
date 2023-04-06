@@ -1,7 +1,5 @@
 <script>
-import { apiUri } from '../data/index.js';
-import { key } from '../data/index.js';
-import { backEndUri } from '../data/index.js';
+import { apiUri, key, backEndUri } from '../data/index.js';
 import { RouterLink } from 'vue-router';
 import GeneralButton from './GeneralButton.vue';
 
