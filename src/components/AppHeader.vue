@@ -58,16 +58,13 @@ export default {
                 </router-link>
             </div>
             <div class="nav-center flex-grow-1 px-5">
-                <form action="">
-                    <div class="input-group ">
-                        <input type="text" @keyup.enter="termSearch" v-model.trim="termSearch"
-                            class="form-control rounded-5" placeholder="Ex. Milan" aria-label="Recipient's username"
-                            aria-describedby="button-addon2">
-                        <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button"
-                            id="button-addon2"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg"
-                                style="color: #f2f2f2;"></i></button>
-                    </div>
-                </form>
+                <div class="input-group ">
+                    <input type="text" @keyup.enter="getAddress(termSearch)" v-model.trim="termSearch"
+                        class="form-control rounded-5" placeholder="Ex. Milan" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+                    <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
+                            class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2;"></i></button>
+                </div>
             </div>
             <div class="nav-right">
                 <div class="d-none d-md-inline">
