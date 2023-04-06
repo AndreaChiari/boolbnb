@@ -43,14 +43,16 @@ export default {
         },
 
         fetchApiCall(){
-            axios.get(`https://api.tomtom.com/search/2/search/${this.termSearch}.json?key=lCdijgMp1lmgVifAWwN8K9Jrfa9XcFzm`)
-            .then((res => {
-                this.suggestions = [];
-                this.suggestionStatus = true;
-                res.data.results.forEach(result => {
-                    this.suggestions.push(result.address.freeformAddress);
-                });
-            }))
+            if(this.termSearch){
+                axios.get(`https://api.tomtom.com/search/2/search/${this.termSearch}.json?key=lCdijgMp1lmgVifAWwN8K9Jrfa9XcFzm`)
+                .then((res => {
+                    this.suggestions = [];
+                    this.suggestionStatus = true;
+                    res.data.results.forEach(result => {
+                        this.suggestions.push(result.address.freeformAddress);
+                    });
+                }))
+            }
         },
 
         changeAddress(suggestion) {
@@ -75,7 +77,7 @@ export default {
             </div>
             <div class="nav-center flex-grow-1 px-5 address-container">
                 <div class="input-group ">
-                    <input type="text" @keyup.enter="getAddress(termSearch)" v-model.trim="termSearch"
+                    <input type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)" v-model.trim="termSearch"
                         class="form-control rounded-5" placeholder="Ex. Milan" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
                     <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
@@ -83,6 +85,11 @@ export default {
                         </div>
 
                         <!-- lista dei suggerimenti autocompletamento  -->
+                        <ul v-if="suggestionStatus" id="suggestions">
+                            <li v-for="suggestion in suggestions" @click="changeAddress(suggestion)">
+                                {{ suggestion }}
+                            </li>
+                        </ul>
             </div>
             <div class="nav-right">
                 <div class="d-none d-md-inline">
