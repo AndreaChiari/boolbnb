@@ -1,46 +1,85 @@
 <script>
 export default {
-    name: 'ApartmentCard',
+    name: "ApartmentCard",
     props: {
         image: String,
     },
+    data: () => ({
+        isZoomed: false,
+        showDetails: false
+    }),
     methods: {
         getImageUrl(image) {
             return new URL(`../../assets/img/${image}`, import.meta.url).href;
         },
-    }
-}
+    },
+};
 
 </script>
 
 <template>
-    <div class="apartment-card rounded d-flex flex-column justify-content-between mb-4">
-        <img class="rounded" :src="getImageUrl(image)" alt="">
-        <div class="card-content px-3 py-4">
-            <div class="mt-2 d-flex justify-content-between">
-                <h5 class="title">
-                    Delft, Paesi Bassi
-                </h5>
-                <p class="rating">
-                    <i class="fa-solid fa-star me-1"></i>4.86
-                </p>
+    <div class="apartment-card rounded d-flex flex-column justify-content-between mb-4" @mouseover="showDetails = true"
+        @mouseleave="showDetails = false">
+        <div class="card-img-wrapper" @mouseover="isZoomed = true" @mouseleave="isZoomed = false">
+            <img class="rounded" :src="getImageUrl(image)" alt="">
+            <div class="card-price">650 € notte</div>
+            <div class="card-hover-details" v-show="showDetails">
+                <h5 class="card-title">Delft, Paesi Bassi</h5>
+                <p class="card-rating"><i class="fa-solid fa-star me-1"></i>4.86</p>
             </div>
-            <p class="price mb-0">
-                <strong>650 €</strong> notte
-            </p>
         </div>
     </div>
 </template>
-
 
 <style scoped lang="scss">
 .apartment-card {
     width: 300px;
     background-color: white;
     cursor: pointer;
+    position: relative;
 
-    img {
-        max-width: 100%;
+    .card-img-wrapper {
+        position: relative;
+        overflow: hidden;
+
+        img {
+            max-width: 100%;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card-hover-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+    }
+
+    .card-price {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    &:hover {
+        .card-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .card-hover-details {
+            opacity: 1;
+        }
     }
 }
 </style>
