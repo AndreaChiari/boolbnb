@@ -1,7 +1,5 @@
 <script>
-import { apiUri } from '../data/index.js';
-import { key } from '../data/index.js';
-import { backEndUri } from '../data/index.js';
+import { apiUri, key, backEndUri } from '../data/index.js';
 import { RouterLink } from 'vue-router';
 import GeneralButton from './GeneralButton.vue';
 
@@ -64,9 +62,6 @@ export default {
 }
 
 
-
-
-
 </script>
 
 <template>
@@ -80,18 +75,10 @@ export default {
             </div>
             <div class="nav-center flex-grow-1 px-5 address-container">
                 <div class="input-group ">
-                    
-                    <!-- Input di ricerca  -->
-                        <input type="text" @keyup="fetchApiCall()" @keyup.enter="termSearch" v-model.trim="termSearch" class="form-control rounded-5"
-                        placeholder="Ex. Milan" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    
-                        <ul id="suggestions" v-if="termSearch && suggestionStatus">
-                            <li  v-for="suggestion in suggestions" @click="changeAddress(suggestion)">
-                                {{ suggestion }}
-                            </li>
-                        </ul>
-
-                        <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
+                    <input type="text" @keyup.enter="getAddress(termSearch)" v-model.trim="termSearch"
+                        class="form-control rounded-5" placeholder="Ex. Milan" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+                    <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2"><i
                             class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2;"></i></button>
                         </div>
 
