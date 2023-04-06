@@ -80,15 +80,18 @@ export default {
                 <i class="fa-solid fa-chevron-left" @click="goTo('prev')"></i>
                 <img :src="apartment.thumb" :alt="apartment.name">
                 <div class="info h-100 d-flex flex-column justify-content-between py-3">
-                    <div class="info-top d-flex flex-column">
-                        <h2>{{ apartment.name }}</h2>
-                        <h6>{{ apartment.address }}</h6>
-                        <p>{{ apartment.sponsorships[0].name }}</p>
+                    <div class="label py-1 px-2 rounded text-center mb-2"><b>SPONSORED</b></div>
+                    <div
+                        class="info-box h-100 d-flex flex-sm-column justify-content-between align-items-center align-items-sm-start">
+                        <div class="info-top d-flex flex-column">
+                            <h2>{{ apartment.name }}</h2>
+                            <h6>{{ apartment.address }}</h6>
+                        </div>
+                        <div class="info-bottom">
+                            <h4>€{{ apartment.price }}/notte</h4>
+                        </div>
                     </div>
-                    <div class="info-bottom">
-                        <h4>€{{ apartment.price }}/notte</h4>
-                    </div>
-                    <div class="label py-1 px-2 rounded"><b>SPONSORED</b></div>
+
                 </div>
                 <i class="fa-solid fa-chevron-right" @click="goTo('next')"></i>
             </div>
@@ -126,17 +129,20 @@ export default {
             z-index: 1;
 
             h2 {
-                font-size: 30px;
+                font-size: 14px;
+            }
+
+            h6 {
+                font-size: 8px;
             }
 
             h4 {
-                font-size: 18px;
+                font-size: 10px;
             }
 
             .label {
-                position: absolute;
-                top: 20px;
-                right: 0;
+                align-self: center;
+                font-size: 10px;
                 background-color: rgb(255, 93, 88);
             }
         }
@@ -235,6 +241,25 @@ export default {
         .fa-solid {
             font-size: 2em;
         }
+
+        .thumb-container .info .label {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            font-size: 12px;
+        }
+
+        .thumb-container .info h2 {
+            font-size: 28px;
+        }
+
+        .thumb-container .info h4 {
+            font-size: 20px;
+        }
+
+        .thumb-container .info h6 {
+            font-size: 16px;
+        }
     }
 }
 
@@ -246,11 +271,19 @@ export default {
             font-size: 4em;
         }
 
+        .thumb-container .info .label {
+            font-size: 24px;
+        }
+
         .thumb-container .info h2 {
             font-size: 65px;
         }
 
         .thumb-container .info h4 {
+            font-size: 36px;
+        }
+
+        .thumb-container .info h6 {
             font-size: 32px;
         }
     }

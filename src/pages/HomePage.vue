@@ -48,7 +48,7 @@ export default {
     <AppJumbotron @search-city="getCityToSearch" :sponsored-apartments="sponsoredApartments" />
     <main class="py-5">
         <div class="container">
-            <h1 class="text-white mb-5">I nostri appartamenti di punta</h1>
+            <h1 class="text-white mb-5">I nostri appartamenti in evidenza</h1>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
                 <div class="col d-flex justify-content-center" v-for="apartment in otherSponsoredApartments">
                     <ApartmentCard :apartment="apartment" :is-sponsored="true" />
