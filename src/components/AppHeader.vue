@@ -23,25 +23,6 @@ export default {
         toggleMenu() {
             this.isShown = !this.isShown;
         },
-        getAddress(termSearch, range = 25) {
-            axios.get(`${apiUri}geocode/${termSearch}.json?key=${key}`)
-                .then((res) => {
-                    this.address = res.data.results[0];
-
-                    //prendo latitudine e longitudine
-                    const lat = this.address.position.lat
-                    const lon = this.address.position.lon
-                    console.log(lat, lon)
-
-                    axios.get(`${backEndUri}lat=${lat}&lon=${lon}&range=${range}`)
-                        .then((res) => {
-                            this.apartments = res.data;
-                            console.log(this.apartments)
-                        })
-                })
-
-        },
-
         fetchApiCall() {
             if (this.termSearch) {
                 axios.get(`https://api.tomtom.com/search/2/search/${this.termSearch}.json?key=lCdijgMp1lmgVifAWwN8K9Jrfa9XcFzm`)
@@ -59,6 +40,27 @@ export default {
             this.termSearch = suggestion;
             this.suggestionStatus = false;
         },
+
+        getAddress(termSearch, range = 25) {
+            if (this.suggestions.includes(this.termSearch)) {
+                axios.get(`${apiUri}geocode/${termSearch}.json?key=${key}`)
+                    .then((res) => {
+                        this.address = res.data.results[0];
+    
+                        //prendo latitudine e longitudine
+                        const lat = this.address.position.lat
+                        const lon = this.address.position.lon
+                        console.log(lat, lon)
+    
+                        axios.get(`${backEndUri}lat=${lat}&lon=${lon}&range=${range}`)
+                            .then((res) => {
+                                this.apartments = res.data;
+                                console.log(this.apartments)
+                            })
+                    })
+            }
+        },
+
     },
 
     mounted() {
