@@ -11,10 +11,23 @@ export default {
 
 <template>
     <AppHeader />
-    <RouterView />
+    <transition name="page-opacity">
+        <RouterView />
+    </transition>
     <AppFooter />
 </template>
 
 <style lang="scss">
 @use './assets/styles/style.scss';
+
+.page-opacity-enter-active,
+.page-opacity-leave-active {
+  transition: opacity 0.5s;
+}
+
+.page-opacity-enter-from,
+.page-opacity-leave-to {
+  opacity: 0;
+}
+
 </style>
