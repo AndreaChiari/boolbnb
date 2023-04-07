@@ -19,7 +19,8 @@ export default {
 </script>
 
 <template>
-    <div class="apartment-card rounded d-flex flex-column justify-content-between mb-4" @mouseover="showDetails = true"
+    <router-link :to="{ name: 'apartment-detail', params: { id: apartment.id } }"
+        class="apartment-card rounded d-flex flex-column justify-content-between mb-4" @mouseover="showDetails = true"
         @mouseleave="showDetails = false">
         <div class="card-img-wrapper h-100" @mouseover="isZoomed = true" @mouseleave="isZoomed = false">
             <img class="rounded" :src="apartment.thumb" :alt="apartment.name">
@@ -30,7 +31,7 @@ export default {
             </div>
             <div class="label py-1 px-2 rounded" v-if="isSponsored"><b>SPONSORED</b></div>
         </div>
-    </div>
+    </router-link>
 </template>
 
 <style scoped lang="scss">

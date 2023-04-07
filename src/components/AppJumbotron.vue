@@ -79,7 +79,8 @@ export default {
                 @mouseenter="jumbotronMouseover()" @mouseleave="restartAutoplay()" v-show="currentIndex === i">
                 <i class="fa-solid fa-chevron-left" @click="goTo('prev')"></i>
                 <img :src="apartment.thumb" :alt="apartment.name">
-                <div class="info h-100 d-flex flex-column justify-content-between py-3">
+                <router-link :to="{ name: 'apartment-detail', params: { id: apartment.id } }"
+                    class="info h-100 d-flex flex-column justify-content-between py-3 text-white cs-text-unstyled">
                     <div class="label py-1 px-2 rounded text-center mb-2"><b>SPONSORED</b></div>
                     <div
                         class="info-box h-100 d-flex flex-sm-column justify-content-between align-items-center align-items-sm-start">
@@ -92,7 +93,7 @@ export default {
                         </div>
                     </div>
 
-                </div>
+                </router-link>
                 <i class="fa-solid fa-chevron-right" @click="goTo('next')"></i>
             </div>
         </transition-group>
