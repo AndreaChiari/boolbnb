@@ -5,10 +5,6 @@ export default {
         apartment: Object,
         isSponsored: Boolean,
     },
-    data: () => ({
-        isZoomed: false,
-        showDetails: false
-    }),
     methods: {
         getImageUrl(image) {
             return new URL(`../../assets/img/${image}`, import.meta.url).href;
@@ -20,9 +16,8 @@ export default {
 
 <template>
     <router-link :to="{ name: 'apartment-detail', params: { id: apartment.id } }"
-        class="apartment-card rounded d-flex flex-column justify-content-between mb-4" @mouseover="showDetails = true"
-        @mouseleave="showDetails = false">
-        <div class="card-img-wrapper h-100" @mouseover="isZoomed = true" @mouseleave="isZoomed = false">
+        class="apartment-card rounded d-flex flex-column justify-content-between mb-4">
+        <div class="card-img-wrapper h-100">
             <img class="rounded" :src="apartment.thumb" :alt="apartment.name">
             <div class="card-price">{{ apartment.price }} € notte</div>
             <div class="card-hover-details">
