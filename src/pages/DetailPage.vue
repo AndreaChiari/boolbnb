@@ -42,34 +42,19 @@ export default {
 </script>
 
 <template>
-    <div class="container d-flex main-container-detail">
-        <div class="container-detail mx-auto d-flex flex-column flex-lg-row">
-            <div class="container-thumb-detail">
-                <img class="img-fluid" :src=apartment.thumb :alt=apartment.name>
-                <h2 class="apartment-name ms-2">{{ apartment.name }}</h2>
-                <p class="views mt-3">
-                <h5 class="ms-2 fs-3fs-3">{{ apartment.views.length }}<i class="ms-2 fs-3 fa-solid fa-eye"></i>
-                </h5>
-                </p>
+    <div class="container">
+        <div class="mx-auto row main-container-img mt-5 flex-direction-column">
+            <div class="col-sm-6 main-img ">
+                <img src="https://upload.wikimedia.org/wikipedia/it/6/65/Bart_Simpson.png" alt="">
             </div>
-            <div class="container-info-detail">
-                <div class="info-apartment">
+            <div class="col-6 img-shards d-none d-sm-block">
+                <div class="row firstline">
+                    <div class="col-6 top-left"></div>
+                    <div class="col-6 top-right"></div>
                 </div>
-                <h2 class="mb-2 mb-4">{{ apartment.name }}</h2>
-                <h6 class="mb-2">Indirizzo: {{ apartment.address }}</h6>
-                <h6 class="mb-2">Numero stanze: {{ apartment.rooms }}</h6>
-                <h6 class="mb-2">Numero letti: {{ apartment.beds }}</h6>
-                <h6 class="mb-2">Numero bagni: {{ apartment.bathrooms }}</h6>
-                <div class="d-flex">
-                    <div class="d-flex">
-                        <h6>Servizi: <span v-html="services"></span></h6>
-
-                    </div>
-                </div>
-                <h6 class="mb-4">{{ apartment.description }}</h6>
-                <h5 class="mb-5">Prezzo: {{ apartment.price }}€ / notte </h5>
-                <div class="d-flex justify-content-end button-conteiner">
-                    <GeneralButton buttonText="Contattaci" routeName="index" />
+                <div class="row secondline ">
+                    <div class="col-6 bottom-left"></div>
+                    <div class="col-6 bottom-right"></div>
                 </div>
             </div>
         </div>
@@ -78,6 +63,28 @@ export default {
 
 <style scoped lang="scss">
 //generals
+
+.overlay-view {
+    position: absolute;
+    height: 36px;
+    width: 60px;
+    background-color: black;
+    opacity: 0.6;
+    top: 25px;
+    left: 5px;
+}
+
+.overlay-name {
+    position: absolute;
+    height: 83px;
+    width: 350px;
+    background-color: black;
+    opacity: 0.6;
+    bottom: 5px;
+    left: 5px;
+    border-radius: 0px 0 10px 10px;
+    z-index: 1
+}
 
 .button-container {
     width: 100%;
@@ -88,131 +95,87 @@ export default {
     width: 90%;
     height: calc(100vh - 150px);
 
+    .main-container-img {
+        width: 100%;
+        height: 600px;
 
-    .container-detail {
 
-        height: 400px;
-        width: 900px;
 
-        .container-thumb-detail {
-
-            position: relative;
-
+        .main-img {
             img {
-                width: 100%;
-                height: 100%;
+                max-width: 100%;
+                height: auto;
                 object-fit: cover;
-                object-position: center;
-
-            }
-
-            .apartment-name {
-                position: absolute;
-                bottom: 5px;
-                left: 5px;
-                color: rgb(255, 255, 255);
-                font-weight: 700;
-                width: 280px;
-            }
-
-            .views {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                color: white;
-                font-size: 25px;
             }
         }
 
-        .container-info-detail {
-            flex-basis: 60%;
-            border-radius: 0 10px 10px 0;
-            position: relative;
-            padding-top: 10px;
-            padding: 17px;
+        .img-shards {
+            background: red;
 
+            .firstline {
+                width: 100%;
+                height: 50%;
 
+                .top-left {
+                    background-image: url(https://media.revistagq.com/photos/620b8133cdbd44ca1dadc4bc/4:3/w_2076,h_1557,c_limit/bart-simpson.jpeg);
+                }
 
-
-            .info-apartment {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-image: url(../assets/img/boolbnb.png);
-                background-color: #FFD6D7;
-                background-position: 50% 25%;
-                opacity: 20%;
-                background-repeat: no-repeat;
-
-                p {
-                    font-weight: 900;
+                .top-right {
+                    background-image: url(https://capricho.abril.com.br/wp-content/uploads/2018/05/bart-simpson.jpg?quality=85&strip=info&w=600&resize=1200,800);
                 }
 
             }
+
+            .secondline {
+                .bottom-left {
+                    background-image: url(https://i0.wp.com/filmbekeken.com/wp-content/uploads/2019/06/human-centipede.png?fit=1272%2C715&ssl=1);
+                }
+
+                .bottom-right {
+                    background-image: url(https://www.nonapritequestoblog.it/wp-content/uploads/2020/10/The-Human-Centipede-Movie-Centipede.jpg);
+                }
+            }
+
+            .secondline {
+                background: #000;
+                width: 100%;
+                height: 50%;
+            }
         }
     }
 
+
 }
+
+
 
 @media screen and (max-width: 576px) {
-    .apartment-name {
-        display: none;
-    }
 
-    .main-container-detail {
-        height: 97vh;
-    }
-
-    .contact-button {
-
-        bottom: 15px;
-        position: relative;
-        z-index: 2;
-        right: 5px;
-
-    }
-
-    .container-detail {
-        margin-top: 50px;
-        height: 400px;
-        width: 900px;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         border-radius: 10px;
+        object-position: center;
 
-
-        .container-thumb-detail {
-            flex-basis: 40%;
-            border-radius: 10px 10px 0 0;
-            position: relative;
-            padding: 5px;
-
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-                object-position: center;
-
-            }
-
-        }
-
-        .container-info-detail {
-
-
-            .info-apartment {
-                border-radius: 10px;
-            }
-
-            h6 {
-                padding-left: 5px;
-            }
-        }
     }
 
 }
+
+.container-info-detail {
+
+
+    .info-apartment {
+        border-radius: 10px;
+    }
+
+    h6 {
+        padding-left: 5px;
+    }
+}
+
+
+
 
 @media screen and (min-width: 576px) {
 
