@@ -28,7 +28,6 @@ export default {
         services() {
             let services = ''
             this.apartment.services.forEach((service, i) => {
-                console.log(service.name)
                 services += `<i class="${service.icon}"></i> ${service.name}`
                 if (i < this.apartment.services.length - 1) {
                     services += ", "
@@ -43,7 +42,7 @@ export default {
 </script>
 
 <template>
-    <div class="container d-flex">
+    <div class="container d-flex main-container-detail">
         <div class="container-detail mx-auto d-flex flex-column flex-lg-row">
             <div class="container-thumb-detail">
                 <img class="img-fluid" :src=apartment.thumb :alt=apartment.name>
@@ -79,7 +78,6 @@ export default {
 
 <style scoped lang="scss">
 //generals
-
 .button-container {
     width: 100%;
     height: 100%;
@@ -158,6 +156,9 @@ export default {
 }
 
 @media screen and (max-width: 576px) {
+    .main-container-detail {
+        height: 97vh;
+    }
 
     .contact-button {
 
@@ -209,6 +210,9 @@ export default {
 }
 
 @media screen and (min-width: 576px) {
+    .main-container-detail {
+        height: 100vh;
+    }
 
     .contact-button {
 
@@ -259,6 +263,11 @@ export default {
 
 }
 
+@media screen and (min-width: 765px) {
+    .main-container-detail {
+        height: 110vh;
+    }
+}
 
 @media screen and (min-width: 992x) {
     .contact-button {
