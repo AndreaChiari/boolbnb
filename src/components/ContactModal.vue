@@ -3,7 +3,7 @@ import GeneralButton from './GeneralButton.vue';
 
 export default {
     name: "Contact Modal",
-    props: { contact: String },
+    props: { contact: String, apartmentId: String },
     components: { GeneralButton },
     emits: ['send-form', 'close-modal'],
 }
@@ -18,6 +18,7 @@ export default {
                     class="fa-solid fa-xmark fa-2x"></i></button>
             <h4 class="text-center mb-5">Contatta il proprietario di {{ contact }}</h4>
             <div class="row justify-content-center p-4">
+                <input type="hidden" :value="apartmentId" name="apartment_id">
                 <label for="email" class="col-5">Email:</label>
                 <input class="col-7 mb-3" type="email" name="email">
                 <label for="object" class="col-5">Oggetto:</label>

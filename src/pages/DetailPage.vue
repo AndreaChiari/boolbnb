@@ -48,7 +48,7 @@ export default {
     <div class="container d-flex">
         <div class="container-detail mx-auto d-flex flex-column flex-lg-row">
             <div class="container-thumb-detail">
-                <img class="img-fluid" :src=apartment.thumb :alt=apartment.name>
+                <img class="img-fluid" :src="apartment.thumb" :alt="apartment.name">
                 <h2 class="apartment-name ms-2">{{ apartment.name }}</h2>
                 <p class="views mt-3">
                 <h5 class="ms-2 fs-3fs-3">{{ apartment.views.length }}<i class="ms-2 fs-3 fa-solid fa-eye"></i>
@@ -76,7 +76,8 @@ export default {
                 </div>
             </div>
         </div>
-        <ContactModal v-if="contactModal" :contact="apartment.name" @close-modal="contactModal = false" />
+        <ContactModal v-if="contactModal" :contact="apartment.name" :apartmentId="apartment.id"
+            @close-modal="contactModal = false" />
     </div>
 </template>
 
