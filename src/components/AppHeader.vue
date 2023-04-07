@@ -39,6 +39,7 @@ export default {
 
     changeAddress(suggestion) {
       this.termSearch = suggestion;
+      document.getElementById("searchCity").focus();
       this.suggestionStatus = false;
     },
 
@@ -52,12 +53,12 @@ export default {
             //prendo latitudine e longitudine
             const lat = this.address.position.lat;
             const lon = this.address.position.lon;
-            console.log(lat, lon);
 
             axios
               .get(`${backEndUri}lat=${lat}&lon=${lon}&range=${range}`)
               .then((res) => {
                 this.apartments = res.data;
+                this.suggestionStatus = false;
                 this.$router.push({
                   name: "index",
                   query: { apartments: JSON.stringify(this.apartments) }
@@ -85,7 +86,7 @@ export default {
       </div>
       <div class="nav-center flex-grow-1 px-5 address-container">
         <div class="input-group">
-          <input type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)" v-model.trim="termSearch"
+          <input id="searchCity" type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)" v-model.trim="termSearch"
             class="form-control col rounded-5" placeholder="Ex. Milan" aria-label="Recipient's username"
             aria-describedby="button-addon2" />
           <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2">
