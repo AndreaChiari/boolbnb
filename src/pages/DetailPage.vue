@@ -67,293 +67,129 @@ export default {
 </script>
 
 <template>
-    <div class="container my-5">
-        <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
-        <div class="container-detail mx-auto d-flex flex-column flex-lg-row">
-            <div class="container-thumb-detail">
-                <img class="img-fluid" :src="apartment.thumb" :alt="apartment.name">
-                <h2 class="apartment-name ms-2">{{ apartment.name }}</h2>
-                <p class="views mt-3">
-                <h5 class="ms-2 fs-3fs-3">{{ apartment.views.length }}<i class="ms-2 fs-3 fa-solid fa-eye"></i>
-                </h5>
-                </p>
-            </div>
-            <div class="container-info-detail">
-                <div class="info-apartment">
+    <main>
+        <div class="container apartment py-5">
+            <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
+            <div class="pictures row">
+                <div class="col-12 py-2 mb-3 border-bottom">
+                    <h1 class="apartment-name">{{ apartment.name }}</h1>
                 </div>
-                <h2 class="mb-2 mb-4">{{ apartment.name }}</h2>
-                <h6 class="mb-2">Indirizzo: {{ apartment.address }}</h6>
-                <h6 class="mb-2">Numero stanze: {{ apartment.rooms }}</h6>
-                <h6 class="mb-2">Numero letti: {{ apartment.beds }}</h6>
-                <h6 class="mb-2">Numero bagni: {{ apartment.bathrooms }}</h6>
-                <div class="d-flex">
-                    <div class="d-flex">
-                        <h6>Servizi: <span v-html="services"></span></h6>
-
-                    </div>
+                <div class="col-6">
+                    <img class="main-pic" :src="apartment.thumb" :alt="apartment.name">
                 </div>
-                <h6 class="mb-4">{{ apartment.description }}</h6>
-                <h5 class="mb-5">Prezzo: {{ apartment.price }}€ / notte </h5>
-                <div class="d-flex justify-content-end button-conteiner">
-                    <GeneralButton buttonText="Contattaci" @button-click="contactModal = true" />
+                <div class="col-6 p-0 row side-pics">
+                    <div class="col-6 border h-50"></div>
+                    <div class="col-6 border h-50"></div>
+                    <div class="col-6 border h-50"></div>
+                    <div class="col-6 border h-50"></div>
                 </div>
             </div>
+            <div class="info row border-bottom align-items-center">
+                <div class="col-6 pt-3">
+                    <address class="mb-0">{{ apartment.address }}</address>
+                </div>
+                <div class="col-6 pt-3">
+                    <h4 class="apartment-price text-end">€{{ apartment.price }}/notte</h4>
+                </div>
+            </div>
+            <div class="details row">
+                <div class="col-12 py-5 border-bottom">
+                    <p class="description mb-0">{{ apartment.description }}</p>
+                </div>
+                <div class="col-4 py-5 text-center border border-top-none border-left-none"><i
+                        class="fa-solid fa-person-shelter fa-2x me-2"></i><span class="h2">{{
+                            apartment.rooms }}</span>
+                </div>
+                <div class="col-4 py-5 text-center border border-top-none"><i class="fa-solid fa-bed fa-2x me-2"></i><span
+                        class="h2">{{
+                            apartment.beds }}</span></div>
+                <div class="col-4 py-5 text-center border border-top-none border-right-none"><i
+                        class="fa-solid fa-restroom fa-2x me-2"></i><span class="h2">{{
+                            apartment.bathrooms }}</span>
+                </div>
+            </div>
+            <div v-if="apartment.services.length" class="services row">
+                <div class="col-12 py-3">
+                    <h3>Servizi</h3>
+                </div>
+                <ul class="col-12 mb-0">
+                    <li v-for="service in apartment.services" class="border-bottom py-2"><i class="me-2"
+                            :class="service.icon"></i>{{
+                                service.name }}</li>
+                </ul>
+            </div>
+            <div class="buttons row mt-3">
+                <div class="col-12 d-flex justify-content-end">
+                    <GeneralButton buttonText="Contatta il proprietario" @button-click="contactModal = true" />
+                </div>
+            </div>
+            <ContactModal v-if="contactModal" :contact="apartment.name" :id="apartment.id"
+                @close-modal="contactModal = false" @send-form="sendMessage" />
         </div>
-        <ContactModal v-if="contactModal" :contact="apartment.name" :id="apartment.id" @close-modal="contactModal = false"
-            @send-form="sendMessage" />
-    </div>
+    </main>
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/partials/variables' as *;
 //generals
 
-.button-container {
-    width: 100%;
-    height: 100%;
+main {
+    background-color: $main-bg;
+    color: white;
 }
 
-.container {
-    width: 90%;
-    height: calc(100vh - 150px);
+.apartment {
 
-    .container-detail {
+    .border-bottom {
+        border-color: $pink-2 !important;
+    }
 
-        height: 400px;
-        width: 900px;
+    .main-pic {
+        max-height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
 
-        .container-thumb-detail {
+    .info {
+        .apartment-price {
+            color: $pink-3;
+        }
+    }
 
-            position: relative;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-
-            }
-
-            .apartment-name {
-                position: absolute;
-                bottom: 5px;
-                left: 5px;
-                color: rgb(255, 255, 255);
-                font-weight: 700;
-                width: 280px;
-            }
-
-            .views {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                color: white;
-                font-size: 25px;
-            }
+    .details {
+        .border {
+            border-color: $pink-2 !important;
         }
 
-        .container-info-detail {
-            flex-basis: 60%;
-            border-radius: 0 10px 10px 0;
-            position: relative;
-            padding-top: 10px;
-            padding: 17px;
+        .border-left-none {
+            border-left: none !important;
+        }
 
+        .border-right-none {
+            border-right: none !important;
+        }
 
+        .border-top-none {
+            border-top: none !important;
+        }
 
+        .description {
+            font-size: 22px;
+        }
+    }
 
-            .info-apartment {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-image: url(../assets/img/boolbnb.png);
-                background-color: #FFD6D7;
-                background-position: 50% 25%;
-                opacity: 20%;
-                background-repeat: no-repeat;
+    .services {
+        ul {
+            list-style: none;
 
-                p {
-                    font-weight: 900;
-                }
-
+            li {
+                font-size: 20px;
             }
         }
     }
 
-}
-
-@media screen and (max-width: 576px) {
-    .apartment-name {
-        display: none;
+    i {
+        color: $pink-3;
     }
-
-    .main-container-detail {
-        height: 97vh;
-    }
-
-    .contact-button {
-
-        bottom: 15px;
-        position: relative;
-        z-index: 2;
-        right: 5px;
-
-    }
-
-    .container-detail {
-        margin-top: 50px;
-        height: 400px;
-        width: 900px;
-        border-radius: 10px;
-
-
-        .container-thumb-detail {
-            flex-basis: 40%;
-            border-radius: 10px 10px 0 0;
-            position: relative;
-            padding: 5px;
-
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-                object-position: center;
-
-            }
-
-        }
-
-        .container-info-detail {
-
-
-            .info-apartment {
-                border-radius: 10px;
-            }
-
-            h6 {
-                padding-left: 5px;
-            }
-        }
-    }
-
-}
-
-@media screen and (min-width: 576px) {
-
-    .apartment-name {
-        display: none;
-    }
-
-    .main-container-detail {
-        height: 100vh;
-    }
-
-    .contact-button {
-
-        bottom: 15px;
-        position: absolute;
-        z-index: 2;
-        right: 5px;
-
-    }
-
-    .container-detail {
-        margin-top: 50px;
-        height: 400px;
-        width: 900px;
-        border-radius: 10px;
-
-
-        .container-thumb-detail {
-            flex-basis: 40%;
-            border-radius: 10px 10px 0 0;
-            position: relative;
-            padding: 5px;
-
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-                object-position: center;
-
-            }
-
-        }
-
-        .container-info-detail {
-
-
-            .info-apartment {
-                border-radius: 10px;
-            }
-
-            h6 {
-                padding-left: 5px;
-            }
-        }
-    }
-
-}
-
-@media screen and (min-width: 765px) {
-    .apartment-name {
-        display: none;
-    }
-
-    .main-container-detail {
-        height: 110vh;
-    }
-}
-
-@media screen and (min-width: 992px) {
-    .apartment-name {
-        display: block;
-    }
-
-    .contact-button {
-        margin-top: 110px;
-    }
-
-    .container-detail {
-        margin-top: 50px;
-        height: 400px;
-        width: 900px;
-
-        .container-thumb-detail {
-            flex-basis: 40%;
-            border-radius: 10px 0 10px 0;
-            position: relative;
-            padding: 5px;
-            padding-top: 0px;
-            border-radius: 10px;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-                object-position: center;
-            }
-
-        }
-
-        .container-info-detail {
-            padding-top: 20px;
-
-            .info-apartment {
-                border-radius: 10px;
-            }
-
-            h6 {
-                padding-left: 5px;
-            }
-        }
-    }
-
 }
 </style>
