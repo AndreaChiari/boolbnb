@@ -78,6 +78,7 @@ export default {
 
 <style scoped lang="scss">
 //generals
+
 .button-container {
     width: 100%;
     height: 100%;
@@ -156,6 +157,10 @@ export default {
 }
 
 @media screen and (max-width: 576px) {
+    .apartment-name {
+        display: none;
+    }
+
     .main-container-detail {
         height: 97vh;
     }
@@ -210,6 +215,11 @@ export default {
 }
 
 @media screen and (min-width: 576px) {
+
+    .apartment-name {
+        display: none;
+    }
+
     .main-container-detail {
         height: 100vh;
     }
@@ -264,12 +274,20 @@ export default {
 }
 
 @media screen and (min-width: 765px) {
+    .apartment-name {
+        display: none;
+    }
+
     .main-container-detail {
         height: 110vh;
     }
 }
 
-@media screen and (min-width: 992x) {
+@media screen and (min-width: 992px) {
+    .apartment-name {
+        display: block;
+    }
+
     .contact-button {
         margin-top: 110px;
     }
@@ -278,8 +296,6 @@ export default {
         margin-top: 50px;
         height: 400px;
         width: 900px;
-
-
 
         .container-thumb-detail {
             flex-basis: 40%;
@@ -295,7 +311,6 @@ export default {
                 object-fit: cover;
                 border-radius: 10px;
                 object-position: center;
-
             }
 
         }
