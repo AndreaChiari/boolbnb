@@ -103,8 +103,8 @@ export default {
 
         .main-img {
             img {
-                max-width: 100%;
-                height: auto;
+                height: 100%;
+                width: 100%;
                 object-fit: cover;
             }
         }
