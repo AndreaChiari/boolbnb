@@ -2,17 +2,19 @@
 <script>
 import axios from 'axios';
 import GeneralButton from '../components/GeneralButton.vue';
+import ContactModal from '../components/ContactModal.vue';
 
 export default {
     name: "DetailPage",
     data() {
         return {
-            apartment: null
+            apartment: null,
+            contactModal: false
         }
     },
 
 
-    components: { GeneralButton },
+    components: { GeneralButton, ContactModal },
     methods: {
         fetchApartment() {
             axios.get(`http://127.0.0.1:8000/api/apartments/${this.$route.params.id}`).then((res) => {
@@ -70,10 +72,11 @@ export default {
                 <h6 class="mb-4">{{ apartment.description }}</h6>
                 <h5 class="mb-5">Prezzo: {{ apartment.price }}€ / notte </h5>
                 <div class="d-flex justify-content-end button-conteiner">
-                    <GeneralButton buttonText="Contattaci" routeName="index" />
+                    <GeneralButton buttonText="Contattaci" @button-click="contactModal = true" />
                 </div>
             </div>
         </div>
+        <ContactModal v-if="contactModal" :contact="apartment.name" @close-modal="contactModal = false" />
     </div>
 </template>
 
@@ -88,7 +91,6 @@ export default {
 .container {
     width: 90%;
     height: calc(100vh - 150px);
-
 
     .container-detail {
 
