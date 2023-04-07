@@ -4,19 +4,20 @@ import IndexFilter from "../components/IndexFilter.vue";
 export default {
   name: "Index",
   components: { ApartmentCard, IndexFilter },
+   computed: {
+    apartments(){
+      return JSON.parse(this.$route.query.apartments)
+    }
+   }
 };
 </script>
 
 <template>
   <IndexFilter />
-  <h1>INDEX</h1>
   <div class="container">
     <div class="row row-cols-4">
-      <div class="col d-flex">
-        <ApartmentCard image="test_casa.jpg" />
-      </div>
-      <div class="col d-flex">
-        <ApartmentCard image="firenze.jpg" />
+      <div class="col d-flex" v-for="apartment in apartments">
+        <ApartmentCard :apartment="apartment" :is-sponsored="false"/>
       </div>
     </div>
   </div>
