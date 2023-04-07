@@ -60,7 +60,7 @@ export default {
                 this.apartments = res.data;
                 this.$router.push({
                   name: "index",
-                  query: { apartments: JSON.stringify(this.apartments) } 
+                  query: { apartments: JSON.stringify(this.apartments) }
                 });
               });
           });
@@ -76,56 +76,27 @@ export default {
 
 <template>
   <header>
-    <nav
-      class="container d-flex justify-content-between align-items-center py-3 h-100"
-    >
+    <nav class="container d-flex justify-content-between align-items-center py-3 h-100">
       <div class="nav-left h-100">
         <router-link :to="{ name: 'home' }" class="text-decoration-none">
-          <img
-            src="https://companieslogo.com/img/orig/ABNB-4aaade0f.png?t=1633511992"
-            alt="logo"
-          />
+          <img src="https://companieslogo.com/img/orig/ABNB-4aaade0f.png?t=1633511992" alt="logo" />
           <span class="title d-none d-md-inline">BOOLBNB</span>
         </router-link>
       </div>
       <div class="nav-center flex-grow-1 px-5 address-container">
         <div class="input-group">
-          <input
-            type="text"
-            @keyup="fetchApiCall()"
-            @keyup.enter="getAddress(termSearch)"
-            v-model.trim="termSearch"
-            class="form-control col rounded-5"
-            placeholder="Ex. Milan"
-            aria-label="Recipient's username"
-            aria-describedby="button-addon2"
-          />
-          <button
-            @click="getAddress(termSearch)"
-            class="btn rounded-5 px-3"
-            type="button"
-            id="button-addon2"
-          >
-            <i
-              class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg"
-              style="color: #f2f2f2"
-            ></i>
+          <input type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)" v-model.trim="termSearch"
+            class="form-control col rounded-5" placeholder="Ex. Milan" aria-label="Recipient's username"
+            aria-describedby="button-addon2" />
+          <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2">
+            <i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2"></i>
           </button>
         </div>
 
         <!-- lista dei suggerimenti autocompletamento  -->
-        <ul
-          v-if="suggestionStatus"
-          id="suggestions"
-          class="list-group w-100"
-          style="opacity: 0.9"
-        >
-          <li
-            v-for="suggestion in suggestions"
-            @click="changeAddress(suggestion)"
-            class="list-group-item list-group-item-action"
-            :class="{ active: selectedSuggestion === suggestion }"
-          >
+        <ul v-if="suggestionStatus" id="suggestions" class="list-group w-100" style="opacity: 0.9">
+          <li v-for="suggestion in suggestions" @click="changeAddress(suggestion)"
+            class="list-group-item list-group-item-action" :class="{ active: selectedSuggestion === suggestion }">
             {{ suggestion }}
           </li>
         </ul>
@@ -138,22 +109,22 @@ export default {
         </div>
         <div class="group-btn d-sm-block d-md-none">
           <div class="dropdown">
-            <button
-              class="btn dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              @click="toggleMenu()"
-            >
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              @click="toggleMenu()">
               <i class="fa-solid fa-bars fa-lg" style="color: #ffffff"></i>
             </button>
-            <div
-              class="dropdown-menu flex-column"
-              :class="{ 'show d-flex': isShown }"
-            >
-              <GeneralButton buttonText="Login" routeName="index" />
-              <GeneralButton buttonText="Sign In" routeName="index" />
+            <div class="dropdown-menu flex-column custom-dropdown-menu dropdown-menu-right"
+              :class="{ 'show d-flex': isShown }">
+
+              <GeneralButton buttonText="Login" routeName="index" class="btn btn-sm custom-button w-100" />
+
+              <GeneralButton buttonText="Sign In" routeName="index" class="btn btn-sm custom-button w-100" />
+
             </div>
+
+
+
+
           </div>
         </div>
       </div>
@@ -214,5 +185,38 @@ header {
       }
     }
   }
+}
+
+.custom-dropdown-menu {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 0.5rem;
+  position: absolute;
+  left: 0;
+  top: 37px;
+  text-align: center;
+}
+
+.custom-dropdown-menu.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+
+.custom-button {
+  background-color: transparent;
+  border: none;
+  color: #FE5D58;
+}
+
+.custom-button:hover {
+  background-color: #FE5D58;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+
+.custom-button:focus {
+  box-shadow: none;
+  outline: none;
 }
 </style>
