@@ -1,23 +1,44 @@
 
 <script>
+import axios from 'axios';
 import GeneralButton from '../components/GeneralButton.vue';
-
-
-
 
 export default {
     name: "DetailPage",
-    components: { GeneralButton },
-    computed: {
+    data() {
+        return {
+            apartment: null
+        }
+    },
 
-        starFull() {
-            return this.starFull = Math.floor(3.6)
-        },
-        starEmpty() {
-            return this.starEmpty = 5 - this.starFull
+
+    components: { GeneralButton },
+    methods: {
+        fetchApartment() {
+            axios.get(`http://127.0.0.1:8000/api/apartments/${this.$route.params.id}`).then((res) => {
+                this.apartment = res.data[0]
+
+            })
+        }
+    },
+    created() {
+        this.fetchApartment()
+    },
+    computed: {
+        services() {
+            let services = ''
+            this.apartment.services.forEach((service, i) => {
+                console.log(service.name)
+                services += `<i class="${service.icon}"></i> ${service.name}`
+                if (i < this.apartment.services.length - 1) {
+                    services += ", "
+                }
+            });
+            return services
         }
     }
 }
+
 
 </script>
 
@@ -25,28 +46,29 @@ export default {
     <div class="container d-flex">
         <div class="container-detail mx-auto d-flex flex-column flex-lg-row">
             <div class="container-thumb-detail">
-                <img class="img-fluid"
-                    src="https://a0.muscache.com/im/pictures/miso/Hosting-610511843622686196/original/ebee05c1-0c41-4850-a985-49748f8f6d55.jpeg?im_w=1440"
-                    alt="">
-                <p class="apartment-name ms-2">Casa sull'albero di frassino, 10mq</p>
-                <p class="rating mt-3">
-                <h5><i v-for="i in starFull" :key="i" class="ms-2 fa-solid fa-star"></i>
-                    <i v-for="i in starEmpty" :key="i" class="ms-2 fa-regular fa-star"></i>
+                <img class="img-fluid" :src=apartment.thumb :alt=apartment.name>
+                <h2 class="apartment-name ms-2">{{ apartment.name }}</h2>
+                <p class="views mt-3">
+                <h5 class="ms-2 fs-3fs-3">{{ apartment.views.length }}<i class="ms-2 fs-3 fa-solid fa-eye"></i>
                 </h5>
                 </p>
             </div>
             <div class="container-info-detail">
                 <div class="info-apartment">
                 </div>
-                <h6 class="mb-2">Indirizzo: Via Alcide de gasperi , 36</h6>
-                <h6 class="mb-2">Camere: 3</h6>
-                <h6 class="mb-2">Letti: 3</h6>
-                <h6 class="mb-2">Servizi: Wi-Fi, Animali, Aria Condizionata</h6>
-                <h6 class="mb-2">Descrizione: Lorem ihsum dolor sit amet consectetur, adipisicing elit. Tempora vitae magnam
-                    a ducimus
-                    quos! Veniam laudantium natus repudiandae dolores unde sed quibusdam dolorem nobis aliquid sit, ratione
-                    obcaecati ut aliquam.</h6>
-                <h6 class="mb-5">Prezzo: 25€ / notte </h6>
+                <h2 class="mb-2 mb-4">{{ apartment.name }}</h2>
+                <h6 class="mb-2">Indirizzo: {{ apartment.address }}</h6>
+                <h6 class="mb-2">Numero stanze: {{ apartment.rooms }}</h6>
+                <h6 class="mb-2">Numero letti: {{ apartment.beds }}</h6>
+                <h6 class="mb-2">Numero bagni: {{ apartment.bathrooms }}</h6>
+                <div class="d-flex">
+                    <div class="d-flex">
+                        <h6>Servizi: <span v-html="services"></span></h6>
+
+                    </div>
+                </div>
+                <h6 class="mb-4">{{ apartment.description }}</h6>
+                <h5 class="mb-5">Prezzo: {{ apartment.price }}€ / notte </h5>
                 <div class="d-flex justify-content-end button-conteiner">
                     <GeneralButton buttonText="Contattaci" routeName="index" />
                 </div>
@@ -57,10 +79,6 @@ export default {
 
 <style scoped lang="scss">
 //generals
-
-i {
-    color: yellow;
-}
 
 .button-container {
     width: 100%;
@@ -93,13 +111,12 @@ i {
                 position: absolute;
                 bottom: 5px;
                 left: 5px;
-                color: white;
+                color: rgb(255, 255, 255);
                 font-weight: 700;
-                font-size: larger;
                 width: 280px;
             }
 
-            .rating {
+            .views {
                 position: absolute;
                 top: 10px;
                 left: 10px;
@@ -113,6 +130,8 @@ i {
             border-radius: 0 10px 10px 0;
             position: relative;
             padding-top: 10px;
+            padding: 17px;
+
 
 
 

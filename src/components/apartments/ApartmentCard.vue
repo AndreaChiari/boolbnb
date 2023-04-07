@@ -30,6 +30,11 @@ export default {
 </template>
 
 <style scoped lang="scss">
+.link-detail {
+    height: 100%;
+    width: 100%;
+}
+
 .apartment-card {
     width: 300px;
     height: 200px;
