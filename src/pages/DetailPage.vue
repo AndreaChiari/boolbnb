@@ -74,10 +74,10 @@ export default {
                 <div class="col-12 py-2 mb-3 border-bottom">
                     <h1 class="apartment-name">{{ apartment.name }}</h1>
                 </div>
-                <div class="col-6">
+                <div :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
                     <img class="main-pic" :src="apartment.thumb" :alt="apartment.name">
                 </div>
-                <div class="col-6 p-0 row side-pics">
+                <div v-if="apartment.apartment_pics.length" class="col-6 p-0 row side-pics">
                     <div class="col-6 border h-50"></div>
                     <div class="col-6 border h-50"></div>
                     <div class="col-6 border h-50"></div>

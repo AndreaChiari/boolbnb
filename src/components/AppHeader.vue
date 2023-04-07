@@ -67,6 +67,9 @@ export default {
           });
       }
     },
+    goToBackoffice() {
+      window.location.href = 'http://127.0.0.1:8000/admin/apartments'
+    }
   },
 
   mounted() {
@@ -86,9 +89,9 @@ export default {
       </div>
       <div class="nav-center flex-grow-1 px-5 address-container">
         <div class="input-group">
-          <input id="searchCity" type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)" v-model.trim="termSearch"
-            class="form-control col rounded-5" placeholder="Ex. Milan" aria-label="Recipient's username"
-            aria-describedby="button-addon2" />
+          <input id="searchCity" type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)"
+            v-model.trim="termSearch" class="form-control col rounded-5" placeholder="Ex. Milan"
+            aria-label="Recipient's username" aria-describedby="button-addon2" />
           <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2">
             <i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2"></i>
           </button>
@@ -105,8 +108,7 @@ export default {
 
       <div class="nav-right">
         <div class="d-none d-md-inline">
-          <GeneralButton buttonText="Login" routeName="index" />
-          <GeneralButton buttonText="Sign In" routeName="index" />
+          <GeneralButton buttonText="Area Personale" routeName="index" @button-click="goToBackoffice()" />
         </div>
         <div class="group-btn d-sm-block d-md-none">
           <div class="dropdown">
