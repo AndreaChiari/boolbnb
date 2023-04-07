@@ -23,6 +23,19 @@ export default {
     },
     created() {
         this.fetchApartment()
+    },
+    computed: {
+        services() {
+            let services = ''
+            this.apartment.services.forEach((service, i) => {
+                console.log(service.name)
+                services += `<i class="${service.icon}"></i> ${service.name}`
+                if (i < this.apartment.services.length - 1) {
+                    services += ", "
+                }
+            });
+            return services
+        }
     }
 }
 
@@ -35,8 +48,8 @@ export default {
             <div class="container-thumb-detail">
                 <img class="img-fluid" :src=apartment.thumb :alt=apartment.name>
                 <h2 class="apartment-name ms-2">{{ apartment.name }}</h2>
-                <p class="rating mt-3">
-                <h5>{{ apartment.views.length }}<i class="ms-2 fs-3 fa-solid fa-eye"></i>
+                <p class="views mt-3">
+                <h5 class="ms-2 fs-3fs-3">{{ apartment.views.length }}<i class="ms-2 fs-3 fa-solid fa-eye"></i>
                 </h5>
                 </p>
             </div>
@@ -44,15 +57,18 @@ export default {
                 <div class="info-apartment">
                 </div>
                 <h2 class="mb-2 mb-4">{{ apartment.name }}</h2>
-                <h6 class="mb-2">{{ apartment.address }}</h6>
+                <h6 class="mb-2">Indirizzo: {{ apartment.address }}</h6>
                 <h6 class="mb-2">Numero stanze: {{ apartment.rooms }}</h6>
                 <h6 class="mb-2">Numero letti: {{ apartment.beds }}</h6>
                 <h6 class="mb-2">Numero bagni: {{ apartment.bathrooms }}</h6>
                 <div class="d-flex">
-                    <h6 v-for="service in apartment.services" :key="service" class="mb-2">{{ service.name }}</h6>
+                    <div class="d-flex">
+                        <h6>Servizi: <span v-html="services"></span></h6>
+
+                    </div>
                 </div>
                 <h6 class="mb-4">{{ apartment.description }}</h6>
-                <h5 class="mb-5">{{ apartment.price }}€ / notte </h5>
+                <h5 class="mb-5">Prezzo: {{ apartment.price }}€ / notte </h5>
                 <div class="d-flex justify-content-end button-conteiner">
                     <GeneralButton buttonText="Contattaci" routeName="index" />
                 </div>
@@ -100,7 +116,7 @@ export default {
                 width: 280px;
             }
 
-            .rating {
+            .views {
                 position: absolute;
                 top: 10px;
                 left: 10px;
@@ -114,6 +130,8 @@ export default {
             border-radius: 0 10px 10px 0;
             position: relative;
             padding-top: 10px;
+            padding: 17px;
+
 
 
 

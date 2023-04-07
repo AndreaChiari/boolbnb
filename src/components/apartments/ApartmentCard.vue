@@ -21,8 +21,6 @@ export default {
 <template>
     <div class="apartment-card rounded d-flex flex-column justify-content-between mb-4" @mouseover="showDetails = true"
         @mouseleave="showDetails = false">
-        <router-link :to="{ name: 'apartment-detail', params: { id: apartment.id } }" class="link-detail">Go back to
-            home</router-link>
         <div class="card-img-wrapper h-100" @mouseover="isZoomed = true" @mouseleave="isZoomed = false">
             <img class="rounded" :src="apartment.thumb" :alt="apartment.name">
             <div class="card-price">{{ apartment.price }} € notte</div>
