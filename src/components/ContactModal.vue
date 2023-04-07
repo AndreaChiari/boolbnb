@@ -19,9 +19,9 @@ export default {
             <h4 class="text-center mb-5">Contatta il proprietario di {{ contact }}</h4>
             <div class="row justify-content-center p-4">
                 <label for="email" class="col-5">Email:</label>
-                <input class="col-7 mb-3" type="text">
+                <input class="col-7 mb-3" type="email" name="email">
                 <label for="object" class="col-5">Oggetto:</label>
-                <input class="col-7 mb-3" type="text">
+                <input class="col-7 mb-3" type="text" name="object">
                 <label class="col-5" for="content">Messaggio:</label>
                 <textarea class="col-7 mb-5" name="content" id="content" cols="30" rows="10"></textarea>
                 <div class="col-12 d-flex justify-content-center justify-content-sm-end">
