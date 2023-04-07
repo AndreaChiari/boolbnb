@@ -4,13 +4,14 @@ import { RouterLink } from 'vue-router';
 export default {
     name: "GeneralButton",
     components: { RouterLink },
-    props: { routeName: String, buttonText: String }
+    props: { buttonText: String },
+    emits: ['button-click']
 }
 
 </script>
 
 <template>
-    <router-link :to="{ name: routeName }" class="contact-button">{{ buttonText }}</router-link>
+    <button class="contact-button" @click="$emit('button-click')">{{ buttonText }}</button>
 </template>
 
 <style scoped lang="scss">

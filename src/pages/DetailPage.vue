@@ -2,22 +2,47 @@
 <script>
 import axios from 'axios';
 import GeneralButton from '../components/GeneralButton.vue';
+import ContactModal from '../components/ContactModal.vue';
+import AppAlert from '../components/AppAlert.vue';
 
 export default {
     name: "DetailPage",
     data() {
         return {
-            apartment: null
+            apartment: null,
+            contactModal: false,
+            showAlert: false,
+            alertType: '',
+            alertText: ''
         }
     },
-
-
-    components: { GeneralButton },
+    components: { GeneralButton, ContactModal, AppAlert },
     methods: {
         fetchApartment() {
             axios.get(`http://127.0.0.1:8000/api/apartments/${this.$route.params.id}`).then((res) => {
                 this.apartment = res.data[0]
 
+            })
+        },
+        sendMessage(message) {
+            console.log(message);
+            axios.post('http://127.0.0.1:8000/api/messages', message).then(() => {
+                this.contactModal = false;
+                this.showAlert = true;
+                this.alertType = 'success';
+                this.alertText = 'Il messaggio è stato inviato con successo';
+            }).catch((e) => {
+                this.alertText = '';
+                const errors = e.response.data.errors;
+                this.contactModal = false;
+                this.showAlert = true;
+                this.alertType = 'danger';
+                this.alertText = '<h3>Il messaggio non è stato inviato perchè:</h3>'
+                for (let key in errors) {
+                    for (let key2 in errors[key]) {
+                        this.alertText += `<li>${key} : ${errors[key][key2]}</li>`;
+                    }
+                }
             })
         }
     },
@@ -42,10 +67,11 @@ export default {
 </script>
 
 <template>
-    <div class="container d-flex main-container-detail">
+    <div class="container my-5">
+        <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
         <div class="container-detail mx-auto d-flex flex-column flex-lg-row">
             <div class="container-thumb-detail">
-                <img class="img-fluid" :src=apartment.thumb :alt=apartment.name>
+                <img class="img-fluid" :src="apartment.thumb" :alt="apartment.name">
                 <h2 class="apartment-name ms-2">{{ apartment.name }}</h2>
                 <p class="views mt-3">
                 <h5 class="ms-2 fs-3fs-3">{{ apartment.views.length }}<i class="ms-2 fs-3 fa-solid fa-eye"></i>
@@ -69,10 +95,12 @@ export default {
                 <h6 class="mb-4">{{ apartment.description }}</h6>
                 <h5 class="mb-5">Prezzo: {{ apartment.price }}€ / notte </h5>
                 <div class="d-flex justify-content-end button-conteiner">
-                    <GeneralButton buttonText="Contattaci" routeName="index" />
+                    <GeneralButton buttonText="Contattaci" @button-click="contactModal = true" />
                 </div>
             </div>
         </div>
+        <ContactModal v-if="contactModal" :contact="apartment.name" :id="apartment.id" @close-modal="contactModal = false"
+            @send-form="sendMessage" />
     </div>
 </template>
 
@@ -87,7 +115,6 @@ export default {
 .container {
     width: 90%;
     height: calc(100vh - 150px);
-
 
     .container-detail {
 
