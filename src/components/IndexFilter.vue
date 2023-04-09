@@ -71,7 +71,7 @@ export default {
 
 
 <template>
-    <section id="filter" class="my-3">
+    <section id="filter">
         <div class="container">
             <div class="row g-2">
 
@@ -83,23 +83,24 @@ export default {
 
                 <!-- Stanze  -->
                 <div class="col-12 col-sm-4 col-lg-2">
-                    <input v-model="rooms" type="number" min="1" class="form-control" id="rooms" placeholder="rooms"
+                    <input v-model="rooms" type="number" min="1" class="form-control" id="rooms" placeholder="Rooms"
                         name="rooms">
                 </div>
 
                 <!-- Bagni  -->
                 <div class="col-12 col-sm-4 col-lg-2">
                     <input v-model="bathrooms" type="number" min="1" class="form-control" id="bathrooms"
-                        placeholder="bathrooms" name="bathrooms">
+                        placeholder="Bathrooms" name="bathrooms">
                 </div>
 
                 <!-- Servizi  -->
                 <div class="col-12 col-lg-6 my-3 services d-flex justify-content-between align-items-center">
                     <div v-for="service in services" class="icon-service">
                         <span class="me-2">
-                            <input v-model="checkedServices" class="form-check-input" :id="service.name" :value="service.name" type="checkbox" :name="service.name">
-                            <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{ service.name }} </span> <i
-                                    :class="service.icon" class="ms-1"></i></label>
+                            <input v-model="checkedServices" class="form-check-input" :id="service.name"
+                                :value="service.name" type="checkbox" :name="service.name">
+                            <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{
+                                service.name }} </span> <i :class="service.icon" class="ms-1"></i></label>
                         </span>
                     </div>
                 </div>
@@ -121,13 +122,15 @@ export default {
                 </div>
 
                 <!-- Servizi Aggiuntivi  -->
-                <div class="more-services col-12 d-flex justify-content-between my-1">
-                        <div v-if="serviceStatus" v-for="service in others" class="icon-service">
-                            <span class="me-2">
-                                <input v-model="checkedServices" class="form-check-input" :id="service.name" :value="service.name" type="checkbox" :name="service.name">
-                                <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{ service.name }}</span> <i :class="service.icon" class="ms-1"></i></label>
-                            </span>
-                        </div>
+                <div class="more-services col-12 d-flex justify-content-between mt-1 mb-5">
+                    <div v-if="serviceStatus" v-for="service in others" class="icon-service">
+                        <span class="me-2">
+                            <input v-model="checkedServices" class="form-check-input" :id="service.name"
+                                :value="service.name" type="checkbox" :name="service.name">
+                            <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{
+                                service.name }}</span> <i :class="service.icon" class="ms-1"></i></label>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,8 +138,34 @@ export default {
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
+@use '../assets/styles/partials/variables' as *;
+
 #filter {
     min-height: 80px;
+
+    label {
+        color: $pink-2;
+    }
+
+    .form-check-input {
+        &:checked {
+            background-color: $pink-3;
+            border-color: $pink-2;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 0.25rem rgba($color: $pink-2, $alpha: 0.25);
+        }
+    }
+
+    #km_range::-webkit-slider-thumb {
+        background-color: $pink-3;
+    }
+
+    #km_range::-moz-range-thumb {
+        background-color: $pink-3;
+    }
+
 }
 </style>
