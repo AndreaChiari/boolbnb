@@ -7,6 +7,11 @@ export default {
   computed: {
     apartments() {
       return JSON.parse(this.$route.query.apartments)
+    },
+    sortedApartments() {
+      return this.apartments.sort((a, b) => {
+        return a.is_sponsored === b.is_sponsored ? 0 : a.is_sponsored ? -1 : 1;
+      });
     }
   }
 };
@@ -17,8 +22,8 @@ export default {
     <IndexFilter />
     <div class="container">
       <div class="row row-cols-4">
-        <div class="col d-flex" v-for="apartment in apartments">
-          <ApartmentCard :apartment="apartment" :is-sponsored="false" />
+        <div class="col d-flex" v-for="apartment in sortedApartments">
+          <ApartmentCard :apartment="apartment" />
         </div>
       </div>
     </div>

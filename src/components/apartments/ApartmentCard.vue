@@ -3,7 +3,6 @@ export default {
     name: "ApartmentCard",
     props: {
         apartment: Object,
-        isSponsored: Boolean,
     },
     methods: {
         getImageUrl(image) {
@@ -24,7 +23,7 @@ export default {
                 <h6 class="card-title mb-2">{{ apartment.name }}</h6>
                 <p class="card-rating mb-0"><i class="fa-solid fa-eye me-1"></i>{{ apartment.views.length }}</p>
             </div>
-            <div class="label py-1 px-2 rounded" v-if="isSponsored"><b>SPONSORED</b></div>
+            <div class="label py-1 px-2 rounded" v-if="apartment.is_sponsored"><b>SPONSORED</b></div>
         </div>
     </router-link>
 </template>
