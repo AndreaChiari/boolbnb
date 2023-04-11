@@ -5,4 +5,5 @@ import Loader from './Loader.vue';
 import App from './App.vue';
 const app = createApp(App);
 app.use(router);
+app.component('app-loader', Loader)
 app.mount('#app');

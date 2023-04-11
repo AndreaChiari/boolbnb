@@ -25,10 +25,12 @@ export default {
 <style scoped>
 .loader-box {
     position: fixed;
-    top: 40%;
-    width: 15%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
     margin: auto;
-    background: #FF5D58;
+    background: #d8d0d0;
     box-shadow: 0 0 9px -2px #fffefe;
     z-index: 999;
     left: 0;
@@ -57,7 +59,7 @@ export default {
     width: 6px;
     height: 18px;
     border-radius: 20%;
-    background: #ffffff;
+    background: #FF5D58;
 }
 
 .lds-spinner div:nth-child(1) {

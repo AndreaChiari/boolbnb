@@ -9,6 +9,7 @@ export default {
         return {
             city: '',
             sponsoredApartments: [],
+            isLoading: false
         }
     },
     methods: {
@@ -16,9 +17,16 @@ export default {
             this.city = city
         },
         fetchSponsoredApartments() {
+            this.isLoading = true
             axios.get('http://127.0.0.1:8000/api/apartments?sponsored=1').then(res => {
                 this.sponsoredApartments = res.data;
+            }).catch(() => {
+
+            }).then(() => {
+                this.isLoading = true
             })
+
+
         }
     },
     computed: {
@@ -45,8 +53,9 @@ export default {
 </script>
 
 <template>
-    <AppJumbotron @search-city="getCityToSearch" :sponsored-apartments="sponsoredApartments" />
-    <main class="py-5">
+    <app-loader v-if="isLoading"></app-loader>
+    <AppJumbotron v-if="!isLoading" @search-city="getCityToSearch" :sponsored-apartments="sponsoredApartments" />
+    <main class="py-5" v-if="!isLoading">
         <div class="container">
             <h1 class="text-white mb-5">I nostri appartamenti in evidenza</h1>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">

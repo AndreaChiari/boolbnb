@@ -1,4 +1,5 @@
 <script>
+import { ref } from "vue";
 import { apiUri, key, backEndUri } from "../data/index.js";
 import { RouterLink } from "vue-router";
 import GeneralButton from "./GeneralButton.vue";
@@ -11,6 +12,7 @@ export default {
   components: { RouterLink, GeneralButton },
   data: () => ({
     isShown: false,
+    isLoading: false,
     address: [],
     termSearch: "",
     apartments: [],
