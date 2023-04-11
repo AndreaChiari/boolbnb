@@ -165,6 +165,7 @@ header {
   .title {
     color: #ff385c;
     font-size: 20px;
+    margin-bottom: 0;
 
     &:hover {
       text-shadow: 0 0 5px red;
