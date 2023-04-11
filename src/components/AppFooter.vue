@@ -54,7 +54,7 @@ export default {
 footer {
     height: 70px;
     background-color: #f2f2f2;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     right: 0;

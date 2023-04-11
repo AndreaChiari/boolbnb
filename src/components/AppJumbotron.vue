@@ -105,6 +105,7 @@ export default {
     height: 100px;
     position: relative;
     overflow-x: hidden;
+    padding-top: 100px;
 
     .thumb-container {
         position: absolute;

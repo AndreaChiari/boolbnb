@@ -139,8 +139,6 @@ main {
 }
 
 .apartment {
-    padding-bottom: 100px;
-    padding-top: 100px;
 
     .border-bottom {
         border-color: $pink-2 !important;

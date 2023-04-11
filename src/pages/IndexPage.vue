@@ -34,7 +34,6 @@ export default {
 @use '../assets/styles/partials/variables' as *;
 
 main {
-  min-height: calc(100vh - 150px);
   background-color: $main-bg;
 }
 </style>

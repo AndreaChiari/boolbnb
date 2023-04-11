@@ -142,11 +142,12 @@ header {
   height: 80px;
   background-color: $secondary-bg;
   color: white;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 3;
+
 
   .nav-left img {
     max-height: 80px;
