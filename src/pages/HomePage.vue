@@ -63,6 +63,23 @@ export default {
 
 main {
     background-color: $main-bg;
-    min-height: calc(100vh - 570px);
+    min-height: calc(100vh - 250px);
+}
+
+@media screen and (min-width: 577px) {
+    main {
+        background-color: $main-bg;
+        min-height: calc(100vh - 350px);
+    }
+
+}
+
+@media screen and (min-width: 1201px) {
+
+    main {
+        background-color: $main-bg;
+        min-height: calc(100vh - 570px);
+    }
+
 }
 </style>
