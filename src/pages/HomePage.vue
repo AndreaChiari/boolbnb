@@ -23,7 +23,7 @@ export default {
             }).catch(() => {
 
             }).then(() => {
-                this.isLoading = true
+                this.isLoading = false
             })
 
 
