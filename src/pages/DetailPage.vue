@@ -122,7 +122,8 @@ export default {
                 </ul>
             </div>
             <div class="buttons row mt-3">
-                <div class="col-12 d-flex justify-content-end">
+                <div class="col-12 d-flex justify-content-between">
+                    <router-link class="contact-button" :to="{ name: 'home' }">Torna Indietro</router-link>
                     <GeneralButton buttonText="Contatta il proprietario" @button-click="contactModal = true" />
                 </div>
             </div>
@@ -134,7 +135,25 @@ export default {
 
 <style scoped lang="scss">
 @use '../assets/styles/partials/variables' as *;
+
 //generals
+
+.contact-button {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #FF5D58;
+    border: 1px solid #FFDEDF;
+    color: white;
+
+    &:hover {
+        background-color: #FFDEDF;
+        border: 1px solid #FF5D58;
+        color: #FF5D58;
+
+    }
+}
+
 
 main {
     background-color: $main-bg;
