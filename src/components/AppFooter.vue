@@ -54,6 +54,11 @@ export default {
 footer {
     height: 70px;
     background-color: #f2f2f2;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
 }
 
 .sub-footer {

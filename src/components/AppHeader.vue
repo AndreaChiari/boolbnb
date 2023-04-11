@@ -83,8 +83,8 @@ export default {
     <nav class="container d-flex justify-content-between align-items-center py-3 h-100">
       <div class="nav-left h-100">
         <router-link :to="{ name: 'home' }" class="text-decoration-none">
-          <img src="https://companieslogo.com/img/orig/ABNB-4aaade0f.png?t=1633511992" alt="logo" />
-          <span class="title d-none d-md-inline">BOOLBNB</span>
+          <img class="img-fluid" src="../assets/img/boolbnb_2.png" alt="logo" />
+          <p class="title d-none d-md-inline">BOOLBNB</p>
         </router-link>
       </div>
       <div class="nav-center flex-grow-1 px-5 address-container">
@@ -124,10 +124,6 @@ export default {
               <GeneralButton buttonText="Sign In" routeName="index" class="btn btn-sm custom-button w-100" />
 
             </div>
-
-
-
-
           </div>
         </div>
       </div>
@@ -146,9 +142,14 @@ header {
   height: 80px;
   background-color: $secondary-bg;
   color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
 
   .nav-left img {
-    max-height: 100%;
+    max-height: 80px;
   }
 
   .title {

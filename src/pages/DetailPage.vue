@@ -68,7 +68,7 @@ export default {
 
 <template>
     <main>
-        <div class="container apartment py-5">
+        <div class="container apartment">
             <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
             <div class="pictures row">
                 <div class="col-12 py-2 mb-3 border-bottom">
@@ -139,6 +139,8 @@ main {
 }
 
 .apartment {
+    padding-bottom: 100px;
+    padding-top: 100px;
 
     .border-bottom {
         border-color: $pink-2 !important;
