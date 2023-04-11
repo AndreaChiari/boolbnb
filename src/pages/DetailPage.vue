@@ -136,6 +136,7 @@ export default {
 main {
     background-color: $main-bg;
     color: white;
+    padding-bottom: 10px;
 }
 
 .apartment {

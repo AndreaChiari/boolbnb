@@ -81,9 +81,9 @@ export default {
 <template>
   <header>
     <nav class="container d-flex justify-content-between align-items-center py-3 h-100">
-      <div class="nav-left h-100">
-        <router-link :to="{ name: 'home' }" class="text-decoration-none">
-          <img class="img-fluid" src="../assets/img/boolbnb_2.png" alt="logo" />
+      <div class="nav-left h-100 ">
+        <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center">
+          <div class="logo-header"></div>
           <p class="title d-none d-md-inline">BOOLBNB</p>
         </router-link>
       </div>
@@ -134,6 +134,15 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
+.logo-header {
+  width: 100px;
+  height: 50px;
+  background-image: url(/src/assets/img/boolbnb_2.png);
+  background-position: center;
+  background-size: 114px;
+  background-repeat: no-repeat;
+}
+
 .contact-button {
   margin-right: 10px;
 }
@@ -156,7 +165,6 @@ header {
   .title {
     color: #ff385c;
     font-size: 20px;
-    padding: 2px 4px;
 
     &:hover {
       text-shadow: 0 0 5px red;
