@@ -123,7 +123,7 @@ export default {
             </div>
             <div class="buttons row mt-3">
                 <div class="col-12 d-flex justify-content-between">
-                    <router-link class="contact-button" :to="{ name: 'home' }">Torna Indietro</router-link>
+                    <button class="contact-button" @click="$router.go(-1)">Torna Indietro</button>
                     <GeneralButton buttonText="Contatta il proprietario" @button-click="contactModal = true" />
                 </div>
             </div>
