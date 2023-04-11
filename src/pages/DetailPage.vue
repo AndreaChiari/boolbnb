@@ -22,6 +22,9 @@ export default {
             axios.get(`http://127.0.0.1:8000/api/apartments/${this.$route.params.id}`).then((res) => {
                 this.apartment = res.data[0]
 
+            }).catch(() => {
+                console.log('ciao');
+                this.$router.push({ name: 'not-found-page' })
             })
         },
         sendMessage(message) {
@@ -67,8 +70,8 @@ export default {
 </script>
 
 <template>
-    <main>
-        <div class="container apartment">
+    <main class="py-5">
+        <div v-if="apartment" class="container apartment">
             <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
             <div class="pictures row">
                 <div class="col-12 py-2 mb-3 border-bottom">
@@ -136,7 +139,6 @@ export default {
 main {
     background-color: $main-bg;
     color: white;
-    padding-bottom: 10px;
 }
 
 .apartment {

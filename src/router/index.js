@@ -15,7 +15,6 @@ const router = createRouter({
         { path: "/apartments/:id", name: "apartment-detail", component: DetailPage },
         { path: "/team", name: "team-page", component: Team6Page },
         { path: '/:pathMatch(.*)*', name: "not-found-page", component: NotFoundPage }
-
     ],
 });
 
