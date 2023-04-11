@@ -31,7 +31,33 @@ export default {
     },
 
     filteredApartments() {
-      return this.sortedApartments.filter(apartment => apartment.price <= this.filters.price && apartment.rooms >= this.filters.rooms && apartment.bathrooms >= this.filters.bathrooms);
+      let apartments = this.sortedApartments;
+      if (this.filters.price) {
+        apartments = apartments.filter(apartment => apartment.price <= this.filters.price)
+        console.log(apartments)
+      }
+      if (this.filters.rooms) {
+        apartments = apartments.filter(apartment => apartment.rooms >= this.filters.rooms)
+      }
+      if (this.filters.bathrooms) {
+        apartments = apartments.filter(apartment => apartment.bathrooms >= this.filters.bathrooms)
+      }
+      if (this.filters.checkedServices) {
+        console.log('qui')
+        apartments = apartments.filter(apartment => {
+          const apartmentServices = [];
+          apartment.services.forEach(service => {
+            apartmentServices.push(service.name);
+          })
+          console.log(apartmentServices)
+          const checkedServices = this.filters.checkedServices;
+          console.log(checkedServices)
+          let checker = (array, target) => target.every(value => array.includes(value));
+          console.log(checker(apartmentServices, checkedServices));
+          return checker(apartmentServices, checkedServices);
+        });
+      }
+      return apartments;
     }
   }
 };
@@ -43,16 +69,15 @@ export default {
     <div class="container">
 
       <div v-if="apartments.length" class="row gutter">
-        <div v-if="filteredApartments.length" class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4"
-          v-for="apartment in filteredApartments">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4" v-for="apartment in filteredApartments">
           <ApartmentCard :apartment="apartment" />
         </div>
 
-        <div v-else="apartments.length" class="row gutter">
-          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4" v-for="apartment in sortedApartments">
-            <ApartmentCard :apartment="apartment" />
-          </div>
-        </div>
+        <!-- <div v-else="apartments.length" class="row gutter">
+                                            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4" v-for="apartment in sortedApartments">
+                                              <ApartmentCard :apartment="apartment" />
+                                            </div>
+                                          </div> -->
       </div>
 
       <div v-else class="text-center not-found-apartment">
