@@ -4,12 +4,6 @@ import IndexFilter from "../components/IndexFilter.vue";
 export default {
   name: "Index",
   components: { ApartmentCard, IndexFilter },
-  methods: {
-    searchNewAddress(){
-      document.getElementById("searchCity").focus();
-      searchCity.value = '';
-    }
-  },
   computed: {
     apartments() {
       return JSON.parse(this.$route.query.apartments)
@@ -27,19 +21,11 @@ export default {
   <main class="py-3">
     <IndexFilter />
     <div class="container">
-      <div v-if="apartments.length" class="row row-cols-4">
+      <div class="row row-cols-4">
         <div class="col d-flex" v-for="apartment in sortedApartments">
           <ApartmentCard :apartment="apartment" />
-        </div> 
-      </div>
-      <div v-else class="text-center not-found-apartment">
-          <h1 class="text-danger">
-            Nessun appartamento trovato al seguente indirizzo.
-          </h1>
-          <button class="btn btn-warning" @click="searchNewAddress()">
-            Cerca un nuovo indirizzo
-          </button>
         </div>
+      </div>
     </div>
   </main>
 </template>
@@ -48,6 +34,7 @@ export default {
 @use '../assets/styles/partials/variables' as *;
 
 main {
+  min-height: calc(100vh - 150px);
   background-color: $main-bg;
 }
 </style>
