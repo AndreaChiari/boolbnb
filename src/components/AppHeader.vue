@@ -43,7 +43,7 @@ export default {
       this.suggestionStatus = false;
     },
 
-    getAddress(termSearch, range = 25) {
+    getAddress(termSearch, range = 20) {
       if (this.suggestions.includes(this.termSearch)) {
         axios
           .get(`${apiUri}geocode/${termSearch}.json?key=${key}`)
@@ -99,8 +99,8 @@ export default {
 
         <!-- lista dei suggerimenti autocompletamento  -->
         <ul v-if="suggestionStatus" id="suggestions" class="list-group w-100" style="opacity: 0.9">
-          <li v-for="suggestion in suggestions" @click="changeAddress(suggestion)"
-            class="list-group-item list-group-item-action" :class="{ active: selectedSuggestion === suggestion }">
+          <li v-for="suggestion in suggestions" @click="changeAddress(suggestion), getAddress(termSearch)"
+            class="list-group-item list-group-item-action" :class="{ active: termSearch === suggestion }">
             {{ suggestion }}
           </li>
         </ul>
