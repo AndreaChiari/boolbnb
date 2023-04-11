@@ -6,59 +6,59 @@ export default {
 
     data() {
         return {
-            filters:  {
+            filters: {
                 price: null,
                 rooms: null,
                 bathrooms: null,
                 range: 25,
                 checkedServices: [],
-            
+
             },
             serviceStatus: false,
             services: [
-                    {
-                        name: 'Wifi',
-                        icon: 'fa-solid fa-wifi'
-                    },
-                    {
-                        name: 'Piscina',
-                        icon: 'fa-solid fa-person-swimming'
-                    },
-                    {
-                        name: 'Parcheggio Gratuito',
-                        icon: 'fa-solid fa-square-parking'
-                    },
-                    {
-                        name: 'TV',
-                        icon: 'fa-solid fa-tv'
-                    }
+                {
+                    name: 'Wifi',
+                    icon: 'fa-solid fa-wifi'
+                },
+                {
+                    name: 'Piscina',
+                    icon: 'fa-solid fa-person-swimming'
+                },
+                {
+                    name: 'Parcheggio Gratuito',
+                    icon: 'fa-solid fa-square-parking'
+                },
+                {
+                    name: 'TV',
+                    icon: 'fa-solid fa-tv'
+                }
             ],
 
             others: [
-                    {
-                        name: 'Colazione Inclusa',
-                        icon: 'fa-solid fa-mug-saucer'
-                    },
-                    {
-                        name: 'Spa & centro benessere',
-                        icon: 'fa-solid fa-spa'
-                    },
-                    {
-                        name: 'Palestra',
-                        icon: 'fa-solid fa-dumbbell'
-                    },
-                    {
-                        name: 'Spiaggia Inclusa',
-                        icon: 'fa-solid fa-umbrella-beach'
-                    },
-                    {
-                        name: 'Aria Condizionata',
-                        icon: 'fa-solid fa-fan fa-spin'
-                    },
-                    {
-                        name: 'Tavolo da Ping Pong',
-                        icon: 'fa-solid fa-table-tennis-paddle-ball'
-                    },
+                {
+                    name: 'Colazione Inclusa',
+                    icon: 'fa-solid fa-mug-saucer'
+                },
+                {
+                    name: 'Spa & centro benessere',
+                    icon: 'fa-solid fa-spa'
+                },
+                {
+                    name: 'Palestra',
+                    icon: 'fa-solid fa-dumbbell'
+                },
+                {
+                    name: 'Spiaggia Inclusa',
+                    icon: 'fa-solid fa-umbrella-beach'
+                },
+                {
+                    name: 'Aria Condizionata',
+                    icon: 'fa-solid fa-fan fa-spin'
+                },
+                {
+                    name: 'Tavolo da Ping Pong',
+                    icon: 'fa-solid fa-table-tennis-paddle-ball'
+                },
             ]
         }
     },
@@ -68,7 +68,7 @@ export default {
             this.serviceStatus = !this.serviceStatus;
         },
 
-        sendFilters(){
+        sendFilters() {
             this.$emit('send-filters', this.filters);
         }
     }
@@ -120,10 +120,11 @@ export default {
 
                 <!-- Bottoni filtro e servizi Aggiuntivi  -->
                 <div class="col-12 col-lg-2 justify-content-center mb-3 d-flex align-items-center">
-                        <GeneralButton @click="sendFilters()" buttonText="Filter" />
-                    <GeneralButton buttonText="More Services" @Click="toggleStatus" />
+                    <GeneralButton @click="sendFilters()" buttonText="Filter" />
+                    <GeneralButton buttonText="More" @Click="toggleStatus" class="mx-2" />
 
                 </div>
+
 
                 <!-- Servizi Aggiuntivi  -->
                 <div class="more-services col-12 d-flex justify-content-between mt-1 mb-5">
