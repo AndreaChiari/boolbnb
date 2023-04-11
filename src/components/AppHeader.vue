@@ -43,7 +43,7 @@ export default {
       this.suggestionStatus = false;
     },
 
-    getAddress(termSearch, range = 25) {
+    getAddress(termSearch, range = 20) {
       if (this.suggestions.includes(this.termSearch)) {
         axios
           .get(`${apiUri}geocode/${termSearch}.json?key=${key}`)
