@@ -4,20 +4,34 @@ import IndexFilter from "../components/IndexFilter.vue";
 export default {
   name: "Index",
   components: { ApartmentCard, IndexFilter },
+  data(){
+    return {
+        filters: {}
+    } 
+  },
   methods: {
     searchNewAddress(){
       document.getElementById("searchCity").focus();
       searchCity.value = '';
-    }
+    },
+
+    storeFilters(filters){
+      this.filters = filters;
+    },  
+
   },
   computed: {
     apartments() {
-      return JSON.parse(this.$route.query.apartments)
+      return JSON.parse(this.$route.query.apartments);
     },
     sortedApartments() {
       return this.apartments.sort((a, b) => {
         return a.is_sponsored === b.is_sponsored ? 0 : a.is_sponsored ? -1 : 1;
       });
+    },
+
+    filteredApartments() {
+      return this.sortedApartments.filter(apartment => apartment.price <= this.filters.price && apartment.rooms >= this.filters.rooms && apartment.bathrooms >= this.filters.bathrooms);
     }
   }
 };
@@ -25,11 +39,15 @@ export default {
 
 <template>
   <main class="py-3">
-    <IndexFilter />
+    <IndexFilter @send-filters="storeFilters"/>
     <div class="container">
       
       <div v-if="apartments.length" class="row row-cols-4">
-        <div class="col d-flex" v-for="apartment in sortedApartments">
+        <div v-if="filteredApartments.length" class="col d-flex" v-for="apartment in filteredApartments">
+          <ApartmentCard :apartment="apartment" />
+        </div>
+
+        <div v-else class="col d-flex" v-for="apartment in sortedApartments">
           <ApartmentCard :apartment="apartment" />
         </div> 
       </div>
