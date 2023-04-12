@@ -14,7 +14,6 @@ export default {
     isLoading: false,
     address: [],
     termSearch: "",
-    apartments: [],
     suggestions: [],
     suggestionStatus: false,
   }),
@@ -44,7 +43,7 @@ export default {
       this.suggestionStatus = false;
     },
 
-    getAddress(termSearch, range = 20) {
+    getAddress(termSearch) {
       if (this.suggestions.includes(this.termSearch)) {
         axios
           .get(`${apiUri}geocode/${termSearch}.json?key=${key}`)
@@ -54,17 +53,14 @@ export default {
             //prendo latitudine e longitudine
             const lat = this.address.position.lat;
             const lon = this.address.position.lon;
+            const coordinates = [lat, lon];
 
-            axios
-              .get(`${backEndUri}lat=${lat}&lon=${lon}&range=${range}`)
-              .then((res) => {
-                this.apartments = res.data;
-                this.suggestionStatus = false;
-                this.$router.push({
-                  name: "index",
-                  query: { apartments: JSON.stringify(this.apartments) }
-                });
-              });
+            this.suggestionStatus = false;
+
+            this.$router.push({
+              name: "index",
+              query: { coordinates: JSON.stringify(coordinates) }
+            });             
           });
       }
     },
