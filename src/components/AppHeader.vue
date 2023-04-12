@@ -22,7 +22,7 @@ export default {
       this.isShown = !this.isShown;
     },
     fetchApiCall() {
-      if (this.termSearch) {
+      if (this.termSearch && event.keyCode !== 13) {
         axios
           .get(
             `https://api.tomtom.com/search/2/search/${this.termSearch}.json?key=lCdijgMp1lmgVifAWwN8K9Jrfa9XcFzm`
@@ -60,7 +60,7 @@ export default {
             this.$router.push({
               name: "index",
               query: { coordinates: JSON.stringify(coordinates) }
-            });             
+            });
           });
       }
     },
