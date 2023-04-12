@@ -1,7 +1,7 @@
 <script>
 import ApartmentCard from "../components/apartments/ApartmentCard.vue";
 import IndexFilter from "../components/IndexFilter.vue";
-import { apiUri, key, backEndUri } from "../data/index.js";
+import { backEndUri } from "../data/index.js";
 import axios from 'axios';
 export default {
   name: "Index",
@@ -77,7 +77,7 @@ export default {
       return apartments;
     },
   },
-  mounted(){
+  mounted() {
     this.fetchApartments();
   },
   watch: {
@@ -95,14 +95,8 @@ export default {
   <main class="py-3">
     <IndexFilter @send-filters="storeFilters" />
     <div class="container">
-      <div
-        v-if="apartments.length"
-        class="gutter row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"
-      >
-        <div
-          class="col d-flex justify-content-center mb-4"
-          v-for="apartment in filteredApartments"
-        >
+      <div v-if="apartments.length" class="gutter row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+        <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
           <ApartmentCard :apartment="apartment" />
         </div>
       </div>
