@@ -41,10 +41,40 @@ export default {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease-in-out;
+
+    &:hover {
+        border-color: #f44336;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-image: linear-gradient(to right,
+                rgba(244, 67, 54, 0.5),
+                rgba(244, 67, 54, 0.2),
+                rgba(244, 67, 54, 0.5));
+        z-index: -1;
+        animation: moveLines 2s infinite linear;
+        border-radius: 10px;
+    }
+
+    &::after {
+        transform: rotate(180deg);
+    }
 
     .card-img-wrapper {
         position: relative;
         overflow: hidden;
+        height: 100%;
 
         img {
             width: 100%;
@@ -57,13 +87,15 @@ export default {
             position: absolute;
             bottom: 0;
             left: 0;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.63);
             color: white;
             padding: 10px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 13px;
             opacity: 0;
             transition: opacity 0.2s ease-in-out;
+            border-radius: 0px 30px 0 0;
+
 
             .card-rating {
                 font-size: 12px;
@@ -73,13 +105,14 @@ export default {
 
     .card-price {
         position: absolute;
-        bottom: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.6);
+        top: 0px;
+        left: -2px;
+        background-color: rgba(0, 0, 0, 0.412);
         color: white;
         padding: 5px;
         font-weight: bold;
         font-size: 14px;
+        border-radius: 0 0 20px 0;
     }
 
     &:hover {
