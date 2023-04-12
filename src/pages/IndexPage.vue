@@ -43,18 +43,18 @@ export default {
         apartments = apartments.filter(apartment => apartment.bathrooms >= this.filters.bathrooms)
       }
       if (this.filters.checkedServices) {
-        console.log('qui')
+        //filtro gli appartamenti
         apartments = apartments.filter(apartment => {
+          //svuoto l'array dei servizi
           const apartmentServices = [];
+          //per ogni servizio dell'appartamento, pusho il nome nell'array
           apartment.services.forEach(service => {
             apartmentServices.push(service.name);
           })
-          console.log(apartmentServices)
-          const checkedServices = this.filters.checkedServices;
-          console.log(checkedServices)
+          //funzione che determina se tutti gli elementi dell'array sono presenti nell'array target
           let checker = (array, target) => target.every(value => array.includes(value));
-          console.log(checker(apartmentServices, checkedServices));
-          return checker(apartmentServices, checkedServices);
+          //ritorno nell'array filtrato solo gli appartamenti che danno true
+          return checker(apartmentServices, this.filters.checkedServices);
         });
       }
       return apartments;
@@ -72,12 +72,6 @@ export default {
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4" v-for="apartment in filteredApartments">
           <ApartmentCard :apartment="apartment" />
         </div>
-
-        <!-- <div v-else="apartments.length" class="row gutter">
-                                            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4" v-for="apartment in sortedApartments">
-                                              <ApartmentCard :apartment="apartment" />
-                                            </div>
-                                          </div> -->
       </div>
 
       <div v-else class="text-center not-found-apartment">
