@@ -20,7 +20,7 @@ export default {
     methods: {
         fetchApartment() {
             axios.get(`http://127.0.0.1:8000/api/apartments/${this.$route.params.id}`).then((res) => {
-                this.apartment = res.data[0]
+                this.apartment = res.data;
 
             }).catch(() => {
                 console.log('ciao');
