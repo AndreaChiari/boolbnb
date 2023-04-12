@@ -10,7 +10,7 @@ export default {
                 price: null,
                 rooms: null,
                 bathrooms: null,
-                range: 25,
+                range: 20,
                 checkedServices: [],
 
             },
