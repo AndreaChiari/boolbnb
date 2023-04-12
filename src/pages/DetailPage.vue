@@ -13,13 +13,16 @@ export default {
             contactModal: false,
             showAlert: false,
             alertType: '',
-            alertText: ''
+            alertText: '',
+            isLoading: true
         }
     },
     components: { GeneralButton, ContactModal, AppAlert },
     methods: {
         fetchApartment() {
+            this.isLoading = true
             axios.get(`http://127.0.0.1:8000/api/apartments/${this.$route.params.id}`).then((res) => {
+                this.isLoading = false
                 this.apartment = res.data;
 
             }).catch(() => {
@@ -70,7 +73,8 @@ export default {
 </script>
 
 <template>
-    <main class="py-5">
+    <app-loader v-if="isLoading"></app-loader>
+    <main v-if="!isLoading" class="py-5">
         <div v-if="apartment" class="container apartment">
             <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
             <div class="pictures row">
