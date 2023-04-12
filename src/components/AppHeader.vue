@@ -11,6 +11,7 @@ export default {
   components: { RouterLink, GeneralButton },
   data: () => ({
     isShown: false,
+    isLoading: false,
     address: [],
     termSearch: "",
     apartments: [],
