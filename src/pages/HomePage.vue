@@ -9,7 +9,7 @@ export default {
         return {
             city: '',
             sponsoredApartments: [],
-            isLoading: false
+            isLoading: true
         }
     },
     methods: {

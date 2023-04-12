@@ -1,134 +1,129 @@
 <script>
-export default {
-    name: "Loader"
-}
-
 </script>
+
 <template>
-    <div class="loader-box text-center d-flex align-items-center justify-content-center">
-        <div class="lds-spinner">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+    <div class="loader-container d-flex justify-content-center align-items-center">
+        <div class="loader">
+            <span style="--i: 1"></span>
+            <span style="--i: 2"></span>
+            <span style="--i: 3"></span>
+            <span style="--i: 4"></span>
+            <span style="--i: 5"></span>
+            <span style="--i: 6"></span>
+            <span style="--i: 7"></span>
+            <span style="--i: 8"></span>
+            <span style="--i: 9"></span>
+            <span style="--i: 10"></span>
+            <span style="--i: 11"></span>
+            <span style="--i: 12"></span>
+            <span style="--i: 13"></span>
+            <span style="--i: 14"></span>
+            <span style="--i: 15"></span>
+            <span style="--i: 16"></span>
+            <span style="--i: 17"></span>
+            <span style="--i: 18"></span>
+            <span style="--i: 19"></span>
+            <span style="--i: 20"></span>
+            <div class="plane">
+                <ion-icon name="airplane-sharp" class="icon"></ion-icon>
+            </div>
         </div>
     </div>
 </template>
-<style scoped>
-.loader-box {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-    background: #d8d0d0;
-    box-shadow: 0 0 9px -2px #fffefe;
-    z-index: 999;
-    left: 0;
-    right: 0;
+
+<style scoped lang="scss">
+@use './assets/styles/partials/variables' as *;
+
+.loader-container {
+    min-height: calc(100vh - 150px);
+    background-color: $main-bg;
 }
 
-.lds-spinner {
-    color: official;
-    display: inline-block;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
 }
 
-.lds-spinner div {
-    transform-origin: 40px 40px;
-    animation: lds-spinner 1.2s linear infinite;
-}
-
-.lds-spinner div:after {
-    content: " ";
-    display: block;
+.loader span {
     position: absolute;
-    top: 3px;
-    left: 37px;
-    width: 6px;
-    height: 18px;
-    border-radius: 20%;
-    background: #FF5D58;
+    width: 100%;
+    height: 100%;
+    transform: rotate(calc(18deg * var(--i)));
 }
 
-.lds-spinner div:nth-child(1) {
-    transform: rotate(0deg);
-    animation-delay: -1.1s;
+.loader span::before {
+    content: '';
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #FF5D58;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(5px);
+    transform: scale(0);
+    animation: load 2s linear infinite;
+    animation-delay: calc(0.1s * var(--i));
 }
 
-.lds-spinner div:nth-child(2) {
-    transform: rotate(30deg);
-    animation-delay: -1s;
-}
-
-.lds-spinner div:nth-child(3) {
-    transform: rotate(60deg);
-    animation-delay: -0.9s;
-}
-
-.lds-spinner div:nth-child(4) {
-    transform: rotate(90deg);
-    animation-delay: -0.8s;
-}
-
-.lds-spinner div:nth-child(5) {
-    transform: rotate(120deg);
-    animation-delay: -0.7s;
-}
-
-.lds-spinner div:nth-child(6) {
-    transform: rotate(150deg);
-    animation-delay: -0.6s;
-}
-
-.lds-spinner div:nth-child(7) {
-    transform: rotate(180deg);
-    animation-delay: -0.5s;
-}
-
-.lds-spinner div:nth-child(8) {
-    transform: rotate(210deg);
-    animation-delay: -0.4s;
-}
-
-.lds-spinner div:nth-child(9) {
-    transform: rotate(240deg);
-    animation-delay: -0.3s;
-}
-
-.lds-spinner div:nth-child(10) {
-    transform: rotate(270deg);
-    animation-delay: -0.2s;
-}
-
-.lds-spinner div:nth-child(11) {
-    transform: rotate(300deg);
-    animation-delay: -0.1s;
-}
-
-.lds-spinner div:nth-child(12) {
-    transform: rotate(330deg);
-    animation-delay: 0s;
-}
-
-@keyframes lds-spinner {
+@keyframes load {
     0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    10% {
+        transform: scale(1.2);
         opacity: 1;
     }
 
+    80%,
     100% {
+        transform: scale(0);
         opacity: 0;
     }
+}
+
+.plane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    animation: rotate 2s linear infinite;
+    animation-delay: -1.5s;
+
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.plane .icon {
+    font-size: 50px;
+    color: #FF5D58;
+    position: absolute;
+    top: -10px;
+    left: 80px;
+    transform: rotate(45deg);
 }
 </style>
