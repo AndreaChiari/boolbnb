@@ -101,6 +101,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/partials/variables' as *;
+
 .jumbotron {
     height: 100px;
     position: relative;
@@ -145,7 +147,7 @@ export default {
             .label {
                 align-self: center;
                 font-size: 10px;
-                background-color: rgb(255, 93, 88);
+                background-color: $pink-3;
             }
         }
 
