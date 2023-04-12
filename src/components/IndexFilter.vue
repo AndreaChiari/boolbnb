@@ -119,9 +119,9 @@ export default {
                 </div>
 
                 <!-- Bottoni filtro e servizi Aggiuntivi  -->
-                <div class="col-12 col-lg-2 justify-content-center mb-3 d-flex align-items-center">
-                    <GeneralButton @click="sendFilters()" buttonText="Filter" />
-                    <GeneralButton buttonText="More" @Click="toggleStatus" class="mx-2" />
+                <div class="col-12 col-lg-2 mb-2 d-flex align-items-center">
+                    <!-- <GeneralButton @click="sendFilters()" buttonText="Filter" /> -->
+                    <GeneralButton buttonText="More" @Click="toggleStatus" />
 
                 </div>
 
