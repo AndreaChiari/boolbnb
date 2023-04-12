@@ -57,7 +57,22 @@ export default {
     <AppJumbotron v-if="!isLoading" @search-city="getCityToSearch" :sponsored-apartments="sponsoredApartments" />
     <main class="py-5" v-if="!isLoading">
         <div class="container">
-            <h1 class="text-white mb-5">I nostri appartamenti in evidenza</h1>
+
+
+
+
+            <div class="col-md-6">
+                <div class="title-wrapper">
+                    <h1 class="text-white mb-5">I nostri appartamenti in evidenza</h1>
+                    <i class="fa-solid fa-house" style="color: #eb1414;"></i>
+                </div>
+            </div>
+
+
+
+
+
+
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
                 <div class="col d-flex justify-content-center" v-for="apartment in otherSponsoredApartments">
                     <ApartmentCard :apartment="apartment" />
@@ -69,6 +84,31 @@ export default {
 
 <style scoped lang="scss">
 @use '../assets/styles/partials/variables' as *;
+
+
+.title-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 20px;
+    border: 2px solid rgba(204, 204, 204, 0);
+}
+
+.title-wrapper i {
+    position: absolute;
+    top: 3%;
+    left: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.title-wrapper:hover i {
+    transform: scale(1.4);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+
+
+
 
 main {
     background-color: $main-bg;
