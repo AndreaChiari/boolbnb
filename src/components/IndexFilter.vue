@@ -84,19 +84,19 @@ export default {
                 <!-- Prezzo  -->
                 <div class="col-12 col-sm-4 col-lg-2">
                     <input v-model="filters.price" type="number" min="1" class="form-control" id="price" placeholder="Price"
-                        name="price">
+                        name="price" @keyup="sendFilters()">
                 </div>
 
                 <!-- Stanze  -->
                 <div class="col-12 col-sm-4 col-lg-2">
                     <input v-model="filters.rooms" type="number" min="1" class="form-control" id="rooms" placeholder="Rooms"
-                        name="rooms">
+                        name="rooms" @keyup="sendFilters()">
                 </div>
 
                 <!-- Bagni  -->
                 <div class="col-12 col-sm-4 col-lg-2">
                     <input v-model="filters.bathrooms" type="number" min="1" class="form-control" id="bathrooms"
-                        placeholder="Bathrooms" name="bathrooms">
+                        placeholder="Bathrooms" name="bathrooms" @keyup="sendFilters()">
                 </div>
 
                 <!-- Servizi  -->
@@ -104,7 +104,7 @@ export default {
                     <div v-for="service in services" class="icon-service">
                         <span class="me-2">
                             <input v-model="filters.checkedServices" class="form-check-input" :id="service.name"
-                                :value="service.name" type="checkbox" :name="service.name">
+                                :value="service.name" type="checkbox" :name="service.name" @click="sendFilters()">
                             <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{
                                 service.name }} </span> <i :class="service.icon" class="ms-1"></i></label>
                         </span>
