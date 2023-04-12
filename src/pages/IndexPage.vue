@@ -10,13 +10,17 @@ export default {
     return {
       filters: {},
       apartments: [],
+      isLoading: true,
+
     };
   },
   methods: {
     fetchApartments(range = 20) {
+      this.isLoading = true
       axios
         .get(`${backEndUri}lat=${this.coordinates[0]}&lon=${this.coordinates[1]}&range=${range}`)
         .then((res) => {
+          this.isLoading = false
           this.apartments = res.data;
         });
     },
@@ -92,8 +96,9 @@ export default {
 </script>
 
 <template>
-  <main class="py-3">
-    <IndexFilter @send-filters="storeFilters" />
+  <app-loader v-if="isLoading"></app-loader>
+  <main v-if="!isLoading" class="py-3">
+    <IndexFilter v-if="!isLoading" @send-filters="storeFilters" />
     <div class="container">
       <div v-if="apartments.length" class="gutter row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
         <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
