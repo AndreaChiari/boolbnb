@@ -5,7 +5,7 @@ export default {
   name: "Index",
   components: { ApartmentCard, IndexFilter },
   data: {
-    isLoading: true
+    isLoading: false
   },
   methods: {
     searchNewAddress() {
@@ -27,7 +27,8 @@ export default {
 </script>
 
 <template>
-  <main class="py-3">
+  <app-loader v-if="isLoading"></app-loader>
+  <main v-if="!isLoading" class="py-3">
     <IndexFilter />
     <div class="container">
 
