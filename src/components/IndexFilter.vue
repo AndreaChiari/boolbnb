@@ -71,7 +71,8 @@ export default {
         sendFilters() {
             this.$emit('send-filters', this.filters);
         }
-    }
+    },
+    emits: ['range-release']
 }
 </script>
 
@@ -115,7 +116,7 @@ export default {
                 <div class="col-12 col-lg-10 text-center my-2">
                     <label for="km_range" class="form-label w-100">Kms Range: {{ filters.range }}km</label>
                     <input v-model="filters.range" type="range" step="1" min="0" max="100" class="form-range" id="km_range"
-                        name="km_range">
+                        name="km_range" @change="sendFilters()" @mouseup="$emit('range-release')">
                 </div>
 
                 <!-- Bottoni filtro e servizi Aggiuntivi  -->

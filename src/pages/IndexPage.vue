@@ -38,6 +38,9 @@ export default {
     coordinates() {
       return JSON.parse(this.$route.query.coordinates);
     },
+    range() {
+      return this.filters.range;
+    },
     sortedApartments() {
       return this.apartments.sort((a, b) => {
         return a.is_sponsored === b.is_sponsored ? 0 : a.is_sponsored ? -1 : 1;
@@ -90,16 +93,16 @@ export default {
       handler(newCoordinates, oldCoordinates) {
         this.fetchApartments();
       }
-    }
+    },
   }
 };
 </script>
 
 <template>
   <app-loader v-if="isLoading"></app-loader>
-  <main v-if="!isLoading" class="py-3">
-    <IndexFilter v-if="!isLoading" @send-filters="storeFilters" />
-    <div class="container">
+  <main class="py-3">
+    <IndexFilter @send-filters="storeFilters" @range-release="fetchApartments(range)" />
+    <div v-if="!isLoading" class="container">
       <div v-if="apartments.length" class="gutter row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
         <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
           <ApartmentCard :apartment="apartment" />
