@@ -119,13 +119,11 @@ export default {
                 </div>
 
                 <!-- Bottoni filtro e servizi Aggiuntivi  -->
-                <div class="col-12 col-lg-2 mb-2 d-flex align-items-center">
+                <div class="col-12 col-lg-2 mb-2 d-flex justify-content-end align-items-center">
                     <!-- <GeneralButton @click="sendFilters()" buttonText="Filter" /> -->
-                    <GeneralButton buttonText="More" @Click="toggleStatus" />
-
+                    <GeneralButton buttonText='<i class="fa-solid fa-filter fa-lg" style="color: #ffffff;"></i>'
+                        @Click="toggleStatus" />
                 </div>
-
-
                 <!-- Servizi Aggiuntivi  -->
                 <div class="more-services col-12 d-flex justify-content-between mt-1 mb-5">
                     <div v-if="serviceStatus" v-for="service in others" class="icon-service">

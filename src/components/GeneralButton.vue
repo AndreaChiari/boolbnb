@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-    <button class="contact-button" @click="$emit('button-click')">{{ buttonText }}</button>
+    <button class="contact-button" @click="$emit('button-click')" v-html="buttonText"></button>
 </template>
 
 <style scoped lang="scss">
