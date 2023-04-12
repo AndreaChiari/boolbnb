@@ -60,7 +60,7 @@ export default {
             this.$router.push({
               name: "index",
               query: { coordinates: JSON.stringify(coordinates) }
-            });             
+            });
           });
       }
     },
