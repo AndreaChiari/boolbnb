@@ -21,8 +21,8 @@ export default {
     toggleMenu() {
       this.isShown = !this.isShown;
     },
-    fetchApiCall(event) {
-      if (this.termSearch || event.keyCode !== 13) {
+    fetchApiCall() {
+      if (this.termSearch) {
         axios
           .get(
             `https://api.tomtom.com/search/2/search/${this.termSearch}.json?key=lCdijgMp1lmgVifAWwN8K9Jrfa9XcFzm`
