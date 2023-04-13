@@ -48,6 +48,7 @@ export default {
     components: { AppJumbotron, ApartmentCard },
     created() {
         this.fetchSponsoredApartments();
+        window.sessionStorage.clear();
     }
 }
 </script>

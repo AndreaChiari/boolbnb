@@ -66,11 +66,18 @@ export default {
     methods: {
         toggleStatus() {
             this.serviceStatus = !this.serviceStatus;
+            window.sessionStorage.setItem('serviceStatus', JSON.stringify(this.serviceStatus))
         },
 
         sendFilters() {
+            window.sessionStorage.setItem('filters', JSON.stringify(this.filters))
+            window.sessionStorage.setItem('serviceStatus', JSON.stringify(this.serviceStatus))
             this.$emit('send-filters', this.filters);
         }
+    },
+    mounted() {
+        if (window.sessionStorage.getItem('filters') != null) this.filters = JSON.parse(window.sessionStorage.getItem('filters'))
+        if (window.sessionStorage.getItem('serviceStatus') != null) this.serviceStatus = JSON.parse(window.sessionStorage.getItem('serviceStatus'))
     },
     emits: ['range-release']
 }
@@ -114,7 +121,7 @@ export default {
                     <div v-for="service in services" class="icon-service">
                         <span class="me-2">
                             <input v-model="filters.checkedServices" class="form-check-input" :id="service.name"
-                                :value="service.name" type="checkbox" :name="service.name" @click="sendFilters()">
+                                :value="service.name" type="checkbox" :name="service.name" @change="sendFilters()">
                             <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{
                                 service.name }} </span> <i :class="service.icon" class="ms-1"></i></label>
                         </span>
@@ -139,7 +146,7 @@ export default {
                     <div v-if="serviceStatus" v-for="service in others" class="icon-service">
                         <span class="me-2">
                             <input v-model="filters.checkedServices" class="form-check-input" :id="service.name"
-                                :value="service.name" type="checkbox" :name="service.name">
+                                :value="service.name" type="checkbox" :name="service.name" @change="sendFilters()">
                             <label class="form-check-label ms-2" :for="service.name"> <span class="d-none d-lg-inline">{{
                                 service.name }}</span> <i :class="service.icon" class="ms-1"></i></label>
                         </span>

@@ -11,7 +11,7 @@ export default {
       filters: {},
       apartments: [],
       isLoading: true,
-
+      prova: {}
     };
   },
   methods: {
@@ -53,7 +53,6 @@ export default {
         apartments = apartments.filter(
           (apartment) => apartment.price <= this.filters.price
         );
-        console.log(apartments);
       }
       if (this.filters.rooms) {
         apartments = apartments.filter(
@@ -86,6 +85,7 @@ export default {
   },
   mounted() {
     this.fetchApartments();
+    if (window.sessionStorage.getItem('filters') != null) this.filters = JSON.parse(window.sessionStorage.getItem('filters'))
   },
   watch: {
     coordinates: {
