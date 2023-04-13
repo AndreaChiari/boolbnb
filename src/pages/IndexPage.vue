@@ -101,21 +101,23 @@ export default {
 <template>
   <app-loader v-if="isLoading"></app-loader>
   <main class="py-3">
-    <IndexFilter @send-filters="storeFilters" @range-release="fetchApartments(range)" />
-    <div v-if="!isLoading" class="container">
-      <div v-if="apartments.length" class="gutter row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-        <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
-          <ApartmentCard :apartment="apartment" />
+    <div class="content">
+      <IndexFilter @send-filters="storeFilters" @range-release="fetchApartments(range)" />
+      <div v-if="!isLoading" class="container">
+        <div v-if="apartments.length" class="gutter row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+          <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
+            <ApartmentCard :apartment="apartment" />
+          </div>
         </div>
-      </div>
 
-      <div v-else class="text-center not-found-apartment">
-        <h1 class="text-danger">
-          Nessun appartamento trovato al seguente indirizzo.
-        </h1>
-        <button class="btn btn-warning" @click="searchNewAddress()">
-          Cerca un nuovo indirizzo
-        </button>
+        <div v-else class="text-center not-found-apartment">
+          <h1 class="text-danger">
+            Nessun appartamento trovato al seguente indirizzo.
+          </h1>
+          <button class="btn btn-warning" @click="searchNewAddress()">
+            Cerca un nuovo indirizzo
+          </button>
+        </div>
       </div>
     </div>
   </main>
@@ -125,7 +127,28 @@ export default {
 @use "../assets/styles/partials/variables" as *;
 
 main {
+  position: relative;
   min-height: calc(100vh - 150px);
-  background-color: $main-bg;
+  background-image: url(https://c.wallhere.com/photos/cd/67/top_view_city_3D_Abstract-1692599.jpg!d);
+  background-position: center;
+  z-index: 1;
+  background-size: cover;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  backdrop-filter: blur(5px);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
 }
 </style>

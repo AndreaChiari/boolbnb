@@ -91,6 +91,8 @@ export default {
     display: inline-block;
     padding: 20px;
     border: 2px solid rgba(204, 204, 204, 0);
+
+
 }
 
 .title-wrapper i {
@@ -98,6 +100,11 @@ export default {
     top: 3%;
     left: 20px;
     transition: all 0.3s ease-in-out;
+}
+
+.title-wrapper h1 {
+    text-shadow: 2px 2px 3px rgb(255, 90, 95);
+
 }
 
 .title-wrapper:hover i {

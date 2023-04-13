@@ -108,6 +108,7 @@ export default {
     position: relative;
     overflow-x: hidden;
     padding-top: 100px;
+    box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.25);
 
     .thumb-container {
         position: absolute;
@@ -168,6 +169,8 @@ export default {
             transform: translateY(-50%);
             opacity: 0;
             transition: all 0.5s;
+            text-shadow: 2px 2px 3px rgb(255, 90, 95);
+
 
             &.fa-chevron-left {
                 left: 30px;
@@ -175,6 +178,7 @@ export default {
 
             &.fa-chevron-right {
                 right: 30px;
+
             }
 
             &:hover {
@@ -187,6 +191,11 @@ export default {
         }
 
     }
+
+}
+
+.info-box {
+    text-shadow: 2px 2px 3px black;
 
 }
 

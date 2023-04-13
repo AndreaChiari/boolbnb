@@ -78,12 +78,15 @@ export default {
 <template>
   <header>
     <nav class="container d-flex justify-content-between align-items-center py-3 h-100">
-      <div class="nav-left h-100 ">
-        <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center">
-          <div class="logo-header"></div>
-          <p class="title d-none d-md-inline">BOOLBNB</p>
-        </router-link>
+      <div class="nav-left h-100 row align-items-center">
+        <div class="col-auto p-0">
+          <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center">
+            <div class="logo-header"></div>
+            <p class="title d-none d-md-inline">OOLBNB</p>
+          </router-link>
+        </div>
       </div>
+
       <div class="nav-center flex-grow-1 px-5 address-container">
         <div class="input-group">
           <input id="searchCity" type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)"
@@ -138,6 +141,8 @@ export default {
   background-position: center;
   background-size: 114px;
   background-repeat: no-repeat;
+  margin-right: -20px;
+
 }
 
 .contact-button {
@@ -146,13 +151,14 @@ export default {
 
 header {
   height: 80px;
-  background-color: $secondary-bg;
+  background: linear-gradient(to bottom, #202020, #222222, #242424);
   color: white;
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 3;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 
 
   .nav-left img {
@@ -160,9 +166,12 @@ header {
   }
 
   .title {
-    color: #ff385c;
-    font-size: 20px;
+    color: #FF5A5F;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 3px;
+    font-size: 19px;
     margin-bottom: 0;
+
 
     &:hover {
       text-shadow: 0 0 5px red;

@@ -82,23 +82,32 @@ export default {
         <div class="container">
             <div class="row g-2">
 
-                <!-- Prezzo  -->
                 <div class="col-12 col-sm-4 col-lg-2">
-                    <input v-model="filters.price" type="number" min="1" class="form-control" id="price" placeholder="Price"
-                        name="price" @keyup="sendFilters()">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-euro-sign"></i>
+                        </span>
+                        <input v-model="filters.price" type="number" min="1" class="form-control" id="price" name="price"
+                            placeholder="Prezzo" @keyup="sendFilters()">
+                    </div>
                 </div>
 
-                <!-- Stanze  -->
                 <div class="col-12 col-sm-4 col-lg-2">
-                    <input v-model="filters.rooms" type="number" min="1" class="form-control" id="rooms" placeholder="Rooms"
-                        name="rooms" @keyup="sendFilters()">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-bed"></i></span>
+                        <input v-model="filters.rooms" type="number" min="1" class="form-control" id="rooms" name="rooms"
+                            placeholder="Stanze" @keyup="sendFilters()">
+                    </div>
                 </div>
 
-                <!-- Bagni  -->
                 <div class="col-12 col-sm-4 col-lg-2">
-                    <input v-model="filters.bathrooms" type="number" min="1" class="form-control" id="bathrooms"
-                        placeholder="Bathrooms" name="bathrooms" @keyup="sendFilters()">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-toilet"></i></span>
+                        <input v-model="filters.bathrooms" type="number" min="1" class="form-control" id="bathrooms"
+                            placeholder="Bagni" name="bathrooms" @keyup="sendFilters()">
+                    </div>
                 </div>
+
 
                 <!-- Servizi  -->
                 <div class="col-12 col-lg-6 my-3 services d-flex justify-content-between align-items-center">
@@ -169,6 +178,13 @@ export default {
 
     #km_range::-moz-range-thumb {
         background-color: $pink-3;
+    }
+
+    .input-group {
+        &:hover {
+            box-shadow: 0 0 5px #FF385C;
+            cursor: pointer;
+        }
     }
 
 }
