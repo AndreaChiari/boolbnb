@@ -9,6 +9,7 @@ export default {
             message: {
                 apartment_id: this.id,
                 email: '',
+                name: '',
                 object: '',
                 content: ''
             },
@@ -24,6 +25,10 @@ export default {
             this.errors = '';
             if (!this.message.email) {
                 this.errors += "<li>L'email è obbligatoria</li>";
+                this.hasErrors = true;
+            }
+            if (!this.message.name) {
+                this.errors += "<li>Il nome è obbligatoria</li>";
                 this.hasErrors = true;
             }
             if (!this.message.object) {
@@ -57,6 +62,8 @@ export default {
                     class="fa-solid fa-xmark fa-2x"></i></button>
             <h4 class="text-center mb-5">Contatta il proprietario di {{ contact }}</h4>
             <div class="row justify-content-center p-4">
+                <label class="col-5">Nome:</label>
+                <input class="col-7 mb-3" type="text" name="name" v-model="message.name">
                 <label for="email" class="col-5">Email:</label>
                 <input class="col-7 mb-3" type="email" name="email" v-model="message.email">
                 <label for="object" class="col-5">Oggetto:</label>
