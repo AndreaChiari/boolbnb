@@ -4,6 +4,7 @@ import axios from 'axios';
 import GeneralButton from '../components/GeneralButton.vue';
 import ContactModal from '../components/ContactModal.vue';
 import AppAlert from '../components/AppAlert.vue';
+import AppMap from '../components/AppMap.vue';
 
 export default {
     name: "DetailPage",
@@ -17,7 +18,7 @@ export default {
             isLoading: true
         }
     },
-    components: { GeneralButton, ContactModal, AppAlert },
+    components: { GeneralButton, ContactModal, AppAlert, AppMap },
     methods: {
         fetchApartment() {
             this.isLoading = true
@@ -66,6 +67,13 @@ export default {
                 }
             });
             return services
+        },
+        coordinates() {
+            const coordinates = {
+                lat: this.apartment.latitude,
+                lon: this.apartment.longitude
+            };
+            return coordinates
         }
     }
 }
@@ -134,6 +142,7 @@ export default {
             </div>
             <ContactModal v-if="contactModal" :contact="apartment.name" :id="apartment.id"
                 @close-modal="contactModal = false" @send-form="sendMessage" />
+                <app-map :name="apartment.name" :coordinates="coordinates"></app-map>
         </div>
     </main>
 </template>
@@ -239,4 +248,5 @@ main {
         color: $pink-3;
     }
 }
+
 </style>
