@@ -53,6 +53,15 @@ export default {
             })
             window.scrollTo(0, 0);
         },
+        picHolderClassSelection(index) {
+            if (this.apartment.apartment_pics.length <= 2) {
+                return 'col-12'
+            } else if (this.apartment.apartment_pics.length === 3 && index === 0) {
+                return 'col-12'
+            } else {
+                return 'col-6'
+            }
+        },
 
     },
     created() {
@@ -88,18 +97,18 @@ export default {
     <main v-if="!isLoading" class="py-5">
         <div v-if="apartment" class="container apartment">
             <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
-            <div class="pictures row">
-                <div class="col-12 py-2 mb-3 border-bottom">
+            <div class="pictures row mb-3">
+                <div class="col-12 py-2 mb-3 border-bottom name-holder">
                     <h1 class="apartment-name">{{ apartment.name }}</h1>
                 </div>
-                <div :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
+                <div class="pic-holder" :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
                     <img class="main-pic" :src="apartment.thumb" :alt="apartment.name">
                 </div>
-                <div v-if="apartment.apartment_pics.length" class="col-6 p-0 row side-pics">
-                    <div class="col-6 border h-50"></div>
-                    <div class="col-6 border h-50"></div>
-                    <div class="col-6 border h-50"></div>
-                    <div class="col-6 border h-50"></div>
+                <div v-if="apartment.apartment_pics.length" class="pic-holder col-6 p-0 row side-pics">
+                    <div class="border p-0 h-50" :class="picHolderClassSelection(i)"
+                        v-for="pic, i in apartment.apartment_pics">
+                        <img class="secondary-pic" :src="`http://127.0.0.1:8000/storage/${pic.thumb}`" :alt="pic.id">
+                    </div>
                 </div>
             </div>
             <div class="info row border-bottom align-items-center">
@@ -144,7 +153,7 @@ export default {
             </div>
             <ContactModal v-if="contactModal" :contact="apartment.name" :id="apartment.id"
                 @close-modal="contactModal = false" @send-form="sendMessage" />
-                <app-map :name="apartment.name" :coordinates="coordinates"></app-map>
+            <app-map :name="apartment.name" :coordinates="coordinates"></app-map>
         </div>
     </main>
 </template>
@@ -202,8 +211,26 @@ main {
         border-color: $pink-2 !important;
     }
 
+    .pictures {
+        height: 400px;
+
+        .name-holder {
+            height: 73px;
+        }
+
+        .pic-holder {
+            height: calc(400px - 73px);
+        }
+    }
+
     .main-pic {
         max-height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .secondary-pic {
+        height: 100%;
         width: 100%;
         object-fit: cover;
     }
@@ -250,5 +277,4 @@ main {
         color: $pink-3;
     }
 }
-
 </style>
