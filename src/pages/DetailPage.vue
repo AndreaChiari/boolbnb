@@ -52,11 +52,13 @@ export default {
                 }
             })
             window.scrollTo(0, 0);
-        }
+        },
+
     },
     created() {
         this.fetchApartment()
     },
+
     computed: {
         services() {
             let services = ''

@@ -19,6 +19,7 @@ export default {
       map.addControl(new tt.FullscreenControl());
       map.addControl(new tt.NavigationControl());
       addMarker(map, address);
+      scrollToTop();
     });
 
     function addMarker(map, address) {
@@ -30,6 +31,10 @@ export default {
         `${props.name}`
       );
       marker.setPopup(popup).togglePopup();
+    }
+
+    function scrollToTop(){
+        window.scrollTo(0, 0);
     }
 
     return {
