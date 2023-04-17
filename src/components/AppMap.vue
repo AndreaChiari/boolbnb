@@ -51,7 +51,7 @@ export default {
         let map = tt.map({
           key: "aXmqa9tqNAUMFDXixJeARSNrykS73T0d",
           container: mapRef.value,
-          zoom: 7.5,
+          zoom: 13,
           center: address,
         });
 
@@ -94,9 +94,7 @@ export default {
 </script>
 
 <template>
-  <section class="container test">
-    <div id="map" ref="mapRef"></div>
-  </section>
+  <div id="map" ref="mapRef"></div>
 </template>
 
 <style scoped lang="scss">
@@ -104,11 +102,7 @@ export default {
   margin: 50px;
   height: 350px;
   width: 250px;
-  border-radius: 10%;
   color: black;
   padding-right: 30rem;
-
-
-
 }
 </style>

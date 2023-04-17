@@ -110,9 +110,7 @@ export default {
           <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
             <ApartmentCard :apartment="apartment" />
           </div>
-        <app-map :flag="true" :apartments="filteredApartments"></app-map>
         </div>
-
         <div v-else class="text-center not-found-apartment">
           <h1 class="text-danger">
             Nessun appartamento trovato al seguente indirizzo.
@@ -121,6 +119,8 @@ export default {
             Cerca un nuovo indirizzo
           </button>
         </div>
+        <app-map :flag="true" :apartments="filteredApartments"
+          class="d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"></app-map>
       </div>
     </div>
   </main>
@@ -153,5 +153,32 @@ main::before {
 .content {
   position: relative;
   z-index: 2;
+}
+
+
+
+#map {
+  height: 400px;
+  width: 93%;
+  color: rgb(211, 56, 56);
+  border-radius: 20px;
+  border: 3px solid white;
+  box-shadow: 0 0 30px black;
+  padding: 20px;
+  margin-right: 10px;
+
+  &:hover {
+    border: 3px solid rgb(255, 90, 95);
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  #map {
+    height: 300px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
 }
 </style>
