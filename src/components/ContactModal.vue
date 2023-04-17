@@ -83,7 +83,7 @@ export default {
 <style scoped lang="scss">
 @use '../assets/styles/partials/variables' as *;
 
-.modal-form {}
+
 
 .modal-form.overlay {
 
