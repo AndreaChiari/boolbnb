@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     fetchApartments(range = 20) {
-      this.isLoading = true
+      this.isLoading = true;
       axios
         .get(`${backEndUri}lat=${this.coordinates[0]}&lon=${this.coordinates[1]}&range=${range}`)
         .then((res) => {
@@ -87,13 +87,14 @@ export default {
 
   mounted() {
     this.fetchApartments();
+    console.log('mounted')
     if (window.sessionStorage.getItem('filters') != null) this.filters = JSON.parse(window.sessionStorage.getItem('filters'))
   },
   watch: {
     coordinates: {
       deep: true,
       handler(newCoordinates, oldCoordinates) {
-        this.fetchApartments();
+        this.fetchApartments(this.filters.range);
       }
     },
   }
@@ -119,7 +120,7 @@ export default {
             Cerca un nuovo indirizzo
           </button>
         </div>
-        <app-map :flag="true" :apartments="filteredApartments"
+        <app-map v-if="filteredApartments.length" :flag="true" :apartments="filteredApartments"
           class="d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"></app-map>
       </div>
     </div>
