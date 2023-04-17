@@ -140,7 +140,7 @@ main {
 
   .bg {
     animation: slide 3s ease-in-out infinite alternate;
-    background-image: linear-gradient(-60deg, #FF4664 50%, $secondary-bg 50%);
+    background-image: linear-gradient(-60deg, #dd1f3f 50%, $secondary-bg 50%);
     bottom: 0;
     left: -50%;
     opacity: .5;
