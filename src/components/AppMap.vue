@@ -6,7 +6,8 @@ export default {
     coordinates: Object,
     name: String,
     flag: Boolean,
-    apartments: Array
+    apartments: Array,
+    addressCoordinates: Array
   },
 
   setup(props) {
@@ -46,7 +47,9 @@ export default {
         }));
 
         // Creo l'array con solo le coordinate 
-        const address = [filteredApartments[0].lon, filteredApartments[0].lat];
+        const address = props.addressCoordinates.reverse();
+        
+
 
         let map = tt.map({
           key: "aXmqa9tqNAUMFDXixJeARSNrykS73T0d",
