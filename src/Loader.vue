@@ -1,8 +1,15 @@
 <script>
+export default {
+    name: 'Loader',
+    props: {
+        hasMinHeight: Boolean
+    }
+}
 </script>
 
 <template>
-    <div class="loader-container d-flex justify-content-center align-items-center">
+    <div class="loader-container d-flex justify-content-center align-items-center"
+        :class="hasMinHeight ? 'min-height' : 'absolute'">
         <div class="loader">
             <span style="--i: 1"></span>
             <span style="--i: 2"></span>
@@ -35,13 +42,21 @@
 @use './assets/styles/partials/variables' as *;
 
 .loader-container {
-    // min-height: calc(100vh - 150px);
+
     background-color: $main-bg;
-    position: absolute;
+
     top: 80px;
     bottom: 70px;
     left: 0;
     right: 0;
+}
+
+.min-height {
+    min-height: calc(100vh - 150px);
+}
+
+.absolute {
+    position: absolute;
 }
 
 * {

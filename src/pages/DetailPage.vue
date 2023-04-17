@@ -114,7 +114,7 @@ export default {
 </script>
 
 <template>
-    <app-loader v-if="isLoading"></app-loader>
+    <app-loader v-if="isLoading" :hasMinHeight="true"></app-loader>
     <main v-if="!isLoading" class="py-5">
         <div v-if="apartment" class="container apartment">
             <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />

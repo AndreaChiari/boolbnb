@@ -54,7 +54,7 @@ export default {
 </script>
 
 <template>
-    <app-loader v-if="isLoading"></app-loader>
+    <app-loader v-if="isLoading" :hasMinHeight="true"></app-loader>
     <AppJumbotron v-if="!isLoading" @search-city="getCityToSearch" :sponsored-apartments="sponsoredApartments" />
     <main class="py-5" v-if="!isLoading">
         <div class="bg"></div>
