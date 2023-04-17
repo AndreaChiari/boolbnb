@@ -89,63 +89,73 @@ export default {
     <main v-if="!isLoading" class="py-5">
         <div v-if="apartment" class="container apartment">
             <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
-            <div class="pictures row">
-                <div class="col-12 py-2 mb-3 border-bottom">
-                    <h1 class="apartment-name">{{ apartment.name }}</h1>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="pictures row">
+                        <div class="col-12 py-2 mb-3 border-bottom">
+                            <h1 class="apartment-name">{{ apartment.name }}</h1>
+                        </div>
+                        <div :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
+                            <img class="main-pic" :src="apartment.thumb" :alt="apartment.name" />
+                        </div>
+                        <div v-if="apartment.apartment_pics.length" class="col-6 p-0 row side-pics">
+                            <div class="col-6 border h-50"></div>
+                            <div class="col-6 border h-50"></div>
+                            <div class="col-6 border h-50"></div>
+                            <div class="col-6 border h-50"></div>
+                        </div>
+                    </div>
+                    <div class="info row border-bottom align-items-center">
+                        <div class="col-6 pt-3">
+                            <address class="mb-0">{{ apartment.address }}</address>
+                        </div>
+                        <div class="col-6 pt-3">
+                            <h4 class="apartment-price text-end">€{{ apartment.price }}/notte</h4>
+                        </div>
+                    </div>
+                    <div class="details row">
+                        <div class="col-12 py-5 border-bottom">
+                            <p class="description mb-0">{{ apartment.description }}</p>
+                        </div>
+                        <div class="col-4 py-5 text-center border border-top-none border-left-none">
+                            <i class="fa-solid fa-person-shelter fa-2x me-2"></i><span class="h2">{{ apartment.rooms
+                            }}</span>
+                        </div>
+                        <div class="col-4 py-5 text-center border border-top-none">
+                            <i class="fa-solid fa-bed fa-2x me-2"></i><span class="h2">{{ apartment.beds }}</span>
+                        </div>
+                        <div class="col-4 py-5 text-center border border-top-none border-right-none">
+                            <i class="fa-solid fa-restroom fa-2x me-2"></i><span class="h2">{{ apartment.bathrooms }}</span>
+                        </div>
+                    </div>
+                    <div v-if="apartment.services.length" class="services row">
+                        <div class="col-12 py-3">
+                            <h3>Servizi</h3>
+                        </div>
+                        <ul class="col-12 mb-0">
+                            <li v-for="service in apartment.services" class="border-bottom py-2">
+                                <i class="me-2" :class="service.icon"></i>{{ service.name }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="buttons row mt-3">
+                        <div class="col-12 d-flex justify-content-between">
+                            <button class="contact-button" @click="$router.go(-1)">
+                                Torna Indietro
+                            </button>
+                            <GeneralButton buttonText="Contatta il proprietario" @button-click="contactModal = true" />
+                        </div>
+                    </div>
                 </div>
-                <div :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
-                    <img class="main-pic" :src="apartment.thumb" :alt="apartment.name" />
-                </div>
-                <div v-if="apartment.apartment_pics.length" class="col-6 p-0 row side-pics">
-                    <div class="col-6 border h-50"></div>
-                    <div class="col-6 border h-50"></div>
-                    <div class="col-6 border h-50"></div>
-                    <div class="col-6 border h-50"></div>
+                <div class="col-lg-4 p-5">
+                    <app-map :flag="false" :name="apartment.name" :coordinates="coordinates"></app-map>
                 </div>
             </div>
-            <div class="info row border-bottom align-items-center">
-                <div class="col-6 pt-3">
-                    <address class="mb-0">{{ apartment.address }}</address>
-                </div>
-                <div class="col-6 pt-3">
-                    <h4 class="apartment-price text-end">€{{ apartment.price }}/notte</h4>
-                </div>
-            </div>
-            <div class="details row">
-                <div class="col-12 py-5 border-bottom">
-                    <p class="description mb-0">{{ apartment.description }}</p>
-                </div>
-                <div class="col-4 py-5 text-center border border-top-none border-left-none">
-                    <i class="fa-solid fa-person-shelter fa-2x me-2"></i><span class="h2">{{ apartment.rooms }}</span>
-                </div>
-                <div class="col-4 py-5 text-center border border-top-none">
-                    <i class="fa-solid fa-bed fa-2x me-2"></i><span class="h2">{{ apartment.beds }}</span>
-                </div>
-                <div class="col-4 py-5 text-center border border-top-none border-right-none">
-                    <i class="fa-solid fa-restroom fa-2x me-2"></i><span class="h2">{{ apartment.bathrooms }}</span>
-                </div>
-            </div>
-            <div v-if="apartment.services.length" class="services row">
-                <div class="col-12 py-3">
-                    <h3>Servizi</h3>
-                </div>
-                <ul class="col-12 mb-0">
-                    <li v-for="service in apartment.services" class="border-bottom py-2">
-                        <i class="me-2" :class="service.icon"></i>{{ service.name }}
-                    </li>
-                </ul>
-            </div>
-            <div class="buttons row mt-3">
-                <div class="col-12 d-flex justify-content-between">
-                    <button class="contact-button" @click="$router.go(-1)">
-                        Torna Indietro
-                    </button>
-                    <GeneralButton buttonText="Contatta il proprietario" @button-click="contactModal = true" />
-                </div>
-            </div>
+
+
             <ContactModal v-if="contactModal" :contact="apartment.name" :id="apartment.id"
                 @close-modal="contactModal = false" @send-form="sendMessage" />
-            <app-map :flag="false" :name="apartment.name" :coordinates="coordinates"></app-map>
         </div>
     </main>
 </template>
