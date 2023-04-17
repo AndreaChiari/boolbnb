@@ -2,10 +2,11 @@
 import ApartmentCard from "../components/apartments/ApartmentCard.vue";
 import IndexFilter from "../components/IndexFilter.vue";
 import { backEndUri } from "../data/index.js";
+import AppMap from "../components/AppMap.vue";
 import axios from 'axios';
 export default {
   name: "Index",
-  components: { ApartmentCard, IndexFilter },
+  components: { ApartmentCard, IndexFilter, AppMap },
   data() {
     return {
       filters: {},
@@ -83,6 +84,7 @@ export default {
       return apartments;
     },
   },
+
   mounted() {
     this.fetchApartments();
     if (window.sessionStorage.getItem('filters') != null) this.filters = JSON.parse(window.sessionStorage.getItem('filters'))
@@ -108,6 +110,7 @@ export default {
           <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
             <ApartmentCard :apartment="apartment" />
           </div>
+        <app-map :flag="true" :apartments="filteredApartments"></app-map>
         </div>
 
         <div v-else class="text-center not-found-apartment">

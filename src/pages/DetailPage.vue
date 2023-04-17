@@ -1,10 +1,9 @@
-
 <script>
-import axios from 'axios';
-import GeneralButton from '../components/GeneralButton.vue';
-import ContactModal from '../components/ContactModal.vue';
-import AppAlert from '../components/AppAlert.vue';
-import AppMap from '../components/AppMap.vue';
+import axios from "axios";
+import GeneralButton from "../components/GeneralButton.vue";
+import ContactModal from "../components/ContactModal.vue";
+import AppAlert from "../components/AppAlert.vue";
+import AppMap from "../components/AppMap.vue";
 
 export default {
     name: "DetailPage",
@@ -13,44 +12,49 @@ export default {
             apartment: null,
             contactModal: false,
             showAlert: false,
-            alertType: '',
-            alertText: '',
-            isLoading: true
-        }
+            alertType: "",
+            alertText: "",
+            isLoading: true,
+        };
     },
     components: { GeneralButton, ContactModal, AppAlert, AppMap },
     methods: {
         fetchApartment() {
-            this.isLoading = true
-            axios.get(`http://127.0.0.1:8000/api/apartments/${this.$route.params.id}`).then((res) => {
-                this.isLoading = false
-                this.apartment = res.data;
-
-            }).catch(() => {
-                console.log('ciao');
-                this.$router.push({ name: 'not-found-page' })
-            })
+            this.isLoading = true;
+            axios
+                .get(`http://127.0.0.1:8000/api/apartments/${this.$route.params.id}`)
+                .then((res) => {
+                    this.isLoading = false;
+                    this.apartment = res.data;
+                })
+                .catch(() => {
+                    console.log("ciao");
+                    this.$router.push({ name: "not-found-page" });
+                });
         },
         sendMessage(message) {
             console.log(message);
-            axios.post('http://127.0.0.1:8000/api/messages', message).then(() => {
-                this.contactModal = false;
-                this.showAlert = true;
-                this.alertType = 'success';
-                this.alertText = 'Il messaggio è stato inviato con successo';
-            }).catch((e) => {
-                this.alertText = '';
-                const errors = e.response.data.errors;
-                this.contactModal = false;
-                this.showAlert = true;
-                this.alertType = 'danger';
-                this.alertText = '<h3>Il messaggio non è stato inviato perchè:</h3>'
-                for (let key in errors) {
-                    for (let key2 in errors[key]) {
-                        this.alertText += `<li>${key} : ${errors[key][key2]}</li>`;
+            axios
+                .post("http://127.0.0.1:8000/api/messages", message)
+                .then(() => {
+                    this.contactModal = false;
+                    this.showAlert = true;
+                    this.alertType = "success";
+                    this.alertText = "Il messaggio è stato inviato con successo";
+                })
+                .catch((e) => {
+                    this.alertText = "";
+                    const errors = e.response.data.errors;
+                    this.contactModal = false;
+                    this.showAlert = true;
+                    this.alertType = "danger";
+                    this.alertText = "<h3>Il messaggio non è stato inviato perchè:</h3>";
+                    for (let key in errors) {
+                        for (let key2 in errors[key]) {
+                            this.alertText += `<li>${key} : ${errors[key][key2]}</li>`;
+                        }
                     }
-                }
-            })
+                });
             window.scrollTo(0, 0);
         },
         picHolderClassSelection(index) {
@@ -66,31 +70,29 @@ export default {
 
     },
     created() {
-        this.fetchApartment()
+        this.fetchApartment();
     },
 
     computed: {
         services() {
-            let services = ''
+            let services = "";
             this.apartment.services.forEach((service, i) => {
-                services += `<i class="${service.icon}"></i> ${service.name}`
+                services += `<i class="${service.icon}"></i> ${service.name}`;
                 if (i < this.apartment.services.length - 1) {
-                    services += ", "
+                    services += ", ";
                 }
             });
-            return services
+            return services;
         },
         coordinates() {
             const coordinates = {
                 lat: this.apartment.latitude,
-                lon: this.apartment.longitude
+                lon: this.apartment.longitude,
             };
-            return coordinates
-        }
-    }
-}
-
-
+            return coordinates;
+        },
+    },
+};
 </script>
 
 <template>
@@ -98,20 +100,18 @@ export default {
     <main v-if="!isLoading" class="py-5">
         <div v-if="apartment" class="container apartment">
             <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
-            <div class="row">
-                <div class="col-12 py-2 mb-3 border-bottom name-holder">
+            <div class="pictures row">
+                <div class="col-12 py-2 mb-3 border-bottom">
                     <h1 class="apartment-name">{{ apartment.name }}</h1>
                 </div>
-            </div>
-            <div class="pictures row mx-0 px-0 mb-3">
-                <div class="pic-holder border-pink p-0" :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
+                <div :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
                     <img class="main-pic" :src="apartment.thumb" :alt="apartment.name">
                 </div>
-                <div v-if="apartment.apartment_pics.length" class="pic-holder  col-6 p-0 mx-0 row side-pics">
-                    <div class="border-pink p-0" :class="picHolderClassSelection(i)"
-                        v-for="pic, i in apartment.apartment_pics">
-                        <img class="secondary-pic" :src="`http://127.0.0.1:8000/storage/${pic.thumb}`" :alt="pic.id">
-                    </div>
+                <div v-if="apartment.apartment_pics.length" class="col-6 p-0 row side-pics">
+                    <div class="col-6 border h-50"></div>
+                    <div class="col-6 border h-50"></div>
+                    <div class="col-6 border h-50"></div>
+                    <div class="col-6 border h-50"></div>
                 </div>
             </div>
             <div class="info row border-bottom align-items-center">
@@ -162,7 +162,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@use '../assets/styles/partials/variables' as *;
+@use "../assets/styles/partials/variables" as *;
 
 //generals
 
@@ -174,8 +174,8 @@ export default {
     text-decoration: none;
     padding: 10px;
     border-radius: 10px;
-    background-color: #FF385C;
-    border: 0.6px solid #FFDEDF;
+    background-color: #ff385c;
+    border: 0.6px solid #ffdedf;
     color: white;
     font-family: sans-serif;
     position: relative;
@@ -184,13 +184,15 @@ export default {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.246);
 
     &:before {
-        content: '';
+        content: "";
         position: absolute;
         top: -50%;
         left: -50%;
         width: 200%;
         height: 200%;
-        background: linear-gradient(45deg, rgba(255, 255, 255, 0.104), rgba(255, 255, 255, 0));
+        background: linear-gradient(45deg,
+                rgba(255, 255, 255, 0.104),
+                rgba(255, 255, 255, 0));
         transform: rotate(-45deg);
         transition: all 0.3s ease-out;
     }
@@ -203,9 +205,7 @@ export default {
     &:active {
         transform: scale(0.95);
     }
-
 }
-
 
 main {
     background-color: $main-bg;
@@ -213,7 +213,6 @@ main {
 }
 
 .apartment {
-
     .border-bottom {
         border-color: $pink-2 !important;
     }
@@ -284,5 +283,10 @@ main {
         color: $pink-3;
     }
 
+    <<<<<<< HEAD
 }
 </style>
+=======
+}
+</style>
+>>>>>>> 4db9873b55cd4bc64203fabb5615e8cef55c6d45

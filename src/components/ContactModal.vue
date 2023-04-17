@@ -56,20 +56,20 @@ export default {
 <template>
     <form class="modal-form overlay d-flex justify-content-center align-items-center" action=""
         @submit.prevent="validateForm">
-        <div class="card d-flex flex-column p-5">
+        <div class="card d-flex flex-column p-2">
             <AppAlert v-if="hasErrors" type="danger" :text="errors" @close-alert="hasErrors = false" />
             <button class="close-btn align-self-end" type="button" @click="$emit('close-modal')"><i
                     class="fa-solid fa-xmark fa-2x"></i></button>
             <h4 class="text-center mb-5">Contatta il proprietario di {{ contact }}</h4>
             <div class="row justify-content-center p-4">
-                <label class="col-5">Nome:</label>
+                <label class="col-3">Nome:</label>
                 <input class="col-7 mb-3" type="text" name="name" v-model="message.name">
-                <label for="email" class="col-5">Email:</label>
+                <label for="email" class="col-3">Email:</label>
                 <input class="col-7 mb-3" type="email" name="email" v-model="message.email">
-                <label for="object" class="col-5">Oggetto:</label>
+                <label for="object" class="col-3">Oggetto:</label>
                 <input class="col-7 mb-3" type="text" name="object" v-model="message.object">
-                <label class="col-5" for="content">Messaggio:</label>
-                <textarea class="col-7 mb-5" name="content" id="content" cols="30" rows="10"
+                <label class="col-3" for="content">Messaggio:</label>
+                <textarea class="col-7 mb-5" name="content" id="content" cols="30" rows="5"
                     v-model="message.content"></textarea>
                 <div class="col-12 d-flex justify-content-center justify-content-sm-end">
                     <GeneralButton buttonText="Invia" />
@@ -82,6 +82,8 @@ export default {
 
 <style scoped lang="scss">
 @use '../assets/styles/partials/variables' as *;
+
+
 
 .modal-form.overlay {
 
