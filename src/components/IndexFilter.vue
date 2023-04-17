@@ -53,7 +53,7 @@ export default {
                 },
                 {
                     name: 'Aria Condizionata',
-                    icon: 'fa-solid fa-fan fa-spin'
+                    icon: 'fa-solid fa-fan'
                 },
                 {
                     name: 'Tavolo da Ping Pong',
