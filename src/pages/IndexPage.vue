@@ -27,14 +27,14 @@ export default {
         });
     },
 
-    getIp(){
+    getIp() {
       axios
-      .get('http://127.0.0.1:8000/api/views')
-      .then((res) => {
-        this.ip =  res.data;
-        console.log(this.ip);
-      })
-    },  
+        .get('http://127.0.0.1:8000/api/views')
+        .then((res) => {
+          this.ip = res.data;
+          console.log(this.ip);
+        })
+    },
 
     searchNewAddress() {
       document.getElementById("searchCity").focus();
@@ -104,6 +104,7 @@ export default {
     coordinates: {
       deep: true,
       handler(newCoordinates, oldCoordinates) {
+        //ciao
         this.fetchApartments(this.filters.range);
       }
     },
