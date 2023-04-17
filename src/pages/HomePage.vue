@@ -87,6 +87,7 @@ export default {
 @use '../assets/styles/partials/variables' as *;
 
 
+
 .title-wrapper {
     position: relative;
     display: inline-block;
@@ -119,24 +120,35 @@ export default {
 
 
 main {
-    background-color: $main-bg;
-    min-height: calc(100vh - 250px);
+    background: linear-gradient(-45deg, #ee7752, $pink-5, $pink-3, $pink-4);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+    min-height: calc(100vh - 570px);
 }
 
-@media screen and (min-width: 577px) {
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
     main {
-        background-color: $main-bg;
         min-height: calc(100vh - 350px);
     }
-
 }
 
-@media screen and (min-width: 1201px) {
-
+@media screen and (max-width: 576px) {
     main {
-        background-color: $main-bg;
-        min-height: calc(100vh - 570px);
+        min-height: calc(100vh - 250px);
     }
-
 }
 </style>
