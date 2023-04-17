@@ -55,11 +55,12 @@ export default {
         },
         picHolderClassSelection(index) {
             if (this.apartment.apartment_pics.length <= 2) {
-                return 'col-12'
+                if (this.apartment.apartment_pics.length === 1) return 'h-100 col-12'
+                return 'h-50 col-12'
             } else if (this.apartment.apartment_pics.length === 3 && index === 0) {
-                return 'col-12'
+                return 'h-50 col-12'
             } else {
-                return 'col-6'
+                return 'h-50 col-6'
             }
         },
 
@@ -97,15 +98,17 @@ export default {
     <main v-if="!isLoading" class="py-5">
         <div v-if="apartment" class="container apartment">
             <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
-            <div class="pictures row mb-3">
+            <div class="row">
                 <div class="col-12 py-2 mb-3 border-bottom name-holder">
                     <h1 class="apartment-name">{{ apartment.name }}</h1>
                 </div>
-                <div class="pic-holder" :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
+            </div>
+            <div class="pictures row mx-0 px-0 mb-3">
+                <div class="pic-holder border-pink p-0" :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
                     <img class="main-pic" :src="apartment.thumb" :alt="apartment.name">
                 </div>
-                <div v-if="apartment.apartment_pics.length" class="pic-holder col-6 p-0 row side-pics">
-                    <div class="border p-0 h-50" :class="picHolderClassSelection(i)"
+                <div v-if="apartment.apartment_pics.length" class="pic-holder  col-6 p-0 mx-0 row side-pics">
+                    <div class="border-pink p-0" :class="picHolderClassSelection(i)"
                         v-for="pic, i in apartment.apartment_pics">
                         <img class="secondary-pic" :src="`http://127.0.0.1:8000/storage/${pic.thumb}`" :alt="pic.id">
                     </div>
@@ -163,6 +166,10 @@ export default {
 
 //generals
 
+.border-pink {
+    border: 1px solid $pink-2;
+}
+
 .contact-button {
     text-decoration: none;
     padding: 10px;
@@ -219,12 +226,12 @@ main {
         }
 
         .pic-holder {
-            height: calc(400px - 73px);
+            height: 100%;
         }
     }
 
     .main-pic {
-        max-height: 100%;
+        height: 100%;
         width: 100%;
         object-fit: cover;
     }
@@ -276,5 +283,6 @@ main {
     i {
         color: $pink-3;
     }
+
 }
 </style>
