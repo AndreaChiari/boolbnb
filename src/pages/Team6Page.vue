@@ -1,5 +1,8 @@
 <template>
     <main>
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
         <div class="container">
             <div class="cards d-flex justify-content-center flex-wrap py-5">
                 <div class="card rounded-5" style="width: 18rem;">
@@ -44,6 +47,8 @@
 </template>
 
 <style scoped lang="scss">
+@use "../assets/styles/partials/variables" as *;
+
 main {
     min-height: calc(100vh - 150px);
 
@@ -65,7 +70,6 @@ main {
 
         &:hover {
             transform: scale(1.1);
-            text-transform: uppercase;
             filter: grayscale(0);
             cursor: pointer;
         }
@@ -78,6 +82,41 @@ main {
         font-weight: 400;
         line-height: 1.5;
         letter-spacing: 0.1rem;
+    }
+}
+
+
+
+
+.bg {
+    animation: slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #dd1f3f 50%, $secondary-bg 50%);
+    bottom: 0;
+    left: -50%;
+    opacity: .5;
+    position: fixed;
+    right: -50%;
+    top: 0;
+    z-index: -1;
+}
+
+.bg2 {
+    animation-direction: alternate-reverse;
+    animation-duration: 4s;
+}
+
+.bg3 {
+    animation-duration: 5s;
+}
+
+
+@keyframes slide {
+    0% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(25%);
     }
 }
 </style>
