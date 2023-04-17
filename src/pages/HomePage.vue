@@ -57,23 +57,16 @@ export default {
     <app-loader v-if="isLoading"></app-loader>
     <AppJumbotron v-if="!isLoading" @search-city="getCityToSearch" :sponsored-apartments="sponsoredApartments" />
     <main class="py-5" v-if="!isLoading">
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
         <div class="container">
-
-
-
-
             <div class="col-md-6">
                 <div class="title-wrapper">
                     <h1 class="text-white mb-5">I nostri appartamenti in evidenza</h1>
                     <i class="fa-solid fa-house" style="color: #eb1414;"></i>
                 </div>
             </div>
-
-
-
-
-
-
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
                 <div class="col d-flex justify-content-center" v-for="apartment in otherSponsoredApartments">
                     <ApartmentCard :apartment="apartment" />
@@ -120,23 +113,38 @@ export default {
 
 
 main {
-    background: linear-gradient(-45deg, #ee7752, $pink-5, $pink-3, $pink-4);
-    background-size: 400% 400%;
-    animation: gradient 5s ease infinite;
     min-height: calc(100vh - 570px);
-}
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
+    .bg {
+        animation: slide 3s ease-in-out infinite alternate;
+        background-image: linear-gradient(-60deg, #FF4664 50%, $secondary-bg 50%);
+        bottom: 0;
+        left: -50%;
+        opacity: .5;
+        position: fixed;
+        right: -50%;
+        top: 0;
+        z-index: -1;
     }
 
-    50% {
-        background-position: 100% 50%;
+    .bg2 {
+        animation-direction: alternate-reverse;
+        animation-duration: 4s;
     }
 
-    100% {
-        background-position: 0% 50%;
+    .bg3 {
+        animation-duration: 5s;
+    }
+
+
+    @keyframes slide {
+        0% {
+            transform: translateX(-25%);
+        }
+
+        100% {
+            transform: translateX(25%);
+        }
     }
 }
 
