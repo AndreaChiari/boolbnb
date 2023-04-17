@@ -35,8 +35,13 @@
 @use './assets/styles/partials/variables' as *;
 
 .loader-container {
-    min-height: calc(100vh - 150px);
+    // min-height: calc(100vh - 150px);
     background-color: $main-bg;
+    position: absolute;
+    top: 80px;
+    bottom: 70px;
+    left: 0;
+    right: 0;
 }
 
 * {
@@ -52,9 +57,13 @@ body {
 }
 
 .loader {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100px;
     height: 100px;
+    z-index: 2;
 }
 
 .loader span {
