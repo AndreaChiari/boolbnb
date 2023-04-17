@@ -130,7 +130,7 @@ export default {
             Cerca un nuovo indirizzo
           </button>
         </div>
-        <app-map v-if="filteredApartments.length" :flag="true" :apartments="filteredApartments"
+        <app-map v-if="filteredApartments.length" :addressCoordinates="coordinates" :flag="true" :apartments="filteredApartments"
           class="d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"></app-map>
       </div>
     </div>
