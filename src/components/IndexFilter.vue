@@ -87,7 +87,7 @@ export default {
 <template>
     <section id="filter">
         <div class="container">
-            <div class="row g-2">
+            <div class="row g-2 overlay">
 
                 <div class="col-12 col-sm-4 col-lg-2">
                     <div class="input-group">
@@ -163,6 +163,16 @@ export default {
 
 #filter {
     min-height: 80px;
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.38);
+        border-radius: 20px;
+        text-shadow: #FF385C;
+        padding: 1rem;
+        margin-bottom: 30px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.344);
+    }
+
 
     label {
         color: $pink-2;

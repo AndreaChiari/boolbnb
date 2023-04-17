@@ -104,6 +104,9 @@ export default {
 <template>
   <app-loader v-if="isLoading"></app-loader>
   <main class="py-3">
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
     <div class="content">
       <IndexFilter @send-filters="storeFilters" @range-release="fetchApartments(range)" />
       <div v-if="!isLoading" class="container">
@@ -120,7 +123,8 @@ export default {
             Cerca un nuovo indirizzo
           </button>
         </div>
-        <app-map v-if="filteredApartments.length" :addressCoordinates="coordinates" :flag="true" :apartments="filteredApartments"
+        <app-map v-if="filteredApartments.length" :addressCoordinates="coordinates" :flag="true"
+          :apartments="filteredApartments"
           class="d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4"></app-map>
       </div>
     </div>
@@ -131,31 +135,41 @@ export default {
 @use "../assets/styles/partials/variables" as *;
 
 main {
-  position: relative;
   min-height: calc(100vh - 150px);
-  background-image: url(https://c.wallhere.com/photos/cd/67/top_view_city_3D_Abstract-1692599.jpg!d);
-  background-position: center;
-  z-index: 1;
-  background-size: cover;
-}
 
-main::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-  backdrop-filter: blur(5px);
-}
 
-.content {
-  position: relative;
-  z-index: 2;
-}
+  .bg {
+    animation: slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #FF4664 50%, $secondary-bg 50%);
+    bottom: 0;
+    left: -50%;
+    opacity: .5;
+    position: fixed;
+    right: -50%;
+    top: 0;
+    z-index: -1;
+  }
 
+  .bg2 {
+    animation-direction: alternate-reverse;
+    animation-duration: 4s;
+  }
+
+  .bg3 {
+    animation-duration: 5s;
+  }
+
+
+  @keyframes slide {
+    0% {
+      transform: translateX(-25%);
+    }
+
+    100% {
+      transform: translateX(25%);
+    }
+  }
+}
 
 
 #map {
