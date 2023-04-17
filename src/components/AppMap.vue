@@ -47,9 +47,7 @@ export default {
         }));
 
         // Creo l'array con solo le coordinate 
-        const address = [filteredApartments[0].lon, filteredApartments[0].lat];
-
-
+        const address = [props.addressCoordinates[1], props.addressCoordinates[0]]
 
         let map = tt.map({
           key: "aXmqa9tqNAUMFDXixJeARSNrykS73T0d",
