@@ -100,18 +100,15 @@ export default {
     <main v-if="!isLoading" class="py-5">
         <div v-if="apartment" class="container apartment">
             <AppAlert v-if="showAlert" :type="alertType" :text="alertText" @close-alert="showAlert = false" />
-            <div class="pictures row">
-                <div class="col-12 py-2 mb-3 border-bottom">
-                    <h1 class="apartment-name">{{ apartment.name }}</h1>
-                </div>
-                <div :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
+            <div class="pictures row mx-0 px-0 mb-3">
+                <div class="pic-holder border-pink p-0" :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
                     <img class="main-pic" :src="apartment.thumb" :alt="apartment.name">
                 </div>
-                <div v-if="apartment.apartment_pics.length" class="col-6 p-0 row side-pics">
-                    <div class="col-6 border h-50"></div>
-                    <div class="col-6 border h-50"></div>
-                    <div class="col-6 border h-50"></div>
-                    <div class="col-6 border h-50"></div>
+                <div v-if="apartment.apartment_pics.length" class="pic-holder  col-6 p-0 mx-0 row side-pics">
+                    <div class="border-pink p-0" :class="picHolderClassSelection(i)"
+                        v-for="pic, i in apartment.apartment_pics">
+                        <img class="secondary-pic" :src="`http://127.0.0.1:8000/storage/${pic.thumb}`" :alt="pic.id">
+                    </div>
                 </div>
             </div>
             <div class="info row border-bottom align-items-center">
@@ -283,10 +280,5 @@ main {
         color: $pink-3;
     }
 
-    <<<<<<< HEAD
 }
 </style>
-=======
-}
-</style>
->>>>>>> 4db9873b55cd4bc64203fabb5615e8cef55c6d45
