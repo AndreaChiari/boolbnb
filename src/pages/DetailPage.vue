@@ -15,6 +15,7 @@ export default {
             alertType: "",
             alertText: "",
             isLoading: true,
+            ip: null,
         };
     },
     components: { GeneralButton, ContactModal, AppAlert, AppMap },
@@ -26,6 +27,7 @@ export default {
                 .then((res) => {
                     this.isLoading = false;
                     this.apartment = res.data;
+                    this.getIp();
                 })
                 .catch(() => {
                     console.log("ciao");
@@ -59,13 +61,29 @@ export default {
         },
         picHolderClassSelection(index) {
             if (this.apartment.apartment_pics.length <= 2) {
-                if (this.apartment.apartment_pics.length === 1) return 'h-100 col-12'
-                return 'h-50 col-12'
+                if (this.apartment.apartment_pics.length === 1) return "h-100 col-12";
+                return "h-50 col-12";
             } else if (this.apartment.apartment_pics.length === 3 && index === 0) {
-                return 'h-50 col-12'
+                return "h-50 col-12";
             } else {
-                return 'h-50 col-6'
+                return "h-50 col-6";
             }
+        },
+
+        getIp() {
+            axios.get("http://127.0.0.1:8000/api/views").then((res) => {
+                this.ip = res.data;
+                console.log(this.ip);
+                this.sendView();
+            })
+        },
+
+        sendView() {
+            const view = {
+                ip: this.ip,
+                apartment_id: this.apartment.id
+            }
+            axios.post('http://127.0.0.1:8000/api/views', view)
         },
 
     },
@@ -110,13 +128,13 @@ export default {
                     <div class="pictures row mx-0 px-0 mb-3">
                         <div class="pic-holder border-pink p-0"
                             :class="apartment.apartment_pics.length ? 'col-6' : 'col-12'">
-                            <img class="main-pic" :src="apartment.thumb" :alt="apartment.name">
+                            <img class="main-pic" :src="apartment.thumb" :alt="apartment.name" />
                         </div>
                         <div v-if="apartment.apartment_pics.length" class="pic-holder col-6 p-0 mx-0 row side-pics">
                             <div class="border-pink p-0" :class="picHolderClassSelection(i)"
-                                v-for="pic, i in apartment.apartment_pics">
+                                v-for="(pic, i) in apartment.apartment_pics">
                                 <img class="secondary-pic" :src="`http://127.0.0.1:8000/storage/${pic.thumb}`"
-                                    :alt="pic.id">
+                                    :alt="pic.id" />
                             </div>
                         </div>
                     </div>
@@ -253,8 +271,6 @@ main {
         object-fit: cover;
         transition: all 0.3s ease-out;
 
-
-
         &:active {
             border: 1px solid #ff385c;
             transform: scale(1.5);
@@ -305,7 +321,6 @@ main {
     i {
         color: $pink-3;
     }
-
 }
 
 #map {
@@ -321,7 +336,6 @@ main {
     &:hover {
         border: 3px solid rgb(255, 90, 95);
     }
-
 }
 
 @media screen and (max-width: 767px) {

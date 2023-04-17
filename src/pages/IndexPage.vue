@@ -12,8 +12,6 @@ export default {
       filters: {},
       apartments: [],
       isLoading: true,
-      prova: {},
-      ip: ''
     };
   },
   methods: {
@@ -25,15 +23,6 @@ export default {
           this.isLoading = false
           this.apartments = res.data;
         });
-    },
-
-    getIp() {
-      axios
-        .get('http://127.0.0.1:8000/api/views')
-        .then((res) => {
-          this.ip = res.data;
-          console.log(this.ip);
-        })
     },
 
     searchNewAddress() {
@@ -120,7 +109,7 @@ export default {
       <div v-if="!isLoading" class="container">
         <div v-if="apartments.length" class="gutter row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
           <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
-            <ApartmentCard @click="getIp()" :apartment="apartment" />
+            <ApartmentCard :apartment="apartment" />
           </div>
         </div>
         <div v-else class="text-center not-found-apartment">
