@@ -47,8 +47,8 @@ export default {
         }));
 
         // Creo l'array con solo le coordinate 
-        const address = props.addressCoordinates.reverse();
-        
+        const address = [filteredApartments[0].lon, filteredApartments[0].lat];
+
 
 
         let map = tt.map({
