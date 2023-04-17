@@ -195,8 +195,7 @@ export default {
 }
 
 .info-box {
-    text-shadow: 2px 2px 3px black;
-
+    text-shadow: 12.25px 12.25px 22.5px black;
 }
 
 .prev-enter-active,
