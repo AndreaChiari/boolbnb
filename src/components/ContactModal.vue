@@ -28,7 +28,7 @@ export default {
                 this.hasErrors = true;
             }
             if (!this.message.name) {
-                this.errors += "<li>Il nome è obbligatoria</li>";
+                this.errors += "<li>Il nome è obbligatorio</li>";
                 this.hasErrors = true;
             }
             if (!this.message.object) {
