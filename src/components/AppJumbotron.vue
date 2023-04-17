@@ -108,7 +108,7 @@ export default {
     position: relative;
     overflow-x: hidden;
     padding-top: 100px;
-    box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 50px rgba(0, 0, 0, 2.25);
 
     .thumb-container {
         position: absolute;
