@@ -85,9 +85,9 @@ export default {
   },
 
   mounted() {
-    this.fetchApartments();
-    console.log('mounted')
     if (window.sessionStorage.getItem('filters') != null) this.filters = JSON.parse(window.sessionStorage.getItem('filters'))
+    this.fetchApartments(this.filters.range);
+    console.log('mounted')
   },
   watch: {
     coordinates: {
