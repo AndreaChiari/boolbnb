@@ -64,7 +64,6 @@ export default {
             <div class="col-md-6">
                 <div class="title-wrapper">
                     <h1 class="text-white mb-5">I nostri appartamenti in evidenza</h1>
-                    <i class="fa-solid fa-house" style="color: #eb1414;"></i>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
