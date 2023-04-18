@@ -105,5 +105,6 @@ export default {
   width: 250px;
   color: black;
   padding-right: 30rem;
+  font-family: 'Manrope', sans-serif;
 }
 </style>
