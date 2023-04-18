@@ -151,7 +151,7 @@ export default {
 
 header {
   height: 80px;
-  background: linear-gradient(to bottom, #202020, #222222, #242424);
+  background: linear-gradient(to bottom, #2020209b, #2222229b, #24242497);
   color: white;
   position: sticky;
   top: 0;
