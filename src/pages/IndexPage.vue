@@ -116,7 +116,7 @@ export default {
           </div>
         </div>
         <div v-else class="text-center not-found-apartment">
-          <h1 class="text-danger">
+          <h1 class="text-white">
             Nessun appartamento trovato al seguente indirizzo.
           </h1>
           <button class="btn btn-warning" @click="searchNewAddress()">
