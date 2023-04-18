@@ -109,7 +109,7 @@ export default {
 
                 <div class="col-12 col-sm-4 col-lg-2">
                     <div class="input-group">
-                        <span class="input-group-text"><i class="fa-solid fa-toilet"></i></span>
+                        <span class="input-group-text"><i class="fa-solid fa-shower"></i></span>
                         <input v-model="filters.bathrooms" type="number" min="1" class="form-control" id="bathrooms"
                             placeholder="Bagni" name="bathrooms" @keyup="sendFilters()">
                     </div>
@@ -129,14 +129,14 @@ export default {
                 </div>
 
                 <!-- Range kms  -->
-                <div class="col-12 col-lg-10 text-center my-2">
+                <div class="col-12 col-lg-11 text-center my-2">
                     <label for="km_range" class="form-label w-100">Kms Range: {{ filters.range }}km</label>
                     <input v-model="filters.range" type="range" step="1" min="0" max="100" class="form-range" id="km_range"
                         name="km_range" @change="sendFilters()" @mouseup="$emit('range-release')">
                 </div>
 
                 <!-- Bottoni filtro e servizi Aggiuntivi  -->
-                <div class="col-12 col-lg-2 mb-2 d-flex justify-content-end align-items-center">
+                <div class="col-12 col-lg-1 mb-2 d-flex justify-content-end align-items-center">
                     <!-- <GeneralButton @click="sendFilters()" buttonText="Filter" /> -->
                     <GeneralButton buttonText='<i class="fa-solid fa-filter fa-lg" style="color: #ffffff;"></i>'
                         @Click="toggleStatus" />
@@ -175,7 +175,7 @@ export default {
 
 
     label {
-        color: $pink-2;
+        color: white
     }
 
     .form-check-input {
