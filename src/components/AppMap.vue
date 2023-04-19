@@ -96,13 +96,13 @@ export default {
         markerElement.className = "custom-marker";
         markerElement.innerHTML = `<span role="button" class="badge rounded-pill text-bg-warning border border-dark p-2">${apartment.price}€</span>`;
 
-        // const popupElement = document.createElement("div");
-        // popupElement.className = "custom-popup";
-        // popupElement.innerHTML = `<span class="badge rounded-pill text-bg-warning border border-dark p-2">${apartment.price}€</span>`;
+         const popupElement = document.createElement("div");
+         popupElement.className = "custom-popup";
+         popupElement.innerHTML = `<span class="w-100 h-100 badge text-bg-primary text-bg-primary p-2">${apartment.name}</span>`;
 
         const popup = new tt.Popup({
           closeButton: false,
-        }).setHTML(`${apartment.name}`)
+        }).setDOMContent(popupElement);
 
         const marker = new tt.Marker({ element: markerElement })
           .setLngLat([apartment.lon, apartment.lat])
