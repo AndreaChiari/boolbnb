@@ -151,11 +151,19 @@ main {
     main {
         min-height: calc(100vh - 350px);
     }
+
+    h1 {
+        text-align: start;
+    }
 }
 
 @media screen and (max-width: 576px) {
     main {
         min-height: calc(100vh - 250px);
+    }
+
+    h1 {
+        text-align: center;
     }
 }
 </style>
