@@ -21,6 +21,7 @@ export default {
     toggleMenu() {
       this.isShown = !this.isShown;
     },
+
     fetchApiCall() {
       if (this.termSearch && event.keyCode !== 13) {
         axios
@@ -64,9 +65,15 @@ export default {
           });
       }
     },
+
     goToBackoffice() {
       window.location.href = 'http://127.0.0.1:8000/admin/apartments'
+    },
+
+    cleanInput(){
+      this.termSearch = '';
     }
+
   },
 
   mounted() {
@@ -80,7 +87,7 @@ export default {
     <nav class="container d-flex justify-content-between align-items-center py-3 h-100">
       <div class="nav-left h-100 row align-items-center">
         <div class="col-auto p-0">
-          <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center logo-container">
+          <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center logo-container" @click="cleanInput">
             <div class="logo-header">
               <img src="../assets/img/boolbnb_2.png" alt="" class="img-fluid logo">
             </div>
