@@ -1,7 +1,8 @@
 @use "./partials/variables" as *;
 
 body {
-    font-family: 'Manrope', sans-serif;
+    font-family: "Manrope", sans-serif;
+    background-color: $main-bg;
 }
 
 .cs-text-unstyled {
