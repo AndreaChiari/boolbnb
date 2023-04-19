@@ -41,6 +41,7 @@ export default {
 
         // Creo l'array filtrato con solo prezzo e coordinate
         const filteredApartments = props.apartments.map((apartment) => ({
+          name: apartment.name,
           price: apartment.price,
           lon: apartment.longitude,
           lat: apartment.latitude,
@@ -95,8 +96,17 @@ export default {
         markerElement.className = "custom-marker";
         markerElement.innerHTML = `<span class="badge rounded-pill text-bg-warning border border-dark p-2">${apartment.price}€</span>`;
 
-        new tt.Marker({ element: markerElement })
+        // const popupElement = document.createElement("div");
+        // popupElement.className = "custom-popup";
+        // popupElement.innerHTML = `<span class="badge rounded-pill text-bg-warning border border-dark p-2">${apartment.price}€</span>`;
+
+        const popup = new tt.Popup({
+          closeButton: false,
+        }).setHTML(`${apartment.name}`)
+
+        const marker = new tt.Marker({ element: markerElement })
           .setLngLat([apartment.lon, apartment.lat])
+          .setPopup(popup)
           .addTo(map);
       });
     }
