@@ -67,12 +67,15 @@ export default {
       const tt = window.tt;
       const popupOffset = 25;
 
-      const marker = new tt.Marker().setLngLat(address).addTo(map);
-      const popup = new tt.Popup({ offset: popupOffset }).setHTML(
-        `${props.name}`
-      );
+      const markerElement = document.createElement("div");
+      markerElement.className = "custom-marker";
+      markerElement.innerHTML = '<i class="fa-solid fa-2xl fa-house"></i>';
+
+      const marker = new tt.Marker({ element: markerElement }).setLngLat(address).addTo(map);
+      const popup = new tt.Popup({ offset: popupOffset }).setHTML(`${props.name}`);
       marker.setPopup(popup).togglePopup();
     }
+
 
     //Scroll top per Behaviour di tomtom
     function scrollToTop() {
@@ -106,5 +109,17 @@ export default {
   color: black;
   padding-right: 30rem;
   font-family: 'Manrope', sans-serif;
+
+  .custom-marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 70, 100);
+    border-radius: 50%;
+    color: rgb(255, 70, 100);
+    font-size: 100px;
+  }
 }
 </style>
