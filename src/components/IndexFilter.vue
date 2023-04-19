@@ -204,5 +204,8 @@ export default {
         }
     }
 
+    span {
+        width: 44px;
+    }
 }
 </style>
