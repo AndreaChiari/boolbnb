@@ -181,7 +181,9 @@ export default {
                     </div>
                 </div>
                 <div class="col-lg-4 p-5">
-                    <app-map :flag="false" :name="apartment.name" :coordinates="coordinates"></app-map>
+                    <div class="map-container">
+                        <app-map :flag="false" :name="apartment.name" :coordinates="coordinates"></app-map>
+                    </div>
                 </div>
             </div>
 
@@ -335,6 +337,11 @@ main {
     &:hover {
         border: 3px solid rgb(255, 90, 95);
     }
+}
+
+.map-container {
+    position: sticky;
+    top: 22%;
 }
 
 @media screen and (max-width: 767px) {
