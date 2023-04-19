@@ -114,9 +114,6 @@ export default {
           <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
             <ApartmentCard :apartment="apartment" />
           </div>
-          <audio controls autoplay class="d-none">
-            <source src="../assets/audio/Best_of_Germano_Mosconi.mp3" type="audio/mp3">
-          </audio>
         </div>
         <div v-else class="text-center not-found-apartment">
           <h1 class="text-white">
