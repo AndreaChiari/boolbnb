@@ -110,6 +110,7 @@ export default {
     height: 100px;
     position: relative;
     overflow-x: hidden;
+    overflow-y: hidden;
     padding-top: 100px;
     box-shadow: 5px 5px 50px rgba(0, 0, 0, 2.25);
 
