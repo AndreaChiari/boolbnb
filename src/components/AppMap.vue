@@ -92,6 +92,9 @@ export default {
     // Funzione per aggiungere molteplici appartamenti alla mappa
     function addMarkers(map, filteredApartments) {
       filteredApartments.forEach((apartment) => {
+        let size = 50
+
+
         const markerElement = document.createElement("div");
         markerElement.className = "custom-marker";
         markerElement.innerHTML = `<span role="button" class="badge rounded-pill text-bg-warning border border-dark p-2">${apartment.price}€</span>`;
@@ -102,6 +105,8 @@ export default {
 
         const popup = new tt.Popup({
           closeButton: false,
+          offset: size / 2,
+          anchor: 'bottom'
         }).setDOMContent(popupElement);
 
         const marker = new tt.Marker({ element: markerElement })
