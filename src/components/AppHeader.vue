@@ -102,9 +102,9 @@ export default {
           <input id="searchCity" type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)"
             v-model.trim="termSearch" class="form-control col rounded-5" placeholder="Ex. Milan"
             aria-label="Recipient's username" aria-describedby="button-addon2" />
-          <div @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2">
-            <img src="public/img/world.svg" alt="" class="world" height="60px">
-          </div>
+          <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2">
+            <i class="fa-solid fa-plane"></i>
+          </button>
         </div>
 
         <!-- lista dei suggerimenti autocompletamento  -->
@@ -262,12 +262,21 @@ header {
   outline: none;
 }
 
-.world {
-  height: 20px;
-  width: 20px;
+i {
+  color: $pink-4;
+  font-size: 20px;
+  transition: transform 0.8s ease;
 
   &:hover {
-    transform: scale(1.5);
+    background: linear-gradient(to right, #ff6ec4, #ff1493);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    transform: rotate(270deg);
+  }
+
+  &:active {
+    transform: scale(1.1) rotate(270deg);
   }
 }
 </style>
