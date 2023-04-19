@@ -106,7 +106,6 @@ export default {
         const popup = new tt.Popup({
           closeButton: false,
           offset: size / 2,
-          anchor: 'bottom'
         }).setDOMContent(popupElement);
 
         const marker = new tt.Marker({ element: markerElement })
