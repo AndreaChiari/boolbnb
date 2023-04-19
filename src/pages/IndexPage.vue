@@ -108,7 +108,7 @@ export default {
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
     <div class="content">
-      <IndexFilter @send-filters="storeFilters" @range-release="fetchApartments(range)" />
+      <IndexFilter v-if="!isLoading" @send-filters="storeFilters" @range-release="fetchApartments(range)" />
       <div v-if="!isLoading" class="container">
         <div v-if="apartments.length" class="gutter row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
           <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
