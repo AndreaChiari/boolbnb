@@ -180,6 +180,8 @@ main {
   box-shadow: 0 0 30px black;
   padding: 20px;
   margin-right: 10px;
+  font-size: 17.5px;
+
 
   &:hover {
     border: 3px solid rgb(255, 90, 95);
