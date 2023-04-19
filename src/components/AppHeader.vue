@@ -80,8 +80,10 @@ export default {
     <nav class="container d-flex justify-content-between align-items-center py-3 h-100">
       <div class="nav-left h-100 row align-items-center">
         <div class="col-auto p-0">
-          <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center">
-            <div class="logo-header"></div>
+          <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center logo-container">
+            <div class="logo-header">
+              <img src="../assets/img/boolbnb_2.png" alt="" class="img-fluid logo">
+            </div>
             <p class="title d-none d-md-inline">OOLBNB</p>
           </router-link>
         </div>
@@ -134,13 +136,28 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables" as *;
 
+.logo-container {
+  &:hover {
+    text-shadow: 0 0 5px red;
+  }
+
+  .logo {
+    max-height: 110px;
+    position: absolute;
+    top: -15px;
+    margin-left: -10px;
+
+    &:hover {
+      -webkit-filter: drop-shadow(5px 5px 5px #f50606);
+      filter: drop-shadow(5px 5px 5px #e00000);
+
+    }
+  }
+}
+
 .logo-header {
   width: 100px;
   height: 50px;
-  background-image: url(/src/assets/img/boolbnb_2.png);
-  background-position: center;
-  background-size: 114px;
-  background-repeat: no-repeat;
   margin-right: -20px;
 
 }
@@ -163,6 +180,7 @@ header {
 
   .nav-left img {
     max-height: 80px;
+
   }
 
   .title {
