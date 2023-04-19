@@ -94,7 +94,7 @@ export default {
       filteredApartments.forEach((apartment) => {
         const markerElement = document.createElement("div");
         markerElement.className = "custom-marker";
-        markerElement.innerHTML = `<span class="badge rounded-pill text-bg-warning border border-dark p-2">${apartment.price}€</span>`;
+        markerElement.innerHTML = `<span role="button" class="badge rounded-pill text-bg-warning border border-dark p-2">${apartment.price}€</span>`;
 
         // const popupElement = document.createElement("div");
         // popupElement.className = "custom-popup";
