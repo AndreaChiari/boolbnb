@@ -43,6 +43,7 @@ export default {
         const filteredApartments = props.apartments.map((apartment) => ({
           name: apartment.name,
           price: apartment.price,
+          id: apartment.id,
           lon: apartment.longitude,
           lat: apartment.latitude,
         }));
@@ -101,7 +102,7 @@ export default {
 
          const popupElement = document.createElement("div");
          popupElement.className = "custom-popup";
-         popupElement.innerHTML = `<span class="w-100 h-100 badge text-bg-primary text-bg-primary p-2">${apartment.name}</span>`;
+         popupElement.innerHTML = `<a href="http://localhost:5174/apartments/${apartment.id}" class="text-decoration-none w-100 h-100 badge text-bg-primary text-bg-primary p-2">${apartment.name}</a>`;
 
         const popup = new tt.Popup({
           closeButton: false,
