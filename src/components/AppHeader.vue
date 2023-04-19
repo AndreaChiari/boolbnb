@@ -21,6 +21,7 @@ export default {
     toggleMenu() {
       this.isShown = !this.isShown;
     },
+
     fetchApiCall() {
       if (this.termSearch && event.keyCode !== 13) {
         axios
@@ -64,9 +65,15 @@ export default {
           });
       }
     },
+
     goToBackoffice() {
       window.location.href = 'http://127.0.0.1:8000/admin/apartments'
+    },
+
+    cleanInput() {
+      this.termSearch = '';
     }
+
   },
 
   mounted() {
@@ -80,7 +87,8 @@ export default {
     <nav class="container d-flex justify-content-between align-items-center py-3 h-100">
       <div class="nav-left h-100 row align-items-center">
         <div class="col-auto p-0">
-          <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center logo-container">
+          <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center logo-container"
+            @click="cleanInput">
             <div class="logo-header">
               <img src="../assets/img/boolbnb_2.png" alt="" class="img-fluid logo">
             </div>
@@ -94,9 +102,9 @@ export default {
           <input id="searchCity" type="text" @keyup="fetchApiCall()" @keyup.enter="getAddress(termSearch)"
             v-model.trim="termSearch" class="form-control col rounded-5" placeholder="Ex. Milan"
             aria-label="Recipient's username" aria-describedby="button-addon2" />
-          <button @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2">
-            <i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #f2f2f2"></i>
-          </button>
+          <div @click="getAddress(termSearch)" class="btn rounded-5 px-3" type="button" id="button-addon2">
+            <img src="public/img/world.svg" alt="" class="world" height="60px">
+          </div>
         </div>
 
         <!-- lista dei suggerimenti autocompletamento  -->
@@ -120,11 +128,7 @@ export default {
             </button>
             <div class="dropdown-menu flex-column custom-dropdown-menu dropdown-menu-right"
               :class="{ 'show d-flex': isShown }">
-
-              <GeneralButton buttonText="Login" routeName="index" class="btn btn-sm custom-button w-100" />
-
-              <GeneralButton buttonText="Sign In" routeName="index" class="btn btn-sm custom-button w-100" />
-
+              <GeneralButton buttonText="Area Personale" routeName="index" @button-click="goToBackoffice()" />
             </div>
           </div>
         </div>
@@ -226,7 +230,7 @@ header {
 }
 
 .custom-dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(20, 20, 20, 0.341);
   border: none;
   padding: 0.5rem;
   position: absolute;
@@ -256,5 +260,14 @@ header {
 .custom-button:focus {
   box-shadow: none;
   outline: none;
+}
+
+.world {
+  height: 20px;
+  width: 20px;
+
+  &:hover {
+    transform: scale(1.5);
+  }
 }
 </style>
