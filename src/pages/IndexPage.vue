@@ -16,6 +16,7 @@ export default {
   },
   methods: {
     fetchApartments(range = 20) {
+      console.log(range)
       this.isLoading = true;
       axios
         .get(`${backEndUri}lat=${this.coordinates[0]}&lon=${this.coordinates[1]}&range=${range}`)
@@ -86,6 +87,7 @@ export default {
 
   mounted() {
     if (window.sessionStorage.getItem('filters') != null) this.filters = JSON.parse(window.sessionStorage.getItem('filters'))
+    console.log(this.filters.range)
     this.fetchApartments(this.filters.range);
     console.log('mounted')
   },
@@ -108,7 +110,7 @@ export default {
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
     <div class="content">
-      <IndexFilter v-if="!isLoading" @send-filters="storeFilters" @range-release="fetchApartments(range)" />
+      <IndexFilter v-if="!isLoading" @send-filters="storeFilters" @range-release="fetchApartments" />
       <div v-if="!isLoading" class="container">
         <div v-if="apartments.length" class="gutter row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
           <div class="col d-flex justify-content-center mb-4" v-for="apartment in filteredApartments">
