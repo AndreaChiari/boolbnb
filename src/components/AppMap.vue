@@ -117,9 +117,10 @@ export default {
   margin: 50px;
   height: 350px;
   width: 250px;
-  color: black;
   padding-right: 30rem;
   font-family: "Manrope", sans-serif;
+  color: rgb(255, 70, 100);
+
 
   .custom-marker {
     display: flex;
@@ -127,9 +128,7 @@ export default {
     align-items: center;
     width: 100px;
     height: 100px;
-    background-color: rgb(255, 70, 100);
     border-radius: 50%;
-    color: rgb(255, 70, 100);
     font-size: 100px;
   }
 }

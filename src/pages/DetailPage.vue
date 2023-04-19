@@ -326,7 +326,6 @@ main {
 #map {
     height: 400px;
     width: 500px;
-    color: rgb(211, 56, 56);
     border-radius: 20px;
     border: 3px solid white;
     box-shadow: 0 0 30px black;
