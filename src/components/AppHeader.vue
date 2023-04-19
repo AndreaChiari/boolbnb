@@ -88,7 +88,7 @@ export default {
       <div class="nav-left h-100 row align-items-center">
         <div class="col-auto p-0">
           <router-link :to="{ name: 'home' }" class="text-decoration-none d-flex align-items-center logo-container"
-            @click="cleanInput">
+            @click="cleanInput()">
             <div class="logo-header">
               <img src="../assets/img/boolbnb_2.png" alt="" class="img-fluid logo">
             </div>

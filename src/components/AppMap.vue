@@ -102,7 +102,7 @@ export default {
 
          const popupElement = document.createElement("div");
          popupElement.className = "custom-popup";
-         popupElement.innerHTML = `<a href="http://localhost:5174/apartments/${apartment.id}" class="text-decoration-none w-100 h-100 badge text-bg-primary text-bg-primary p-2">${apartment.name}</a>`;
+         popupElement.innerHTML = `<span class="w-100 h-100 badge text-bg-primary text-bg-primary p-2">${apartment.name}</span>`;
 
         const popup = new tt.Popup({
           closeButton: false,
